@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardMenu } from '../atoms';
+import { CardMenu } from '../molecules';
 import CardDetails from './CardDetails';
 
 function Card({

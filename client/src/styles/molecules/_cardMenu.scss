@@ -8,12 +8,6 @@
     margin: 0;
     box-shadow: 0 0 20px 0 #ccc;
     transition: opacity 0.5s linear;
-    cursor: pointer;
     z-index: 5;
     background-color:white;
-    .option:hover {
-      border-radius: 10px;
-      color: white;
-      background-color: $nightblue;
-    }
   }

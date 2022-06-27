@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
+import ContextMenuOption from '../../atoms/option/Option';
 
 function CardMenu({ prop, position, contextMenu, setDisplay, setProp }) {
   const wrapperRef = useRef(null);
@@ -8,15 +9,9 @@ function CardMenu({ prop, position, contextMenu, setDisplay, setProp }) {
     <>
       <img
         onClick={e => {
-          if (contextMenu.ids.includes(prop.id)) {
-            e.stopPropagation();
-            contextMenu.removeId(prop.id);
-            return;
-          }
+          e.stopPropagation();
           contextMenu.position(e);
           contextMenu.addId(prop.id);
-          e.stopPropagation();
-          return;
         }}
         className="card__header__menu"
         src={'/menu.png'}
@@ -29,46 +24,40 @@ function CardMenu({ prop, position, contextMenu, setDisplay, setProp }) {
           style={{ top: position.yPos, left: position.xPos }}
         >
           {prop.isActive !== undefined ? (
-            <div
-              className="option"
+            <ContextMenuOption
+              name={prop.isActive ? 'Désactiver' : 'Activer'}
               onClick={e => {
                 e.stopPropagation();
                 contextMenu.changeStatus(prop.id, prop.isActive);
               }}
-            >
-              {prop.isActive ? 'Désactiver' : 'Activer'}
-            </div>
+            />
           ) : (
-            <div
-              className="option"
+            <ContextMenuOption
+              name={
+                prop.disponible ? 'Rendre indisponible' : 'Rendre disponible'
+              }
               onClick={e => {
                 e.stopPropagation();
                 contextMenu.changeStatus(prop.id, prop.disponible);
               }}
-            >
-              {prop.disponible ? 'Rendre indisponible' : 'Rendre disponible'}
-            </div>
+            />
           )}
 
-          <div
-            className="option"
-            onClick={e => {
-              e.stopPropagation();
+          <ContextMenuOption
+            name="Modifier"
+            onClick={() => {
               setProp(prop);
               setDisplay('update-form');
             }}
-          >
-            Modifier
-          </div>
-          <div
-            className="option"
+          />
+
+          <ContextMenuOption
+            name="Supprimer"
             onClick={e => {
               e.stopPropagation();
               contextMenu.handleClickDelete(prop.id);
             }}
-          >
-            Supprimer
-          </div>
+          />
         </div>
       )}
     </>

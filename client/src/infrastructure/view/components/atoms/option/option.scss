@@ -1,0 +1,10 @@
+@import "../../../../../styles/vars/index.scss";
+
+.option {
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover {
+          color: white;
+          background-color: $nightblue;
+        }
+}
