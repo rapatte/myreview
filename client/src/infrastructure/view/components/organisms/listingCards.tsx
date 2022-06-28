@@ -19,10 +19,10 @@ function ListingCards({
         {props && props.length > 0
           ? props
               .sort(sorting)
-              .map(prop => (
+              .map(data => (
                 <Card
-                  key={prop.id}
-                  prop={prop}
+                  key={data.id}
+                  data={data}
                   position={position}
                   contextMenu={contextMenu}
                   details={details}
