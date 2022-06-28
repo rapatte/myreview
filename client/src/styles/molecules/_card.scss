@@ -27,6 +27,9 @@
       width: 1.5rem;
       height: 1.5rem;
       margin-right: 10px;
+      &:hover {
+        cursor: pointer
+      }
     }
     &__title {
       padding-left: 20px;
