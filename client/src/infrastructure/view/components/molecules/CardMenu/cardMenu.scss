@@ -10,4 +10,14 @@
     transition: opacity 0.5s linear;
     z-index: 5;
     background-color:white;
+}
+
+.card__header__menu {
+  order: 2;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 10px;
+  &:hover {
+    cursor: pointer
   }
+}
