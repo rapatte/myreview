@@ -1,53 +1,54 @@
 import React, { useRef } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
-import ContextMenuOption from '../../atoms/option/Option';
+import { ContextMenuOption } from '../../atoms';
+import './cardMenu.scss';
 
-function CardMenu({ prop, position, contextMenu, setDisplay, setProp }) {
+function CardMenu({ data, ...props }) {
   const wrapperRef = useRef(null);
-  useOutsideClick(wrapperRef, contextMenu.removeId);
+  useOutsideClick(wrapperRef, props.contextMenu.removeId);
+  const isDisplayed = props.contextMenu.ids.includes(data.id);
   return (
     <>
       <img
+        src="/menu.png"
+        alt="card menu"
+        className="card__header__menu"
         onClick={e => {
           e.stopPropagation();
-          contextMenu.position(e);
-          contextMenu.addId(prop.id);
+          props.contextMenu.position(e);
+          props.contextMenu.addId(data.id);
         }}
-        className="card__header__menu"
-        src={'/menu.png'}
-        alt="menu"
       />
-      {contextMenu.ids.includes(prop.id) && (
+
+      {isDisplayed && (
         <div
           ref={wrapperRef}
           className="custom-context-menu"
-          style={{ top: position.yPos, left: position.xPos }}
+          style={{ top: props.position.yPos, left: props.position.xPos }}
         >
-          {prop.isActive !== undefined ? (
-            <ContextMenuOption
-              name={prop.isActive ? 'Désactiver' : 'Activer'}
-              onClick={e => {
-                e.stopPropagation();
-                contextMenu.changeStatus(prop.id, prop.isActive);
-              }}
-            />
-          ) : (
-            <ContextMenuOption
-              name={
-                prop.disponible ? 'Rendre indisponible' : 'Rendre disponible'
-              }
-              onClick={e => {
-                e.stopPropagation();
-                contextMenu.changeStatus(prop.id, prop.disponible);
-              }}
-            />
-          )}
+          <ContextMenuOption
+            name={
+              props.cardType === 'mission'
+                ? data.isActive
+                  ? 'Désactiver'
+                  : 'Activer'
+                : data.disponible
+                ? 'Rendre indisponible'
+                : 'Rendre disponible'
+            }
+            onClick={e => {
+              e.stopPropagation();
+              props.cardType === 'mission'
+                ? props.contextMenu.changeStatus(data.id, data.isActive)
+                : props.contextMenu.changeStatus(data.id, data.disponible);
+            }}
+          />
 
           <ContextMenuOption
             name="Modifier"
             onClick={() => {
-              setProp(prop);
-              setDisplay('update-form');
+              props.setProp(data);
+              props.setDisplay('update-form');
             }}
           />
 
@@ -55,7 +56,7 @@ function CardMenu({ prop, position, contextMenu, setDisplay, setProp }) {
             name="Supprimer"
             onClick={e => {
               e.stopPropagation();
-              contextMenu.handleClickDelete(prop.id);
+              props.contextMenu.handleClickDelete(data.id);
             }}
           />
         </div>
