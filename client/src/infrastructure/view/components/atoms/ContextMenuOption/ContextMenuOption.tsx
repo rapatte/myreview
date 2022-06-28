@@ -1,11 +1,11 @@
 import React from 'react';
 import './contextMenuOption.scss';
 
-interface Props {
+type Props = {
   name: string;
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
-}
+};
 
 function ContextMenuOption({
   name = 'Option',
