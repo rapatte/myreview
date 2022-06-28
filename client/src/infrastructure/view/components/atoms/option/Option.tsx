@@ -8,7 +8,7 @@ interface Props {
 }
 
 function ContextMenuOption({
-  name = 'option',
+  name = 'Option',
   className = 'option',
   ...props
 }: Props) {

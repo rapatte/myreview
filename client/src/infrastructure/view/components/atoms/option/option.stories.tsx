@@ -7,6 +7,12 @@ import Option from './Option';
 export default {
   title: 'components/atoms',
   component: Option,
+  parameters: {
+    backgrounds: {
+      default: 'grey',
+      values: [{ name: 'grey', value: '#D3D3D3' }],
+    },
+  },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } as ComponentMeta<typeof Option>;
 
