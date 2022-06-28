@@ -3,7 +3,7 @@ import { CardMenu } from '../molecules';
 import CardDetails from './CardDetails';
 
 function Card({
-  prop,
+  data,
   position,
   details,
   contextMenu,
@@ -12,8 +12,8 @@ function Card({
   setProp,
 }) {
   function renderNames() {
-    if (prop.firstName && prop.lastName) {
-      const names = `${prop.lastName} ${prop.firstName}`;
+    if (data.firstName && data.lastName) {
+      const names = `${data.lastName} ${data.firstName}`;
       return names.length > 15 ? names.substr(0, 13) + '...' : names;
     }
   }
@@ -22,30 +22,30 @@ function Card({
     <>
       <li>
         <div className="container">
-          {details.ids.includes(prop.id) &&
+          {details.ids.includes(data.id) &&
             (cardType === 'mission' ? (
               <CardDetails
-                key={prop.id}
+                key={data.id}
                 cardType="mission"
-                data={prop}
+                data={data}
                 details={details}
               />
             ) : (
               <CardDetails
-                key={prop.id}
+                key={data.id}
                 cardType="cooperator"
-                data={prop}
+                data={data}
                 details={details}
               />
             ))}
 
           <div
             onClick={() => {
-              if (details.ids.includes(prop.id)) {
-                details.removeId(prop.id);
+              if (details.ids.includes(data.id)) {
+                details.removeId(data.id);
                 return;
               }
-              details.addId(prop.id);
+              details.addId(data.id);
               return;
             }}
             className="card"
@@ -54,23 +54,24 @@ function Card({
               <div className="card__content">
                 <div className="card__header">
                   <CardMenu
-                    key={prop.id}
-                    prop={prop}
+                    key={data.id}
+                    data={data}
+                    cardType="mission"
                     position={position}
                     contextMenu={contextMenu}
                     setDisplay={setDisplay}
                     setProp={setProp}
                   />
                   <h3 className="card__header__title">
-                    {prop.title && prop.title.length > 15
-                      ? prop.title.substr(0, 13) + '...'
-                      : prop.title}
+                    {data.title && data.title.length > 15
+                      ? data.title.substr(0, 13) + '...'
+                      : data.title}
                   </h3>
                 </div>
                 <p className="card__client">
-                  {prop.client && prop.client.length > 20
-                    ? prop.client.substr(0, 20) + '...'
-                    : prop.client}
+                  {data.client && data.client.length > 20
+                    ? data.client.substr(0, 20) + '...'
+                    : data.client}
                 </p>
                 <img
                   className="card__illustration"
@@ -79,7 +80,7 @@ function Card({
                 />
 
                 <div className={`card__status `}>
-                  {prop.isActive ? (
+                  {data.isActive ? (
                     <>
                       <img
                         className="card__status__logo"
@@ -104,8 +105,8 @@ function Card({
               <div className="card__content">
                 <div className="card__header">
                   <CardMenu
-                    key={prop.id}
-                    prop={prop}
+                    key={data.id}
+                    data={data}
                     position={position}
                     contextMenu={contextMenu}
                     setDisplay={setDisplay}
@@ -116,7 +117,7 @@ function Card({
                   </h4>
                 </div>
                 <p className="card__practice">
-                  {prop.practice && prop.practice}
+                  {data.practice && data.practice}
                 </p>
 
                 <img
@@ -126,7 +127,7 @@ function Card({
                 />
 
                 <div className={`card__status`}>
-                  {prop.disponible ? (
+                  {data.disponible ? (
                     <div className={`card__status__disponible`}>
                       <img
                         className="card__status__logo"
