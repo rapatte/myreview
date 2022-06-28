@@ -1,5 +1,5 @@
 import React from 'react';
-import './option.scss';
+import './contextMenuOption.scss';
 
 interface Props {
   name: string;

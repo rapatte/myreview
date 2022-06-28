@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Option from './Option';
+import ContextMenuOption from './ContextMenuOption';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'components/atoms',
-  component: Option,
+  component: ContextMenuOption,
   parameters: {
     backgrounds: {
       default: 'grey',
@@ -14,9 +14,9 @@ export default {
     },
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-} as ComponentMeta<typeof Option>;
+} as ComponentMeta<typeof ContextMenuOption>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const option: ComponentStory<typeof Option> = args => (
-  <Option {...args} />
+export const option: ComponentStory<typeof ContextMenuOption> = args => (
+  <ContextMenuOption {...args} />
 );
