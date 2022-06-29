@@ -14,13 +14,7 @@
     list-style-type: none;
     outline: none;
     text-decoration: none;
-    
     font-family:"Avenir";
-
-    &::selection {
-        background:$color-opacite3;
-        ;
-    }
 }
 
 

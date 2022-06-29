@@ -13,7 +13,7 @@ import * as ReactDOM from 'react-dom';
 
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
-import './styles/style.scss';
+import './infrastructure/view/styles/index.scss';
 // Import root app
 import { App } from './infrastructure/view';
 
