@@ -1,4 +1,7 @@
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPaperPlane,
+  faScrewdriverWrench,
+} from '@fortawesome/free-solid-svg-icons';
 import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 export const linksData: any = [

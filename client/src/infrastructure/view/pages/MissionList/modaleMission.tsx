@@ -8,11 +8,11 @@ import {
   getDataInLocalStorage,
   setDataInLocalStorage,
 } from 'infrastructure/view/hooks/useLocalStorage';
-import { TextArea } from 'infrastructure/view/components/atoms/TextArea';
 import { FormStructure } from 'infrastructure/view/components/organisms/types/OrganismsPropsTypes';
 import { Form } from 'infrastructure/view/components/organisms/Form';
 import { Missions } from './Missions/Loadable';
 import { SearchBar } from 'infrastructure/view/components';
+import { Textarea } from 'infrastructure/view/components/atoms/textarea/Textarea';
 
 const ModaleMission: React.FC = () => {
   const [display, setDisplay] = useState('mission-list');
@@ -164,7 +164,7 @@ const ModaleMission: React.FC = () => {
           <Form
             formStructure={missionFormStructure}
             children={
-              <TextArea
+              <Textarea
                 label={'Description'}
                 value={description}
                 onChange={e => setDescription(e.target.value)}
@@ -181,7 +181,7 @@ const ModaleMission: React.FC = () => {
           <Form
             formStructure={missionFormStructure}
             children={
-              <TextArea
+              <Textarea
                 label={'Description'}
                 value={description}
                 onChange={e => setDescription(e.target.value)}
