@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { linksData } from '../../constants/routes';
-import { Logo } from '../atoms/logo-wemanity';
+import { Logo } from '../atoms/Logo/Logo';
 import { usePathName } from 'infrastructure/view/hooks/UsePathName';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';

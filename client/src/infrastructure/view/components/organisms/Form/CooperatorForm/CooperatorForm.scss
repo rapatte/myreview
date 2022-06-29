@@ -1,0 +1,13 @@
+.mission-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    width: 20rem;
+    button {
+        align-self: flex-end;
+    }
+    .input-label, input {
+        width:100%;
+    }
+}

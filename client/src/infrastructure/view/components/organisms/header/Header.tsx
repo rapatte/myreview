@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../atoms/button/Button';
+import { Button } from '../../atoms/button-example/Button';
 
 import './header.css';
 
