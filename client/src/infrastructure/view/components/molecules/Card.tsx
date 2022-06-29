@@ -1,16 +1,10 @@
 import React from 'react';
+import { Status } from '../atoms';
 import { CardMenu } from '../molecules';
 import CardDetails from './CardDetails';
 
-function Card({
-  data,
-  position,
-  details,
-  contextMenu,
-  cardType,
-  setDisplay,
-  setProp,
-}) {
+function Card({ ...props }) {
+  const { data, details, cardType } = props;
   function renderNames() {
     if (data.firstName && data.lastName) {
       const names = `${data.lastName} ${data.firstName}`;
@@ -19,140 +13,74 @@ function Card({
   }
 
   return (
-    <>
-      <li>
-        <div className="container">
-          {details.ids.includes(data.id) &&
-            (cardType === 'mission' ? (
-              <CardDetails
-                key={data.id}
-                cardType="mission"
-                data={data}
-                details={details}
-              />
-            ) : (
-              <CardDetails
-                key={data.id}
-                cardType="cooperator"
-                data={data}
-                details={details}
-              />
-            ))}
+    <li>
+      <div className="container">
+        {details.ids.includes(data.id) && (
+          <CardDetails
+            key={data.id}
+            cardType={cardType === 'mission' ? 'mission' : 'cooperator'}
+            {...props}
+          />
+        )}
 
-          <div
-            onClick={() => {
-              if (details.ids.includes(data.id)) {
-                details.removeId(data.id);
-                return;
-              }
-              details.addId(data.id);
+        <div
+          onClick={() => {
+            if (details.ids.includes(data.id)) {
+              details.removeId(data.id);
               return;
-            }}
-            className="card"
-          >
-            {cardType === 'mission' ? (
-              <div className="card__content">
-                <div className="card__header">
-                  <CardMenu
-                    key={data.id}
-                    data={data}
-                    cardType="mission"
-                    position={position}
-                    contextMenu={contextMenu}
-                    setDisplay={setDisplay}
-                    setProp={setProp}
-                  />
-                  <h3 className="card__header__title">
-                    {data.title && data.title.length > 15
-                      ? data.title.substr(0, 13) + '...'
-                      : data.title}
-                  </h3>
-                </div>
-                <p className="card__client">
-                  {data.client && data.client.length > 20
-                    ? data.client.substr(0, 20) + '...'
-                    : data.client}
-                </p>
-                <img
-                  className="card__illustration"
-                  src={'/mission_illustration.png'}
-                  alt="illustration"
-                />
-
-                <div className={`card__status `}>
-                  {data.isActive ? (
-                    <>
-                      <img
-                        className="card__status__logo"
-                        src={'/check.png'}
-                        alt="check"
-                      />
-                      <span>Active</span>
-                    </>
-                  ) : (
-                    <>
-                      <img
-                        className="card__status__logo"
-                        src={'/close.png'}
-                        alt="check"
-                      />
-                      <span>Inactive</span>
-                    </>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div className="card__content">
-                <div className="card__header">
-                  <CardMenu
-                    key={data.id}
-                    data={data}
-                    position={position}
-                    contextMenu={contextMenu}
-                    setDisplay={setDisplay}
-                    setProp={setProp}
-                  />
-                  <h4 className="card__header__title card-header-name">
-                    {renderNames()}
-                  </h4>
-                </div>
-                <p className="card__practice">
-                  {data.practice && data.practice}
-                </p>
-
-                <img
-                  className="card__illustration"
-                  src={'/img-cooperator.png'}
-                  alt="img cooperator"
-                />
-
-                <div className={`card__status`}>
-                  {data.disponible ? (
-                    <div className={`card__status__disponible`}>
-                      <img
-                        className="card__status__logo"
-                        src={'/check.png'}
-                        alt="check"
-                      />
-                      <span>Disponible</span>
-                    </div>
-                  ) : (
-                    <div className={`card__status__disponible`}>
-                      <img
-                        className="card__status__logo"
-                        src={'/close.png'}
-                        alt="check"
-                      />
-                      <span>Indisponible</span>
-                    </div>
-                  )}
-                </div>
-              </div>
+            }
+            details.addId(data.id);
+            return;
+          }}
+          className="card"
+        >
+          <div className="card__content">
+            <div className="card__header">
+              <CardMenu
+                key={data.id}
+                cardType={cardType === 'mission' ? 'mission' : 'cooperator'}
+                {...props}
+              />
+              {cardType === 'mission' && (
+                <h3 className="card__header__title">
+                  {data.title && data.title.length > 15
+                    ? data.title.substr(0, 13) + '...'
+                    : data.title}
+                </h3>
+              )}
+              {cardType === 'cooperator' && (
+                <h3 className="card__header__title card-header-name">
+                  {renderNames()}
+                </h3>
+              )}
+            </div>
+            {cardType === 'cooperator' && (
+              <p className="card__practice">{data.practice}</p>
             )}
+            {cardType === 'mission' && (
+              <p className="card__client">
+                {data.client && data.client.length > 20
+                  ? data.client.substr(0, 20) + '...'
+                  : data.client}
+              </p>
+            )}
+            <img
+              className="card__illustration"
+              src={
+                cardType === 'mission'
+                  ? '/mission_illustration.png'
+                  : '/img-cooperator.png'
+              }
+              alt="illustration"
+            />
+            <Status
+              state={cardType === 'mission' ? data.isActive : data.disponible}
+              cardType={cardType === 'mission' ? 'mission' : 'cooperator'}
+            />
           </div>
         </div>
-      </li>
-    </>
+      </div>
+    </li>
   );
 }
 

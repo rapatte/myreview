@@ -3,7 +3,8 @@ import { useOutsideClick } from 'infrastructure/view/hooks';
 import { ContextMenuOption } from '../../atoms';
 import './cardMenu.scss';
 
-function CardMenu({ data, ...props }) {
+function CardMenu({ ...props }) {
+  const { data } = props;
   const wrapperRef = useRef(null);
   useOutsideClick(wrapperRef, props.contextMenu.removeId);
   const isDisplayed = props.contextMenu.ids.includes(data.id);
