@@ -4,6 +4,7 @@ type PropsLabel = {
   label: string;
   className?: string;
   id?: string;
+  htmlFor?: string;
 };
 
 export const Label: React.FC<PropsLabel> = ({ label }) => {

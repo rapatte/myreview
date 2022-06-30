@@ -16,7 +16,7 @@ export const LabelInput: React.FC<PropsLabelInput> = ({ ...props }) => {
   return (
     <div className="input-label">
       <Label label={props.label} />
-      <Input {...props} />
+      <Input id={props.label} {...props} />
     </div>
   );
 };
