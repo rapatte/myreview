@@ -47,7 +47,8 @@ function CardMenu({ ...props }) {
 
           <ContextMenuOption
             name="Modifier"
-            onClick={() => {
+            onClick={e => {
+              e.stopPropagation();
               props.setProp(data);
               props.setDisplay('update-form');
             }}
