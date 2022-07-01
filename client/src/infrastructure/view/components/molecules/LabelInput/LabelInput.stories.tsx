@@ -1,18 +1,19 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Button } from './Button';
+
+import { LabelInput } from './LabelInput';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/atoms',
-  component: Button,
-} as ComponentMeta<typeof Button>;
+  title: 'Components/molecules',
+  component: LabelInput,
+} as ComponentMeta<typeof LabelInput>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const button: ComponentStory<typeof Button> = args => (
-  <Button {...args} />
+export const label_input: ComponentStory<typeof LabelInput> = args => (
+  <LabelInput {...args} />
 );
 
-button.args = {
-  label: 'Envoyer',
+label_input.args = {
+  label: 'Email',
 };

@@ -1,8 +1,29 @@
 import React from 'react';
-import { Button } from '../atoms/Button';
+import { Button } from '../atoms/Button/Button';
 import Title from '../atoms/Title';
-import { LabelInput } from '../molecules/LabelInput';
-import { FormProps } from './types/OrganismsPropsTypes';
+import { LabelInput } from '../molecules/LabelInput/LabelInput';
+
+export type FormProps = {
+  formStructure: FormStructure;
+  children?: React.ReactNode;
+};
+
+export type FormStructure = {
+  title: string;
+  titleFormat: React.ElementType;
+  className: string;
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  form: InputType[];
+};
+
+export type InputType = {
+  label: string;
+  type: string;
+  value: string;
+  onChange: (value: React.SetStateAction<string>) => void;
+  className?: string;
+  placeholder?: string;
+};
 
 export const Form: React.FC<FormProps> = ({ formStructure, children }) => {
   return (
