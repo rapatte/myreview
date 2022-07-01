@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CardMenu from './CardMenu';
 import './cardMenu.scss';
@@ -11,7 +11,7 @@ export default {
 } as ComponentMeta<typeof CardMenu>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const AtomicCardMenu: ComponentStory<typeof CardMenu> = args => {
+export const CardMenuComponent: ComponentStory<typeof CardMenu> = args => {
   const data = {
     id: '8df730c1-5b14-404e-88b2-b632fac8882b',
     title: 'Développeur back-end',
