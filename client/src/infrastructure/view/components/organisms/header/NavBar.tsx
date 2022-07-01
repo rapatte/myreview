@@ -4,7 +4,8 @@ import { linksData } from 'infrastructure/view/constants/routes';
 import { usePathName } from 'infrastructure/view/hooks';
 import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { Logo } from '../../atoms/logo-wemanity';
+import { Logo } from '../../atoms/Logo/Logo';
+
 import './navBar.scss';
 
 interface HeaderProps {

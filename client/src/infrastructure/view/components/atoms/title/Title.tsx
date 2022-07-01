@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import './title.scss';
-import { Label } from '../Label';
 
 interface ComponentProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   format?: React.ElementType;

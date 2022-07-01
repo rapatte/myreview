@@ -9,7 +9,6 @@ import userEvent from '@testing-library/user-event';
 describe('<NavBar/>', () => {
   it('renders a span ', () => {
     render(<NavBar />, { wrapper: MemoryRouter });
-    screen.debug();
 
     const element = screen.getByText('Paramètres');
     expect(element).toBeInTheDocument();
