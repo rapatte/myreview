@@ -40,7 +40,7 @@ export const Form: React.FC<FormProps> = ({ formStructure, children }) => {
                 key={i}
                 label={val.label}
                 type={val.type}
-                value={val.value}
+                value={val.value || ''}
                 onChange={event => val.onChange(event.target.value)}
                 placeholder={val.placeholder}
               />

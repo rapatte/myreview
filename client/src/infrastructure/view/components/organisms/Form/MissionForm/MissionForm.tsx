@@ -27,7 +27,7 @@ export const MissionForm = ({
         <LabelInput
           label={'Titre'}
           type={'text'}
-          value={values.title}
+          value={values.title || ''}
           onChange={event => handleChange('title', event.target.value)}
           placeholder={''}
         />
@@ -35,7 +35,7 @@ export const MissionForm = ({
         <LabelInput
           label={'Client'}
           type={'text'}
-          value={values.client}
+          value={values.client || ''}
           onChange={event => handleChange('client', event.target.value)}
           placeholder={''}
         />
@@ -43,7 +43,7 @@ export const MissionForm = ({
         <LabelInput
           label={'Profile'}
           type={'text'}
-          value={values.profil}
+          value={values.profil || ''}
           onChange={event => handleChange('profil', event.target.value)}
           placeholder={''}
         />

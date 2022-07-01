@@ -28,7 +28,7 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Prénom'}
             type={'text'}
-            value={values.firstName}
+            value={values.firstName || ''}
             onChange={event => handleChange('firstName', event.target.value)}
             placeholder={''}
           />
@@ -36,7 +36,7 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Nom'}
             type={'text'}
-            value={values.lastName}
+            value={values.lastName || ''}
             onChange={event => handleChange('lastName', event.target.value)}
             placeholder={''}
           />
@@ -44,28 +44,28 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Téléphone'}
             type={'text'}
-            value={values.phoneNumber}
+            value={values.phoneNumber || ''}
             onChange={event => handleChange('phoneNumber', event.target.value)}
             placeholder={''}
           />
           <LabelInput
             label={'Email'}
             type={'text'}
-            value={values.email}
+            value={values.email || ''}
             onChange={event => handleChange('email', event.target.value)}
             placeholder={''}
           />
           <LabelInput
             label={'Practice'}
             type={'text'}
-            value={values.practice}
+            value={values.practice || ''}
             onChange={event => handleChange('practice', event.target.value)}
             placeholder={''}
           />
           <LabelInput
             label={'M3'}
             type={'text'}
-            value={values.m3}
+            value={values.m3 || ''}
             onChange={event => handleChange('m3', event.target.value)}
             placeholder={''}
           />
@@ -73,7 +73,7 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Mentor'}
             type={'text'}
-            value={values.mentor}
+            value={values.mentor || ''}
             onChange={event => handleChange('mentor', event.target.value)}
             placeholder={''}
           />
