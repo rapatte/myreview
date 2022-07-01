@@ -3,9 +3,8 @@ import { missionServices } from 'application';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import { Mission } from 'domain/mission/mission';
 import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
-import ListingCards from 'infrastructure/view/components/organisms/listingCards';
 import { notifySuccess } from 'utils/toastify';
-import { SearchBar } from 'infrastructure/view/components';
+import { SearchBar, ListingCards } from 'infrastructure/view/components';
 
 export const Missions = ({ setDisplay, setProp }) => {
   const { state, dispatch } = useMission();
