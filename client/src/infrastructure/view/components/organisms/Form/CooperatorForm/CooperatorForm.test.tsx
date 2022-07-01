@@ -6,38 +6,15 @@ import { CooperatorForm } from './CooperatorForm';
 describe('Cooperator form testing', () => {
   test('should render form with his inputs', () => {
     const handleClick = jest.fn(e => e.preventDefault());
-    const setFirstName = jest.fn();
-    const setLastName = jest.fn();
-    const setPhoneNumber = jest.fn();
-    const setEmail = jest.fn();
-    const setPractice = jest.fn();
-    const setM3 = jest.fn();
-    const setMentor = jest.fn();
-    const firstName = '';
-    const lastName = '';
-    const phoneNumber = '';
-    const email = '';
-    const practice = '';
-    const m3 = '';
-    const mentor = '';
+    const values = {};
+    const setValues = jest.fn();
 
     render(
       <CooperatorForm
+        title={'Ajouter un cooperateur'}
+        values={values}
+        setValues={setValues}
         handleClick={handleClick}
-        setFirstName={setFirstName}
-        setLastName={setLastName}
-        setPhoneNumber={setPhoneNumber}
-        setEmail={setEmail}
-        setPractice={setPractice}
-        setM3={setM3}
-        setMentor={setMentor}
-        firstName={firstName}
-        lastName={lastName}
-        phoneNumber={phoneNumber}
-        email={email}
-        practice={practice}
-        m3={m3}
-        mentor={mentor}
       />,
     );
     const firstNameValue = screen.getByLabelText('Prénom:');
@@ -61,38 +38,15 @@ describe('Cooperator form testing', () => {
 
   test('should submit form when the user click on the button', () => {
     const handleClick = jest.fn(e => e.preventDefault());
-    const setFirstName = jest.fn();
-    const setLastName = jest.fn();
-    const setPhoneNumber = jest.fn();
-    const setEmail = jest.fn();
-    const setPractice = jest.fn();
-    const setM3 = jest.fn();
-    const setMentor = jest.fn();
-    const firstName = '';
-    const lastName = '';
-    const phoneNumber = '';
-    const email = '';
-    const practice = '';
-    const m3 = '';
-    const mentor = '';
+    const values = {};
+    const setValues = jest.fn();
 
     render(
       <CooperatorForm
+        title={'Ajouter un cooperateur'}
+        values={values}
+        setValues={setValues}
         handleClick={handleClick}
-        setFirstName={setFirstName}
-        setLastName={setLastName}
-        setPhoneNumber={setPhoneNumber}
-        setEmail={setEmail}
-        setPractice={setPractice}
-        setM3={setM3}
-        setMentor={setMentor}
-        firstName={firstName}
-        lastName={lastName}
-        phoneNumber={phoneNumber}
-        email={email}
-        practice={practice}
-        m3={m3}
-        mentor={mentor}
       />,
     );
     const firstNameValue = screen.getByLabelText('Prénom:');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../atoms/button-example/Button';
+import { ButtonExample } from '../../atoms/button-example/ButtonExample';
 
 import './header.css';
 
@@ -52,12 +52,12 @@ export const Header = ({
             <span className="welcome">
               Welcome, <b>{user.name}</b>!
             </span>
-            <Button size="small" onClick={onLogout} label="Log out" />
+            <ButtonExample size="small" onClick={onLogout} label="Log out" />
           </>
         ) : (
           <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button
+            <ButtonExample size="small" onClick={onLogin} label="Log in" />
+            <ButtonExample
               primary
               size="small"
               onClick={onCreateAccount}

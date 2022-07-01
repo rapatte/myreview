@@ -2,83 +2,79 @@ import React from 'react';
 import { Button } from '../../../atoms/Button/Button';
 import { LabelInput } from '../../../molecules/LabelInput/LabelInput';
 
-type FormProps = {
-  setFormTitle?: string;
-  className?: string;
+type Props = {
+  title: string;
+  values: { [id: string]: string };
+  setValues: (value: React.SetStateAction<object>) => void;
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  setFirstName: (value: React.SetStateAction<string>) => void;
-  setLastName: (value: React.SetStateAction<string>) => void;
-  setPhoneNumber: (value: React.SetStateAction<string>) => void;
-  setEmail: (value: React.SetStateAction<string>) => void;
-  setPractice: (value: React.SetStateAction<string>) => void;
-  setM3: (value: React.SetStateAction<string>) => void;
-  setMentor: (value: React.SetStateAction<string>) => void;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  practice: string;
-  m3: string;
-  mentor: string;
 };
 
-export const CooperatorForm = ({ ...props }: FormProps) => {
+export const CooperatorForm = ({
+  values,
+  setValues,
+  handleClick,
+  title,
+}: Props) => {
+  const handleChange = (id, value) => {
+    setValues({ ...values, [id]: value });
+  };
+
   return (
     <>
-      <form className={props.className}>
-        <h2>{props.setFormTitle}</h2>
+      <form className={'cooperator-form'}>
+        <h2>{title}</h2>
 
         <div className={'cooperator-form-input-container'}>
           <LabelInput
             label={'Prénom'}
             type={'text'}
-            value={props.firstName}
-            onChange={event => props.setFirstName(event.target.value)}
+            value={values.firstName}
+            onChange={event => handleChange('firstName', event.target.value)}
             placeholder={''}
           />
 
           <LabelInput
             label={'Nom'}
             type={'text'}
-            value={props.lastName}
-            onChange={event => props.setLastName(event.target.value)}
+            value={values.lastName}
+            onChange={event => handleChange('lastName', event.target.value)}
             placeholder={''}
           />
 
           <LabelInput
             label={'Téléphone'}
             type={'text'}
-            value={props.phoneNumber}
-            onChange={event => props.setPhoneNumber(event.target.value)}
+            value={values.phoneNumber}
+            onChange={event => handleChange('phoneNumber', event.target.value)}
             placeholder={''}
           />
           <LabelInput
             label={'Email'}
             type={'text'}
-            value={props.email}
-            onChange={event => props.setEmail(event.target.value)}
+            value={values.email}
+            onChange={event => handleChange('email', event.target.value)}
             placeholder={''}
           />
           <LabelInput
             label={'Practice'}
             type={'text'}
-            value={props.practice}
-            onChange={event => props.setPractice(event.target.value)}
+            value={values.practice}
+            onChange={event => handleChange('practice', event.target.value)}
             placeholder={''}
           />
           <LabelInput
             label={'M3'}
             type={'text'}
-            value={props.m3}
-            onChange={event => props.setM3(event.target.value)}
+            value={values.m3}
+            onChange={event => handleChange('m3', event.target.value)}
             placeholder={''}
           />
 
           <LabelInput
             label={'Mentor'}
             type={'text'}
-            value={props.mentor}
-            onChange={event => props.setMentor(event.target.value)}
+            value={values.mentor}
+            onChange={event => handleChange('mentor', event.target.value)}
             placeholder={''}
           />
         </div>
@@ -88,7 +84,7 @@ export const CooperatorForm = ({ ...props }: FormProps) => {
           // className={'active-btn width-btn'}
           id={'sendedForm'}
           type={'submit'}
-          onClick={event => props.handleClick(event)}
+          onClick={event => handleClick(event)}
         />
       </form>
     </>

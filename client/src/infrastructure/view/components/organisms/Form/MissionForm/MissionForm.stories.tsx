@@ -19,29 +19,21 @@ export type FormProps = {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Mission_Form: ComponentStory<typeof MissionForm> = () => {
-  const [title, setTitle] = useState('');
-  const [client, setClient] = useState('');
-  const [profil, setProfil] = useState('');
+  const [values, setValues] = useState({});
 
   const handleClick = e => {
     e.preventDefault();
     console.group('Data submitted');
-    console.log('title: ', title);
-    console.log('client: ', client);
-    console.log('profil: ', profil);
+    console.log('values: ', values);
+
     console.groupEnd();
   };
 
   return (
     <MissionForm
-      setFormTitle="Ajouter une mission"
-      className="mission-form"
-      setTitle={setTitle}
-      setClient={setClient}
-      setProfil={setProfil}
-      title={title}
-      client={client}
-      profil={profil}
+      title={'Ajouter une mission'}
+      values={values}
+      setValues={setValues}
       handleClick={handleClick}
     />
   );

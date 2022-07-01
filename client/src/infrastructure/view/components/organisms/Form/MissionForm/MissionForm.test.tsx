@@ -7,22 +7,15 @@ describe('Mission form testing', () => {
   test('should render mission form with his inputs ', () => {
     const handleClick = jest.fn(e => e.preventDefault());
 
-    const setTitle = jest.fn();
-    const setClient = jest.fn();
-    const setProfil = jest.fn();
-    const title = '';
-    const client = '';
-    const profil = '';
+    const values = {};
+    const setValues = jest.fn();
 
     render(
       <MissionForm
+        values={values}
+        setValues={setValues}
         handleClick={handleClick}
-        setTitle={setTitle}
-        setClient={setClient}
-        setProfil={setProfil}
-        title={title}
-        client={client}
-        profil={profil}
+        title={'Ajouter une mission'}
       />,
     );
     const titleValue = screen.getByLabelText('Titre:');
@@ -39,22 +32,15 @@ describe('Mission form testing', () => {
   test('should submit mission form when the button is clicked ', () => {
     const handleClick = jest.fn(e => e.preventDefault());
 
-    const setTitle = jest.fn();
-    const setClient = jest.fn();
-    const setProfil = jest.fn();
-    const title = '';
-    const client = '';
-    const profil = '';
+    const values = {};
+    const setValues = jest.fn();
 
     render(
       <MissionForm
+        title={'Ajouter une mission'}
+        values={values}
+        setValues={setValues}
         handleClick={handleClick}
-        setTitle={setTitle}
-        setClient={setClient}
-        setProfil={setProfil}
-        title={title}
-        client={client}
-        profil={profil}
       />,
     );
     const titleValue = screen.getByLabelText(/Titre/i);

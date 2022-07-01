@@ -2,45 +2,49 @@ import React from 'react';
 import { Button } from '../../../atoms/Button/Button';
 import { LabelInput } from '../../../molecules/LabelInput/LabelInput';
 
-type FormProps = {
-  setFormTitle?: string;
-  className?: string;
-  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  setTitle: (value: React.SetStateAction<string>) => void;
-  setClient: (value: React.SetStateAction<string>) => void;
-  setProfil: (value: React.SetStateAction<string>) => void;
+type Props = {
   title: string;
-  client: string;
-  profil: string;
+  values: { [id: string]: string };
+  setValues: (value: React.SetStateAction<object>) => void;
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-export const MissionForm = ({ ...props }: FormProps) => {
+export const MissionForm = ({
+  values,
+  setValues,
+  handleClick,
+  title,
+}: Props) => {
+  const handleChange = (id, value) => {
+    setValues({ ...values, [id]: value });
+  };
+
   return (
     <>
-      <form className={props.className}>
-        <h2>{props.setFormTitle}</h2>
+      <form className={'mission-form'}>
+        <h2>{title}</h2>
 
         <LabelInput
           label={'Titre'}
           type={'text'}
-          value={props.title}
-          onChange={event => props.setTitle(event.target.value)}
+          value={values.title}
+          onChange={event => handleChange('title', event.target.value)}
           placeholder={''}
         />
 
         <LabelInput
           label={'Client'}
           type={'text'}
-          value={props.client}
-          onChange={event => props.setClient(event.target.value)}
+          value={values.client}
+          onChange={event => handleChange('client', event.target.value)}
           placeholder={''}
         />
 
         <LabelInput
           label={'Profile'}
           type={'text'}
-          value={props.profil}
-          onChange={event => props.setProfil(event.target.value)}
+          value={values.profil}
+          onChange={event => handleChange('profil', event.target.value)}
           placeholder={''}
         />
 
@@ -51,7 +55,7 @@ export const MissionForm = ({ ...props }: FormProps) => {
           className={'active-btn width-btn'}
           id={'sendedForm'}
           type={'submit'}
-          onClick={event => props.handleClick(event)}
+          onClick={event => handleClick(event)}
         />
       </form>
     </>
