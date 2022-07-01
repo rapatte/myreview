@@ -1,4 +1,4 @@
-import '../src/infrastructure/view/styles/index.scss';
+import '../src/styles/index.scss';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
