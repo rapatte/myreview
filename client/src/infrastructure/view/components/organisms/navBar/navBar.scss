@@ -1,4 +1,4 @@
-header {
+nav {
   position: sticky;
   top: 0;
   height: 100vh;
@@ -39,9 +39,9 @@ header {
     position: absolute;
     bottom: 5vh;
     gap: 1rem;
+    color: white;
     span,  .menuIcon{
         color: white;
-        text-decoration: none;
 
     }
 

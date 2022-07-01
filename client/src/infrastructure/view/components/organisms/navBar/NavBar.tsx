@@ -5,17 +5,19 @@ import { usePathName } from 'infrastructure/view/hooks';
 import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../atoms/logo-wemanity';
+import './navBar.scss';
 
-import './header.scss';
 interface HeaderProps {
   className?: string;
   children?: ReactNode;
   id?: string;
+  pathname?: string;
 }
-export const Header = ({ children, ...props }: HeaderProps) => {
+
+export const Menu = ({ pathname, ...props }: HeaderProps) => {
   return (
     <>
-      <header>
+      <nav>
         <Link to={'/'}>
           <Logo />
         </Link>
@@ -28,6 +30,7 @@ export const Header = ({ children, ...props }: HeaderProps) => {
                 className="MenuItem "
                 id={val.link ? 'menuLinkActive' : ''}
                 to={val.link}
+                data-testid="link"
               >
                 <FontAwesomeIcon className="menuIcon" icon={val.icon} />
                 {val.title}
@@ -38,16 +41,16 @@ export const Header = ({ children, ...props }: HeaderProps) => {
         <div className="MenuFooter">
           <Link
             to={{ pathname: `/paramètres` }}
-
-            // id={path === '/paramètres' ? 'menuLinkActive' : ''}
+            id={pathname === '/paramètres' ? 'menuLinkActive' : ''}
+            data-testid="parametre"
           >
             <FontAwesomeIcon className="menuIcon" icon={faScrewdriverWrench} />
-            <span>Paramètres</span>{' '}
+            <span>Paramètres</span>
           </Link>
         </div>
-      </header>
+      </nav>
     </>
   );
 };
 
-export default Header;
+export default Menu;
