@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MissionForm } from './MissionForm';
 
@@ -46,7 +46,7 @@ describe('Mission form testing', () => {
     const client = '';
     const profil = '';
 
-    const { debug } = render(
+    render(
       <MissionForm
         handleClick={handleClick}
         setTitle={setTitle}

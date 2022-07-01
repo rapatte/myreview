@@ -4,8 +4,8 @@ import { Label } from '../../atoms/Label/Label';
 
 export type PropsLabelInput = {
   label: string;
-  type: React.HTMLInputTypeAttribute | undefined;
-  value: string;
+  type?: React.HTMLInputTypeAttribute | undefined;
+  value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   className?: string;
   id?: string;
