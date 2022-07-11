@@ -9,6 +9,7 @@ export default function CardDetails({ ...props }) {
   const { details, cardType } = props;
   const wrapperRef = useRef(null);
   useOutsideClick(wrapperRef, details.removeId);
+
   return (
     <div ref={wrapperRef} className="details">
       <FontAwesomeIcon

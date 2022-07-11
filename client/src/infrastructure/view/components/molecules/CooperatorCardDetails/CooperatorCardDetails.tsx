@@ -2,6 +2,7 @@ import React from 'react';
 
 function CooperatorCardDetails({ ...props }) {
   const { data } = props;
+
   return (
     <div className="details__mission">
       <h3>Coopérateur</h3>
