@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
 type ModaleProps = {
   setDisplay: (val: boolean) => void;
   display: boolean;
@@ -19,7 +18,6 @@ const Modale: React.FC<ModaleProps> = ({
       setDisplay(true);
     }
   };
-  useEffect(() => {}, []);
   return (
     <>
       <div className="Home">

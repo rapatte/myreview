@@ -1,6 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 
-import { ListingCards, SearchBar } from 'infrastructure/view/components';
+import {
+  ListingCooperatorCards,
+  SearchBar,
+} from 'infrastructure/view/components';
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { Cooperator } from '../../../../../domain/cooperator/cooperator';
 import cooperatorServices from 'application/cooperator/cooperator.factory';
@@ -78,7 +81,7 @@ export const Cooperators = ({ setDisplay, setProp }) => {
 
   const deleteCooperator = async id => {
     const deletedMsg = await cooperatorServices.deleteCooperator(id);
-    notifySuccess('Le(a) coopérateur(trice) est supprimé(e)');
+    notifySuccess(deletedMsg);
 
     cooperatorServices
       .getCooperators()
@@ -88,8 +91,7 @@ export const Cooperators = ({ setDisplay, setProp }) => {
   return (
     <>
       <SearchBar />
-      <ListingCards
-        title="Les Coopérateurs"
+      <ListingCooperatorCards
         cardType="cooperator"
         props={catalog}
         position={position}
