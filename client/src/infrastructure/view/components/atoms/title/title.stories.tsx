@@ -9,6 +9,6 @@ export default {
 
 export const title: ComponentStory<typeof Title> = args => <Title {...args} />;
 title.args = {
-  children: 'test',
+  label: 'test',
   format: 'h1',
 };

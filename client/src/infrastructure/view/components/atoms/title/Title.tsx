@@ -8,15 +8,9 @@ interface ComponentProps extends React.HTMLAttributes<HTMLOrSVGElement> {
 interface TitleProps extends ComponentProps {
   className?: string;
   id?: string;
-  label?: string;
-  children: ReactNode;
+  label: string;
 }
 
-export const Title = ({
-  children,
-  label,
-  format: Head = 'h1',
-  ...props
-}: TitleProps) => {
-  return <Head {...props}>{children}</Head>;
+export const Title = ({ format: Head = 'h1', label, ...props }: TitleProps) => {
+  return <Head {...props}>{label}</Head>;
 };
