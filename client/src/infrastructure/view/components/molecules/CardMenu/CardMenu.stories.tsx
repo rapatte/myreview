@@ -66,6 +66,8 @@ export const CardMenuComponent: ComponentStory<typeof CardMenu> = args => {
       contextMenu={contextMenu}
       setProp={setProp}
       setDisplay={setDisplay}
+      setStatus={setStatus}
+      status={status}
     />
   );
 };

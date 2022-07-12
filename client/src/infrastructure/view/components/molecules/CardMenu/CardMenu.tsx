@@ -9,14 +9,13 @@ import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
-function CardMenu({ ...props }) {
+function CardMenu({ setStatus, status, ...props }) {
   const { data, cardType } = props;
   const cooperator = useCooperator();
   const mission = useMission();
   const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
   const [idMenuList, setIdMenuList] = useState<any>([]);
   const [scroll, setScroll] = useState<any>({ scrollx: 0, scrolly: 0 });
-  const [status, setStatus] = useState<boolean>();
   const contextMenu = {
     ids: idMenuList,
     addId: el => {
@@ -34,16 +33,15 @@ function CardMenu({ ...props }) {
       e.preventDefault();
       setPosition({ xPos: e.pageX - 130, yPos: e.pageY + 10 });
     },
-    changeStatus: async (id, propStatus) => {
+    changeStatus: async id => {
       setScroll({ scrollx: window.scrollX, scrolly: window.scrollY });
-      setStatus(propStatus);
       if (cardType === 'cooperator') {
-        const newStatus = { disponible: !propStatus };
+        const newStatus = { disponible: !status };
         await cooperatorServices.updateCooperator(id, newStatus);
         setStatus(newStatus.disponible);
       }
       if (cardType === 'mission') {
-        const newStatus = { isActive: !propStatus };
+        const newStatus = { isActive: !status };
         await missionServices.updateMission(id, newStatus);
         setStatus(newStatus.isActive);
       }
@@ -64,7 +62,6 @@ function CardMenu({ ...props }) {
     if (cardType === 'mission') {
       const deletedMsg = await missionServices.deleteMission(id);
       notifySuccess(deletedMsg);
-
       missionServices
         .getMissions()
         .then(missions => mission.dispatch(missionList(missions)));
@@ -73,6 +70,7 @@ function CardMenu({ ...props }) {
   const wrapperRef = useRef(null);
   useOutsideClick(wrapperRef, contextMenu.removeId);
   const isDisplayed = contextMenu.ids.includes(data.id);
+
   return (
     <>
       <img
@@ -95,18 +93,18 @@ function CardMenu({ ...props }) {
           <ContextMenuOption
             name={
               cardType === 'mission'
-                ? data.isActive
+                ? status
                   ? 'Désactiver'
                   : 'Activer'
-                : data.disponible
+                : status
                 ? 'Rendre indisponible'
                 : 'Rendre disponible'
             }
             onClick={e => {
               e.stopPropagation();
               cardType === 'mission'
-                ? contextMenu.changeStatus(data.id, data.isActive)
-                : contextMenu.changeStatus(data.id, data.disponible);
+                ? contextMenu.changeStatus(data.id)
+                : contextMenu.changeStatus(data.id);
             }}
           />
 

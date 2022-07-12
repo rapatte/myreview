@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { CardDetails } from '..';
 
 function Card({ ...props }) {
   const [idList, setIdList] = useState<any>([]);
-  const [setScroll] = useState<any>({ scrollx: 0, scrolly: 0 });
-  // const [status, setStatus] = useState<boolean>();
+  const [scroll, setScroll] = useState<any>({ scrollx: 0, scrolly: 0 });
+  const [status, setStatus] = useState<boolean>();
   const { data, children } = props;
   const details = {
     ids: idList,
@@ -23,9 +23,9 @@ function Card({ ...props }) {
   function displayDetail() {
     details.addId(data.id);
   }
-  // useLayoutEffect(() => {
-  //   window.scrollTo(scroll.scrollx, scroll.scrolly);
-  // });
+  useLayoutEffect(() => {
+    window.scrollTo(scroll.scrollx, scroll.scrolly);
+  });
 
   return (
     <li>

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { renderBasedOnLength } from 'utils/renderBasedOnLength';
 import { CardMenu } from '..';
 import { Status } from '../../atoms';
 
 function MissionCard({ ...props }) {
   const { data, cardType } = props;
+  const [status, setStatus] = useState<boolean>(data.isActive);
   return (
     <div className="card__content">
       <div className="card__header">
-        <CardMenu key={data.id} cardType={cardType} {...props} />
+        <CardMenu
+          setStatus={setStatus}
+          status={status}
+          key={data.id}
+          cardType={cardType}
+          {...props}
+        />
         <h3 className="card__header__title">{renderBasedOnLength(data)}</h3>
       </div>
       <p className="card__client">
@@ -21,7 +28,7 @@ function MissionCard({ ...props }) {
         src="/mission_illustration.png"
         alt="illustration"
       />
-      <Status state={data.isActive} cardType={cardType} />
+      <Status state={status} cardType={cardType} />
     </div>
   );
 }
