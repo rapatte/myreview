@@ -9,11 +9,11 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { HomePage } from './pages/HomePage/Loadable';
-import { NotFoundPage } from './pages/NotFoundPage/Loadable';
+import { HomePage } from './pages/homePage/Loadable';
+import { NotFoundPage } from './pages/notFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
-import { CooperatorsList } from './pages/CooperatorPage';
-import { MainMissionList } from './pages/MissionList/Loadable';
+import { CooperatorsList } from './pages/cooperatorPage';
+import { MainMissionList } from './pages/missionList/Loadable';
 import { MainLayout } from './components';
 
 export function App() {

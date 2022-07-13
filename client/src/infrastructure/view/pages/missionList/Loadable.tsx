@@ -4,7 +4,7 @@
 
 import { lazyLoad } from 'utils/loadable';
 
-export const Cooperators = lazyLoad(
-  () => import('./cooperators/index'),
-  module => module.Cooperators,
+export const MainMissionList = lazyLoad(
+  () => import('./index'),
+  module => module.MainMissionList,
 );
