@@ -1,0 +1,12 @@
+.card__status {
+    padding-top: 2rem;
+    padding-left: 1rem;
+    font-weight: bold;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    color: #4A7AA9;
+    &__logo{
+      width: 1.5rem;
+    }
+  }
