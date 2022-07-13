@@ -1,0 +1,24 @@
+
+.cooperator-form {
+    display: flex;
+    flex-direction: column;
+    width: 35rem;
+    h2 {
+        align-self: center;
+        margin-bottom: 2rem;
+    }
+    .cooperator-form-input-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+        .input-label {
+            width: 45%;
+        }
+    }
+    button {
+        margin-top: 2rem;
+        align-self: flex-end;
+    }
+}
