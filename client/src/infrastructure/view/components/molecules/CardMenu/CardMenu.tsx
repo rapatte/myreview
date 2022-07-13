@@ -15,16 +15,13 @@ function CardMenu({ setStatus, status, ...props }) {
   const mission = useMission();
   const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
   const [idMenuList, setIdMenuList] = useState<any>([]);
-  const [scroll, setScroll] = useState<any>({ scrollx: 0, scrolly: 0 });
   const contextMenu = {
     ids: idMenuList,
     addId: el => {
       idMenuList.push(el);
       setIdMenuList([...idMenuList]);
-      setScroll({ scrollx: window.scrollX, scrolly: window.scrollY });
     },
     removeId: el => {
-      setScroll({ scrollx: window.scrollX, scrolly: window.scrollY });
       const index = idMenuList.indexOf(el);
       idMenuList.splice(index, 1);
       setIdMenuList([...idMenuList]);
@@ -34,7 +31,6 @@ function CardMenu({ setStatus, status, ...props }) {
       setPosition({ xPos: e.pageX - 130, yPos: e.pageY + 10 });
     },
     changeStatus: async id => {
-      setScroll({ scrollx: window.scrollX, scrolly: window.scrollY });
       if (cardType === 'cooperator') {
         const newStatus = { disponible: !status };
         await cooperatorServices.updateCooperator(id, newStatus);
