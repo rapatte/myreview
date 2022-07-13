@@ -1,5 +1,5 @@
-import { CooperatorDomain } from '../../../src/domain/Cooperator/cooperator.domain';
-import { CooperatorService } from '../../../src/domain/Cooperator/cooperator.service';
+import { CooperatorDomain } from '../../../src/domain/cooperator/cooperator.domain';
+import { CooperatorService } from '../../../src/domain/cooperator/cooperator.service';
 import AdapterMock from '../mock/mockedAdapter';
 import { cooperators } from '../mock/mockedCooperators';
 

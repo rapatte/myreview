@@ -17,7 +17,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Response } from 'express';
-import { CooperatorDomain } from '../../domain/Cooperator/cooperator.domain';
+import { CooperatorDomain } from '../../domain/cooperator/cooperator.domain';
 import { CooperatorEntity } from '../../infrastructure/Cooperator/cooperator.entity';
 import { Cooperator } from '../../types/Cooperator';
 import { CooperatorServiceAdapter } from './cooperator.service.adapter';

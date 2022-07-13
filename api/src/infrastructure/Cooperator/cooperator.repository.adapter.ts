@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Like, Repository } from 'typeorm';
-import { CooperatorDomain } from '../../domain/Cooperator/cooperator.domain';
-import { ICooperatorRepository } from '../../domain/Cooperator/cooperator.irepository';
+import { Repository } from 'typeorm';
+import { CooperatorDomain } from '../../domain/cooperator/cooperator.domain';
+import { ICooperatorRepository } from '../../domain/cooperator/cooperator.irepository';
 import Utils from '../../utils/Utils';
 import {
   CooperatorEntity,

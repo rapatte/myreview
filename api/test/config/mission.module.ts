@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MissionService } from '../../src/domain/Mission/mission.service';
+import { MissionService } from '../../src/domain/mission/mission.service';
 import { MissionController } from '../../src/exposition/Mission/mission.controller';
 import { MissionServiceAdapter } from '../../src/exposition/Mission/mission.service.adapter';
 import { MissionRepositoryAdapter } from '../../src/infrastructure/Mission/mission.repository.adapter';

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
-import { MissionDomain } from '../../domain/Mission/mission.domain';
-import { IMissionRepository } from '../../domain/Mission/mission.irepository';
+import { MissionDomain } from '../../domain/mission/mission.domain';
+import { IMissionRepository } from '../../domain/mission/mission.irepository';
 import { MissionEntity } from './mission.entity';
 import { fromDomainToEntity, fromEntityToDomain } from './mission.entity';
 import Utils from '../../utils/Utils';

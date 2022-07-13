@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { CooperatorDomain } from '../../domain/Cooperator/cooperator.domain';
+import { CooperatorDomain } from '../../domain/cooperator/cooperator.domain';
 
 // The property "name" sets the table name. This is usually implied from the
 // class name, however this can be overridden if needed.

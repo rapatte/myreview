@@ -1,7 +1,7 @@
 import { Given, Then, When, Before } from '@cucumber/cucumber';
 import { expect } from 'chai';
-import { CooperatorDomain } from '../../../../src/domain/Cooperator/cooperator.domain';
-import { CooperatorService } from '../../../../src/domain/Cooperator/cooperator.service';
+import { CooperatorDomain } from '../../../../src/domain/cooperator/cooperator.domain';
+import { CooperatorService } from '../../../../src/domain/cooperator/cooperator.service';
 import AdapterMock from '../../mock/mockedAdapter';
 
 // Step definitions for domain centric testing, at unit level

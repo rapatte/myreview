@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { MissionDomain } from '../../domain/Mission/mission.domain';
-import { MissionService } from '../../domain/Mission/mission.service';
+import { MissionDomain } from '../../domain/mission/mission.domain';
+import { MissionService } from '../../domain/mission/mission.service';
 import { Mission } from '../../types/Mission';
 
 @Injectable()

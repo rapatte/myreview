@@ -1,4 +1,4 @@
-import { CooperatorDomain } from '../../domain/Cooperator/cooperator.domain';
+import { CooperatorDomain } from '../../domain/cooperator/cooperator.domain';
 
 export interface CooperatorDTO {
   id?: string;

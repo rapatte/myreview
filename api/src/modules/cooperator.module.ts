@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CooperatorService } from '../domain/Cooperator/cooperator.service';
+import { CooperatorService } from '../domain/cooperator/cooperator.service';
 import { CooperatorController } from '../exposition/Cooperator/cooperator.controller';
 import { CooperatorServiceAdapter } from '../exposition/Cooperator/cooperator.service.adapter';
 import { CooperatorEntity } from '../infrastructure/Cooperator/cooperator.entity';

@@ -2,11 +2,10 @@ import { INestApplication, Injectable } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { EntityManager, getConnection, Like, Repository } from 'typeorm';
-import { IMissionRepository } from '../../../src/domain/Mission/mission.irepository';
-import { MissionDomain } from '../../../src/domain/Mission/mission.domain';
+import { IMissionRepository } from '../../../src/domain/mission/mission.irepository';
+import { MissionDomain } from '../../../src/domain/mission/mission.domain';
 import { MissionEntity } from '../../../src/infrastructure/Mission/mission.entity';
 import Utils from '../../../src/utils/Utils';
-import { Mission } from '../../utils/types/Mission';
 
 @Injectable()
 class MissionRepositoryAdapter implements IMissionRepository {

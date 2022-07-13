@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CooperatorDomain } from '../../domain/Cooperator/cooperator.domain';
-import { CooperatorService } from '../../domain/Cooperator/cooperator.service';
+import { CooperatorDomain } from '../../domain/cooperator/cooperator.domain';
+import { CooperatorService } from '../../domain/cooperator/cooperator.service';
 import { Cooperator } from '../../types/Cooperator';
 
 @Injectable()

@@ -4,7 +4,7 @@ import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MissionEntity } from '../../../src/infrastructure/Mission/mission.entity';
 import { MissionModule } from '../../config/mission.module';
-import { MissionDomain } from '../../../src/domain/Mission/mission.domain';
+import { MissionDomain } from '../../../src/domain/mission/mission.domain';
 import { getConnection } from 'typeorm';
 
 describe('AppController (e2e)', () => {
