@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Card } from '..';
 import './card.scss';
-import MissionCard from '../MissionCard/MissionCard';
+import MissionCard from '../missionCard/MissionCard';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

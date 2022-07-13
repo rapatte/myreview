@@ -1,6 +1,6 @@
 import { Button } from 'infrastructure/view/components/atoms/button/Button';
 import React from 'react';
-import { LabelInput } from '../../../molecules/LabelInput/LabelInput';
+import { LabelInput } from '../../../molecules/labelInput/LabelInput';
 
 type Props = {
   title: string;

@@ -1,5 +1,5 @@
 // import and export all organims here
-import ListingCooperatorCards from './CardLists/Cooperator/ListingCooperatorCards';
-import ListingMissionCards from './CardLists/Mission/ListingMissionCards';
+import ListingCooperatorCards from './cardLists/cooperator/ListingCooperatorCards';
+import ListingMissionCards from './cardLists/mission/ListingMissionCards';
 import Menu from './navbar';
 export { ListingMissionCards, ListingCooperatorCards, Menu };

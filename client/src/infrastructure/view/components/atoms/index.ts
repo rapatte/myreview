@@ -1,5 +1,5 @@
 // import and export all atoms here
-import ContextMenuOption from './ContextMenuOption/ContextMenuOption';
-import Status from './Status/Status';
+import ContextMenuOption from './contextMenuOption/ContextMenuOption';
+import Status from './status/Status';
 
 export { ContextMenuOption, Status };

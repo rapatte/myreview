@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../atoms/button/Button';
 import Title from '../atoms/Title';
-import { LabelInput } from '../molecules/LabelInput/LabelInput';
+import { LabelInput } from '../molecules/labelInput/LabelInput';
 
 export type FormProps = {
   formStructure: FormStructure;

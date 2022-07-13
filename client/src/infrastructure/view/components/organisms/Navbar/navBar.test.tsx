@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { fireEvent, getByText, render, screen } from '@testing-library/react';
-import NavBar from './NavBar';
 import { Link, MemoryRouter, Router } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
+import NavBar from './NavBar';
 
 describe('<NavBar/>', () => {
   it('renders a span ', () => {

@@ -2,8 +2,8 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import MissionCardDetails from '../MissionCardDetails/MissionCardDetails';
-import CooperatorCardDetails from '../CooperatorCardDetails/CooperatorCardDetails';
+import MissionCardDetails from '../missionCardDetails/MissionCardDetails';
+import CooperatorCardDetails from '../cooperatorCardDetails/CooperatorCardDetails';
 
 export default function CardDetails({ details, ...props }) {
   const { cardType } = props;
