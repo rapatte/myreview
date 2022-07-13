@@ -27,6 +27,7 @@ function Card({ ...props }) {
     window.scrollTo(scroll.scrollx, scroll.scrolly);
   });
 
+  console.log('test');
   return (
     <li>
       <div className="container">
