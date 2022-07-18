@@ -11,7 +11,6 @@ import {
 import { FormStructure } from 'infrastructure/view/components/organisms/types/OrganismsPropsTypes';
 import { Form } from 'infrastructure/view/components/organisms/Form';
 
-import { SearchBar } from 'infrastructure/view/components';
 import { Textarea } from 'infrastructure/view/components/atoms/textarea/Textarea';
 import { Missions } from './missions/Loadable';
 
@@ -195,10 +194,10 @@ const ModaleMission: React.FC = () => {
           />
         );
       case 'mission-list':
-        return <Missions setProp={setMission} setDisplay={setDisplay} />;
+        return <Missions />;
 
       default:
-        return <Missions setProp={setMission} setDisplay={setDisplay} />;
+        return <Missions />;
     }
   };
 
