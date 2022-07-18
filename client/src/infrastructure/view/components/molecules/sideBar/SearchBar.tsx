@@ -1,5 +1,3 @@
-import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cooperatorServices from 'application/cooperator/cooperator.factory';
 import missionServices from 'application/mission/mission.factory';
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
@@ -8,71 +6,63 @@ import { cooperatorFiltred } from 'infrastructure/view/store/Cooperator/cooperat
 import { missionFiltred } from 'infrastructure/view/store/Mission/mission.actions';
 
 import React, { useEffect, useState } from 'react';
-import dataColor from '../../../../../utils/tagsColor.json';
+import { Button } from '../../atoms/button/Button';
+import { Input } from '../../atoms/input/Input';
+import Tags from '../../atoms/tags/Tags';
 
-export const SearchBar = () => {
-  const divRef = React.useRef<HTMLDivElement>(null);
+export const SearchBar = ({ placeholder }) => {
   const [tags, setTags] = useState<string[]>([]);
-  let path = window.location.pathname;
-  const { dispatch } = useMission();
-  const cooperatordispatch = useCooperator();
+  const [error, setError] = useState<string>();
+  const mission = useMission();
+  const cooperator = useCooperator();
 
-  const addTag = async e => {
-    if (e.key === 'Enter' && e.target.value.length > 0) {
-      setTags([...tags, e.target.value]);
-      e.target.value = '';
-    }
+  const addTag = async input => {
+    input.length > 0 && setTags([...tags, input]);
+  };
+  const removeTag = tagToRemove => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
   };
 
-  const removeTag = removedTag => {
-    const newTags = tags.filter(tag => tag !== removedTag);
-    setTags(newTags);
+  const getSearchedData = async () => {
+    try {
+      window.location.pathname === '/missions' &&
+        (await missionServices
+          .missionFiltred(tags)
+          .then(data => mission.dispatch(missionFiltred(data))));
+      window.location.pathname === '/cooperateurs' &&
+        (await cooperatorServices
+          .cooperatorFiltred(tags)
+          .then(data => cooperator.dispatch(cooperatorFiltred(data))));
+      setError('');
+    } catch (e) {
+      // Voir dans le back où est l'erreur (le message d'erreur n'est pas bon)
+      setError('Aucune correspondance');
+    }
   };
 
   useEffect(() => {
-    try {
-      path === '/missions'
-        ? missionServices
-            .missionFiltred(tags)
-            .then(data => dispatch(missionFiltred(data)))
-        : cooperatorServices
-            .cooperatorFiltred(tags)
-            .then(data => cooperatordispatch.dispatch(cooperatorFiltred(data)));
-
-      for (const [key, value] of Object.entries(dataColor)) {
-        if (tags.includes(key) && divRef.current?.textContent === key) {
-          divRef.current.style.backgroundColor = value;
-        }
-      }
-    } catch (exception) {
-      console.error(exception);
-    }
+    getSearchedData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
 
+  const onSubmit = e => {
+    addTag(e.target.childNodes[0].value);
+    e.target.childNodes[0].value = '';
+    e.preventDefault();
+  };
+
   return (
-    <div className="sideBar">
-      <div className="wrapper">
-        <input
-          className="input"
-          onKeyDown={addTag}
-          placeholder="Rechercher...."
+    <>
+      <form action="/" method="get" onSubmit={onSubmit}>
+        <Input
+          type="text"
+          className="search__input"
+          placeholder={placeholder}
         />
-        <div className="searchbtn">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </div>
-      </div>
-      <div className="tags" id="tags">
-        {tags.map((tag, index) => {
-          return (
-            <div key={index} ref={divRef} className="tag">
-              {tag}
-              <span onClick={() => removeTag(tag)}>
-                <FontAwesomeIcon icon={faXmark} />
-              </span>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+        <Button label="Go" />
+      </form>
+      <Tags tags={tags} removeTag={removeTag} />
+      <div>{error}</div>
+    </>
   );
 };
