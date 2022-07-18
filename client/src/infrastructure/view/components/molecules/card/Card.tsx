@@ -7,22 +7,14 @@ function Card({...props }) {
   const [scroll, setScroll] = useState<any>({ scrollx: 0, scrolly: 0 });
   const [status, setStatus] = useState<boolean>();
   const [isShown, setIsShown] = useState(false);
-
   const { data, children } = props;
 
-
-const handleClick = event => {
-    setIsShown(current => !current);
-  };
 
   return (
     <li>
       <div className="container">
       <div  className="card"
-          onClick= 
-            {handleClick} 
-          
-        >
+      onClick= {()=> setIsShown(current => !current)}        >
       {isShown && (
         <div>
        <CardDetails  {...props} /></div>
