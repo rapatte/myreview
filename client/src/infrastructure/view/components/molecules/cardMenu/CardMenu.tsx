@@ -15,22 +15,15 @@ function CardMenu({ setStatus, status, ...props }) {
   const mission = useMission();
   const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
   const [idMenuList, setIdMenuList] = useState<any>([]);
-  const contextMenu = {
-    ids: idMenuList,
-    addId: el => {
-      idMenuList.push(el);
-      setIdMenuList([...idMenuList]);
-    },
-    removeId: el => {
-      const index = idMenuList.indexOf(el);
-      idMenuList.splice(index, 1);
-      setIdMenuList([...idMenuList]);
-    },
-    position: (e: React.MouseEvent) => {
+  const [showMenu, setShowMenu ]= useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+
+
+  const positionMenu = (e: React.MouseEvent) => {
       e.preventDefault();
       setPosition({ xPos: e.pageX - 130, yPos: e.pageY + 10 });
-    },
-    changeStatus: async id => {
+    };
+    const changeStatus= async id => {
       if (cardType === 'cooperator') {
         const newStatus = { disponible: !status };
         await cooperatorServices.updateCooperator(id, newStatus);
@@ -41,12 +34,12 @@ function CardMenu({ setStatus, status, ...props }) {
         await missionServices.updateMission(id, newStatus);
         setStatus(newStatus.isActive);
       }
-    },
-    handleClickDelete: async id => {
+    };
+    const handleClickDelete= async id => {
       if (window.confirm('Êtes-vous sur ?')) deleteData(id);
       setIdMenuList([]);
-    },
-  };
+    };
+  
   const deleteData = async id => {
     if (cardType === 'cooperator') {
       const deletedMsg = await cooperatorServices.deleteCooperator(id);
@@ -63,9 +56,9 @@ function CardMenu({ setStatus, status, ...props }) {
         .then(missions => mission.dispatch(missionList(missions)));
     }
   };
-  const wrapperRef = useRef(null);
-  useOutsideClick(wrapperRef, contextMenu.removeId);
-  const isDisplayed = contextMenu.ids.includes(data.id);
+  useOutsideClick(ref, () => {
+    if (showMenu) setShowMenu(false);
+  });
 
   return (
     <>
@@ -74,15 +67,16 @@ function CardMenu({ setStatus, status, ...props }) {
         alt="card menu"
         className="card__header__menu"
         onClick={e => {
+            positionMenu(e)
           e.stopPropagation();
-          contextMenu.position(e);
-          contextMenu.addId(data.id);
+          setShowMenu(true)
         }}
       />
 
-      {isDisplayed && (
+        {showMenu && (
+
         <div
-          ref={wrapperRef}
+          ref={ref}
           className="custom-context-menu"
           style={{ top: position.yPos, left: position.xPos }}
         >
@@ -99,8 +93,8 @@ function CardMenu({ setStatus, status, ...props }) {
             onClick={e => {
               e.stopPropagation();
               cardType === 'mission'
-                ? contextMenu.changeStatus(data.id)
-                : contextMenu.changeStatus(data.id);
+                ? changeStatus(data.id)
+                : changeStatus(data.id);
             }}
           />
 
@@ -117,11 +111,11 @@ function CardMenu({ setStatus, status, ...props }) {
             name="Supprimer"
             onClick={e => {
               e.stopPropagation();
-              contextMenu.handleClickDelete(data.id);
+              handleClickDelete(data.id);
             }}
           />
         </div>
-      )}
+       )}
     </>
   );
 }
