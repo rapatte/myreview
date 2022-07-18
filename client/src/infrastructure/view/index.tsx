@@ -13,7 +13,7 @@ import { HomePage } from './pages/homePage/Loadable';
 import { NotFoundPage } from './pages/notFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 import { CooperatorsList } from './pages/cooperatorPage';
-import { MainMissionList } from './pages/missionList/Loadable';
+import { Missions } from './pages/missionList/missions/Loadable';
 import { MainLayout } from './components';
 
 export function App() {
@@ -31,7 +31,7 @@ export function App() {
 
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/missions/" component={MainMissionList} />
+          <Route exact path="/missions/" component={Missions} />
           <Route exact path="/cooperateurs/" component={CooperatorsList} />
 
           <Route component={NotFoundPage} />
