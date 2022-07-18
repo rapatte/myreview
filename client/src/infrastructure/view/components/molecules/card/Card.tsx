@@ -26,8 +26,6 @@ function Card({ ...props }) {
   useLayoutEffect(() => {
     window.scrollTo(scroll.scrollx, scroll.scrolly);
   });
-
-  console.log('test');
   return (
     <li>
       <div className="container">
