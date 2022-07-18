@@ -1,14 +1,16 @@
-import cooperatorServices from 'application/cooperator/cooperator.factory';
-import missionServices from 'application/mission/mission.factory';
+import React, { useEffect, useState } from 'react';
+
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
+
 import { cooperatorFiltred } from 'infrastructure/view/store/Cooperator/cooperator.actions';
 import { missionFiltred } from 'infrastructure/view/store/Mission/mission.actions';
 
-import React, { useEffect, useState } from 'react';
-import { Button } from '../../atoms/button/Button';
-import { Input } from '../../atoms/input/Input';
-import Tags from '../../atoms/tags/Tags';
+import { Button, Input, Tags } from '../../atoms';
+import { cooperatorServices, missionServices } from 'application';
 
 export const SearchBar = ({ placeholder }) => {
   const [tags, setTags] = useState<string[]>([]);
@@ -59,7 +61,9 @@ export const SearchBar = ({ placeholder }) => {
           className="search__input"
           placeholder={placeholder}
         />
-        <Button label="Go" />
+        <Button>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </Button>
       </form>
       <Tags tags={tags} removeTag={removeTag} />
       <div>{error}</div>
