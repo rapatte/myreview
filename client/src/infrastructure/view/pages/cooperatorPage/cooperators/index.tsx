@@ -26,7 +26,7 @@ export const Cooperators = ({ setDisplay, setProp }) => {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar placeholder="Chercher un coopérateur" />
       <ListingCooperatorCards
         cardType="cooperator"
         props={catalog}
