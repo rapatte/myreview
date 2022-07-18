@@ -1,15 +1,30 @@
+import { missionServices } from 'application';
+import { Mission } from 'domain/mission/mission';
 import Title from 'infrastructure/view/components/atoms/Title';
-import React from 'react';
+import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
+import React, { useEffect, useState } from 'react';
 import sortingById from 'utils/sortingArrays';
 import { Card, MissionCard } from '../../../molecules';
 
 function ListingMissionCards({ ...props }) {
+  const { state, dispatch } = useMission();
+  const [catalog, setCatalog] = useState<Mission[]>([]);
+
+  useEffect(() => {
+    missionServices.getMissions().then(data => dispatch(missionList(data)));
+  }, []);
+
+  useEffect(() => {
+    setCatalog(state.catalog);
+  }, [state.catalog]);
+
   return (
     <div className="container">
       <Title label="Les Missions" format="h2" />
       <ul className="container__cards">
-        {props && props.props.length > 0
-          ? props.props.sort(sortingById).map(prop => (
+        {catalog && catalog.length > 0
+          ? catalog.sort(sortingById).map(prop => (
               <Card key={prop.id} data={prop} {...props}>
                 <MissionCard cardType="mission" data={prop} {...props} />
               </Card>
