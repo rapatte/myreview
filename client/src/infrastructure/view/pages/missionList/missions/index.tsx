@@ -4,6 +4,8 @@ import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import { Mission } from 'domain/mission/mission';
 import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
 import { SearchBar, ListingMissionCards } from 'infrastructure/view/components';
+import { Link } from 'react-router-dom';
+import { Button } from 'infrastructure/view/components/atoms/button/Button';
 
 export const Missions = ({ setDisplay, setProp }) => {
   const { state, dispatch } = useMission();
@@ -23,6 +25,9 @@ export const Missions = ({ setDisplay, setProp }) => {
   return (
     <>
       <SearchBar />
+      <Link to="/missions/ajouter">
+        <Button label="Ajouter une mission" />
+      </Link>
       <ListingMissionCards
         setProp={setProp}
         title="Les Missions"

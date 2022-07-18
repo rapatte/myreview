@@ -1,10 +1,13 @@
+import { Mission } from 'domain/mission/mission';
 import { Button } from 'infrastructure/view/components/atoms/button/Button';
+import { Title } from 'infrastructure/view/components/atoms/title/Title';
+import { LabelTextarea } from 'infrastructure/view/components/molecules/labelTextarea/LabelTextarea';
 import React from 'react';
 import { LabelInput } from '../../../molecules/labelInput/LabelInput';
 
 type Props = {
   title: string;
-  values: { [id: string]: string };
+  values: Mission;
   setValues: (value: React.SetStateAction<object>) => void;
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
@@ -22,7 +25,7 @@ export const MissionForm = ({
   return (
     <>
       <form className={'mission-form'}>
-        <h2>{title}</h2>
+        <Title label={title} format="h2"></Title>
 
         <LabelInput
           label={'Titre'}
@@ -43,12 +46,17 @@ export const MissionForm = ({
         <LabelInput
           label={'Profile'}
           type={'text'}
-          value={values.profil || ''}
-          onChange={event => handleChange('profil', event.target.value)}
+          value={values.profile || ''}
+          onChange={event => handleChange('profile', event.target.value)}
           placeholder={''}
         />
 
-        <textarea name="" id=""></textarea>
+        <LabelTextarea
+          label={'Description'}
+          value={values.description || ''}
+          onChange={event => handleChange('description', event.target.value)}
+          placeholder={''}
+        />
 
         <Button
           label={'Envoyer'}

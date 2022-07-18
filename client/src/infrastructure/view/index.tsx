@@ -15,6 +15,8 @@ import { useTranslation } from 'react-i18next';
 import { CooperatorsList } from './pages/cooperatorPage';
 import { MainMissionList } from './pages/missionList/Loadable';
 import { MainLayout } from './components';
+import AddMissionPage from './pages/addMissionPage/AddMissionPage';
+import { Missions } from './pages/missionList/missions/Loadable';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -31,7 +33,8 @@ export function App() {
 
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/missions/" component={MainMissionList} />
+          <Route exact path="/missions/" component={Missions} />
+          <Route exact path="/missions/ajouter" component={AddMissionPage} />
           <Route exact path="/cooperateurs/" component={CooperatorsList} />
 
           <Route component={NotFoundPage} />
