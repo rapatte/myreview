@@ -47,7 +47,7 @@ export const SearchBar = ({ placeholder }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
 
-  const onSubmit = e => {
+  const handleSubmit = e => {
     addTag(e.target.childNodes[0].value);
     e.target.childNodes[0].value = '';
     e.preventDefault();
@@ -55,7 +55,7 @@ export const SearchBar = ({ placeholder }) => {
 
   return (
     <>
-      <form action="/" method="get" onSubmit={onSubmit}>
+      <form action="/" method="get" onSubmit={handleSubmit}>
         <Input
           type="text"
           className="search__input"
