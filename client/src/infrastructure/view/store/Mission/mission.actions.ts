@@ -25,3 +25,9 @@ export const missionFiltred = (data: Mission[]) => {
     payload: data,
   };
 };
+  export const deleteMission = (id) => {
+    return {
+      type: 'delete-mission',
+      payload: id,
+    };
+};

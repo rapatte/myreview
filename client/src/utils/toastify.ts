@@ -5,6 +5,7 @@ toast.configure();
 
 const notifySuccess = (message: string) => {
   toast.success(message);
+  
 };
 
 const notifyError = (message: string) => {

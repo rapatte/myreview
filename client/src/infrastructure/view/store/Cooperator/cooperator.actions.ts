@@ -23,3 +23,10 @@ export const cooperatorFiltred = (data: Cooperator[]) => {
     payload: data,
   };
 };
+
+export const deleteCooperator = (id) => {
+    return {
+      type: 'delete-cooperator',
+      payload: id,
+    };
+}

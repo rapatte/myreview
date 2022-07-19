@@ -27,6 +27,7 @@ export const missionRepository = (client: Http): IMissionRepository => ({
   },
   deleteMission: async id => {
     const missionDeleted = await client.delete<String>(`/missions/${id}`);
+    
     return missionDeleted;
   },
   addMission: async (mission: Mission) => {

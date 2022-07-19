@@ -16,6 +16,10 @@ export async function cooperatorReducer(
       const typePayload = action.payload;
       return typePayload;
     }
+    case "delete-cooperator":{
+        state.catalog.splice(action.payload,1);       
+        return {...state.catalog, catalog:state.catalog };
+    }
     case 'filtre-cooperator': {
       return { catalog: action.payload };
     }

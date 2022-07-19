@@ -14,6 +14,11 @@ export async function missionReducer(state: State<Mission>, action: Action) {
     //   updatedArrayOfMissions[indexOfUpdatedMission] = action.payload;
     //   return { catalog: updatedArrayOfMissions };
     // }
+
+    case "delete-mission":{
+        state.catalog.splice(action.payload,1);       
+        return {...state.catalog, catalog:state.catalog };
+    }
     case 'add-mission': {
       const typePayload = action.payload;
       return typePayload;

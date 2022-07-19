@@ -8,6 +8,7 @@ import { SearchBar, ListingMissionCards } from 'infrastructure/view/components';
 export const Missions = ({ setDisplay, setProp }) => {
   const { state, dispatch } = useMission();
   const [catalog, setCatalog] = useState<Mission[]>([]);
+  
 
   useEffect(() => {
     const missions: any = missionServices
