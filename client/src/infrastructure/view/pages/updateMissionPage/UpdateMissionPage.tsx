@@ -5,27 +5,27 @@ import { missionServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
 import { MissionForm } from 'infrastructure/view/components/organisms/forms/missionForm/MissionForm';
 import { Mission } from 'domain/mission/mission';
-import './AddMissionPage.scss';
+import './UpdateMissionPage.scss';
 import { Link, useHistory } from 'react-router-dom';
 import { missionPosted } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
-const AddMissionPage: React.FC = () => {
+const UpdateMissionPage: React.FC = () => {
   const [values, setValues] = useState<Mission>({});
   const history = useHistory();
   const missionStore = useMission();
   const [getDataInStorage, setDataInStorage, removeDataInStorage] =
-    useLocalStorage('mission-add-form', {});
+    useLocalStorage('mission-update-form', {});
 
   const handleSubmit = async e => {
     try {
       e.preventDefault();
-      await missionServices.addMission(values);
+      await missionServices.updateMission('', values);
       missionStore.dispatch(missionPosted(values));
       setValues({});
-      removeDataInStorage('mission-add-form');
+      removeDataInStorage('mission-update-form');
       history.push('/missions/');
-      notifySuccess('La mission est enregistrée');
+      notifySuccess('La mission est mise à jour');
     } catch (error: any) {
       notifyError(error.response.data.message);
     }
@@ -41,7 +41,7 @@ const AddMissionPage: React.FC = () => {
 
   return (
     <>
-      <div className="add-mission-page">
+      <div className="update-mission-page">
         <div className="buttonSwitch">
           <Link to="/missions">
             <img
@@ -54,7 +54,7 @@ const AddMissionPage: React.FC = () => {
         </div>
         <div>
           <MissionForm
-            title={'Ajouter une mission'}
+            title={'Modifier une mission'}
             values={values}
             setValues={setValues}
             handleClick={handleSubmit}
@@ -64,4 +64,4 @@ const AddMissionPage: React.FC = () => {
     </>
   );
 };
-export default AddMissionPage;
+export default UpdateMissionPage;

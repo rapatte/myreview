@@ -1,10 +1,11 @@
+import { Cooperator } from 'domain/cooperator/cooperator';
 import { Button } from 'infrastructure/view/components/atoms/button/Button';
 import React from 'react';
 import { LabelInput } from '../../../molecules/labelInput/LabelInput';
 
 type Props = {
   title: string;
-  values: { [id: string]: string };
+  values: Cooperator;
   setValues: (value: React.SetStateAction<object>) => void;
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };

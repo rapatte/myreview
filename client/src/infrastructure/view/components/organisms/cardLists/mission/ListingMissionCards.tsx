@@ -4,7 +4,6 @@ import sortingById from 'utils/sortingArrays';
 import { Card, MissionCard } from '../../../molecules';
 
 function ListingMissionCards({ ...props }) {
-  console.log(props);
   return (
     <div className="container">
       <Title label="Les Missions" format="h2" />

@@ -8,8 +8,6 @@ export const useLocalStorage = (key, defaultValue) => {
     isDataExist ? isDataExist : defaultValue,
   );
 
-  console.log(value);
-
   useEffect(() => {
     const rawValue = JSON.stringify(value);
     localStorage.setItem(key, rawValue);

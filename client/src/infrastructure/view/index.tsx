@@ -12,11 +12,13 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { HomePage } from './pages/homePage/Loadable';
 import { NotFoundPage } from './pages/notFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
-import { CooperatorsList } from './pages/cooperatorPage';
-import { MainMissionList } from './pages/missionList/Loadable';
 import { MainLayout } from './components';
 import AddMissionPage from './pages/addMissionPage/AddMissionPage';
 import { Missions } from './pages/missionList/missions/Loadable';
+import UpdateMissionPage from './pages/updateMissionPage/UpdateMissionPage';
+import AddCooperatorPage from './pages/addCooperatorPage/AddCooperatorPage';
+import { Cooperators } from './pages/cooperatorPage/Loadable';
+import UpdateCooperatorPage from './pages/updateCooperatorPage/UpdateCooperatorPage';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -30,13 +32,26 @@ export function App() {
         >
           <meta name="description" content="application" />
         </Helmet>
-
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/missions/" component={Missions} />
           <Route exact path="/missions/ajouter" component={AddMissionPage} />
-          <Route exact path="/cooperateurs/" component={CooperatorsList} />
-
+          <Route
+            exact
+            path="/missions/modifier"
+            component={UpdateMissionPage}
+          />
+          <Route exact path="/cooperateurs/" component={Cooperators} />
+          <Route
+            exact
+            path="/cooperateurs/ajouter"
+            component={AddCooperatorPage}
+          />
+          <Route
+            exact
+            path="/cooperateurs/modifier"
+            component={UpdateCooperatorPage}
+          />
           <Route component={NotFoundPage} />
         </Switch>
       </MainLayout>

@@ -6,6 +6,18 @@ export async function missionReducer(state: State<Mission>, action: Action) {
     case 'display-list-missions': {
       return { catalog: action.payload };
     }
+    // case 'update-status-mission': {
+    //   const indexOfUpdatedMission = state.catalog.findIndex(
+    //     mission => mission.id !== action.payload.id,
+    //   );
+    //   const updatedArrayOfMissions = [...state.catalog];
+    //   updatedArrayOfMissions[indexOfUpdatedMission] = action.payload;
+    //   return { catalog: updatedArrayOfMissions };
+    // }
+    case 'add-mission': {
+      state.catalog.push(action.payload);
+      return { catalog: state.catalog };
+    }
     case 'filtre-mission': {
       return { catalog: action.payload };
     }
