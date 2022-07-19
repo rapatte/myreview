@@ -1,7 +1,8 @@
+import React from 'react';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 import dataColor from '../../../../../utils/tagsColor.json';
+import './tags.scss';
 
 function Tags({ tags, removeTag }) {
   const divRef = React.useRef<HTMLDivElement>(null);
@@ -12,18 +13,19 @@ function Tags({ tags, removeTag }) {
   }
 
   return (
-    <div className="tags" id="tags">
+    <div className="search__tags">
       {tags.map((tag, index) => (
         <div
           onClick={() => removeTag(tag)}
           key={index}
           ref={divRef}
-          className="tag"
+          className="search__tags__tag"
         >
           {tag}
-          <span>
-            <FontAwesomeIcon icon={faXmark} />
-          </span>
+          <FontAwesomeIcon
+            className="search__tags__tag__cross"
+            icon={faXmark}
+          />
         </div>
       ))}
     </div>

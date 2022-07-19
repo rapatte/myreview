@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './searchBar.scss';
 
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -53,19 +54,19 @@ export const SearchBar = ({ placeholder }) => {
   };
 
   return (
-    <>
-      <form action="/" method="get" onSubmit={handleSubmit}>
+    <div className="search">
+      <form className="search__bar" method="get" onSubmit={handleSubmit}>
         <Input
           type="text"
-          className="search__input"
+          className="search__bar__input"
           placeholder={placeholder}
         />
-        <Button>
+        <Button className="search__bar__button">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
       </form>
       <Tags tags={tags} removeTag={removeTag} />
-      <div>{error}</div>
-    </>
+      <div className="search__error">{error}</div>
+    </div>
   );
 };
