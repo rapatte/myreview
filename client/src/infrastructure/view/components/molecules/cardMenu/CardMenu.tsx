@@ -48,6 +48,7 @@ function CardMenu({ setStatus, status, ...props }) {
             await cooperatorServices.deleteCooperator(id).then(() => {
                 cooperator.dispatch(deleteCooperator(id))
                 notifySuccess('Le (a) coopérateur (rice) est supprimé(e)');
+                setShowMenu(false)
             })
 
         } else {
@@ -55,6 +56,7 @@ function CardMenu({ setStatus, status, ...props }) {
             await missionServices.deleteMission(id)
                 .then(() => mission.dispatch(deleteMission(id)))
             notifySuccess("La mission est supprimée");
+            setShowMenu(false)
 
         }
 
@@ -62,9 +64,7 @@ function CardMenu({ setStatus, status, ...props }) {
     useOutsideClick(ref, () => {
         if (showMenu) setShowMenu(false);
     });
-    useEffect(() => {
-        setShowMenu(false);
-    }, [])
+
 
 
     return (
