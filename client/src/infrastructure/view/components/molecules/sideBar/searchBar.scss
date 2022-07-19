@@ -1,0 +1,33 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 33vw;
+    position: absolute;
+    right: 8vw;
+    top: 3vh;
+    &__bar {
+      display: flex;
+      align-items: center;
+      background-color: #EDEDED;
+      width: fit-content;
+      border-radius: 10px;
+      height: 30px;
+      &__input {
+          background: none;
+          border: none;
+      }
+      &__button {
+        color: black;
+        background: none;
+        width: 40px;
+        height: 40px;
+        &:hover {
+            background: none;
+        }
+      }
+    }
+    &__error {
+        color: red;
+    }
+  }
