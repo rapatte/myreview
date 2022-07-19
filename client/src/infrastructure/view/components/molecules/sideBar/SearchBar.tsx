@@ -36,9 +36,8 @@ export const SearchBar = ({ placeholder }) => {
           .cooperatorFiltred(tags)
           .then(data => cooperator.dispatch(cooperatorFiltred(data))));
       setError('');
-    } catch (e) {
-      // Voir dans le back où est l'erreur (le message d'erreur n'est pas bon)
-      setError('Aucune correspondance');
+    } catch (e: any) {
+      setError(e.response.data.message);
     }
   };
 
