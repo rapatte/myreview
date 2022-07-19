@@ -1,4 +1,4 @@
-import { SearchBar } from './molecules/sideBar/SearchBar';
+import { SearchBar } from './molecules/searchBar/SearchBar';
 import { ListingCooperatorCards, ListingMissionCards } from './organisms';
 import MainLayout from './templates/MainLayout';
 
