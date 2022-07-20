@@ -1,18 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
 import { ContextMenuOption } from '../../atoms';
 import './cardMenu.scss';
 import { notifySuccess } from 'utils/toastify';
 import { cooperatorServices, missionServices } from 'application';
-import {
-  cooperatorList,
-  deleteCooperator,
-} from 'infrastructure/view/store/Cooperator/cooperator.actions';
+import { deleteCooperator } from 'infrastructure/view/store/Cooperator/cooperator.actions';
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
-import {
-  deleteMission,
-  missionList,
-} from 'infrastructure/view/store/Mission/mission.actions';
+import { deleteMission } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
 function CardMenu({ setStatus, status, ...props }) {
