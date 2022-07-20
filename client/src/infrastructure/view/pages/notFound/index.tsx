@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { P } from './P';
 import { Helmet } from 'react-helmet-async';
 
-export function NotFoundPage() {
+function NotFound() {
   return (
     <>
       <Helmet>
@@ -43,3 +43,5 @@ const Title = styled.div`
     font-size: 3.125rem;
   }
 `;
+
+export default NotFound;

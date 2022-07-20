@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export function HomePage() {
+function Home() {
   return (
     <>
       <Helmet>
@@ -12,3 +12,5 @@ export function HomePage() {
     </>
   );
 }
+
+export default Home;

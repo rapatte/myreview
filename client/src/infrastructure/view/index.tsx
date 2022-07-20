@@ -12,8 +12,8 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MainLayout } from './components';
 import {
-  NotFoundPage,
-  HomePage,
+  NotFound,
+  Home,
   AddMissions,
   Missions,
   AddCooperators,
@@ -35,7 +35,7 @@ export function App() {
           <meta name="description" content="application" />
         </Helmet>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/missions/" component={Missions} />
           <Route exact path="/missions/ajouter" component={AddMissions} />
           <Route exact path="/missions/modifier" component={UpdateMissions} />
@@ -50,7 +50,7 @@ export function App() {
             path="/cooperateurs/modifier"
             component={UpdateCooperators}
           />
-          <Route component={NotFoundPage} />
+          <Route component={NotFound} />
         </Switch>
       </MainLayout>
     </BrowserRouter>
