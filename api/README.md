@@ -18,7 +18,7 @@ $ npm install
  - ### docker
   https://docs.docker.com/desktop/mac/install/
 
-create a .env file using the .env.example available on this boostrap
+create a .env file using the .env.example available on this bootstrap
 
 
 ## Running the app
@@ -26,6 +26,11 @@ create a .env file using the .env.example available on this boostrap
 ```bash
 # docker
 $ docker-compose up --build
+
+# docker dev env
+$ sudo docker run -p 5432:5432 --name welab -e POSTGRES_PASSWORD=bigpassword -e POSTGRES_DB=goexample -e POSTGRES_USER=exampleUser -d postgres:13-alpine
+$ docker start welab
+$ npm run start:dev
 
 ```
 
