@@ -1,21 +1,24 @@
-// import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-// function getStorageValue(key, defaultValue) {
-//   const saved = localStorage.getItem(key);
-//   const initial = JSON.parse(saved!);
-//   return initial || defaultValue;
-// }
+export const useLocalStorage = (key, defaultValue) => {
+  const data = localStorage.getItem(key);
+  const isDataExist = JSON.parse(data!);
 
-// export const useLocalStorage = (key, defaultValue) => {
-//   const [value, setValue] = useState(() => {
-//     return getStorageValue(key, defaultValue);
-//   });
-//   useEffect(() => {
-//     localStorage.setItem(key, JSON.stringify(value));
-//   }, [key, value]);
+  const [value, setValue] = useState<any>(
+    isDataExist ? isDataExist : defaultValue,
+  );
 
-//   return [value, setValue];
-// };
+  useEffect(() => {
+    const rawValue = JSON.stringify(value);
+    localStorage.setItem(key, rawValue);
+  }, [key, value]);
+
+  const remove = (key: string) => {
+    localStorage.removeItem(key);
+  };
+
+  return [value, setValue, remove];
+};
 
 export const setDataInLocalStorage = (key: string, data: object) => {
   localStorage.setItem(key, JSON.stringify(data));
@@ -23,4 +26,8 @@ export const setDataInLocalStorage = (key: string, data: object) => {
 
 export const getDataInLocalStorage = (key: string) => {
   return localStorage.getItem(key);
+};
+
+export const removeDataInLocalStorage = (key: string) => {
+  localStorage.removeItem(key);
 };

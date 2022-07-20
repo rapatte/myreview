@@ -1,6 +1,6 @@
 import React from 'react';
-import ModaleMission from './modaleMission';
+import AddMissionPage from '../addMissionPage/AddMissionPage';
 
 export const MainMissionList = () => {
-  return <ModaleMission />;
+  return <AddMissionPage />;
 };
