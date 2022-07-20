@@ -29,7 +29,7 @@ export const Cooperators = ({ setDisplay, setProp }) => {
     <>
       <SearchBar placeholder="Chercher un coopérateur" />
       <Link to="/cooperateurs/ajouter">
-        <Button label="Ajouter un coopérateur" />
+        <Button className="addButton" label="Ajouter un coopérateur" />
       </Link>
       <ListingCooperatorCards
         cardType="cooperator"

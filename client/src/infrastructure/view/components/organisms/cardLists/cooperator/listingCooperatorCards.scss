@@ -1,6 +1,9 @@
 @import '../../../../../../styles/vars/';
 .container {
     margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
     @media screen and(max-width: 730px) {
         margin: 0 auto; 
         margin-top: 2rem;
@@ -11,10 +14,7 @@
         margin: 0 auto;
     }
     h2 {
-        padding-left: 5vw;
-        //  padding-top: 4rem;
         color:$nightblue;
-
     }
     &__cards {
         display: flex;

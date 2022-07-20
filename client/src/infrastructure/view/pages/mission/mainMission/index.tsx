@@ -11,7 +11,7 @@ const Missions = () => {
     <>
       <SearchBar placeholder="Chercher une mission" />
       <Link to="/missions/ajouter">
-        <Button label="Ajouter une mission" />
+        <Button className="addButton" label="Ajouter une mission" />
       </Link>
       <ListingMissionCards title="Les Missions" cardType="mission" />
     </>
