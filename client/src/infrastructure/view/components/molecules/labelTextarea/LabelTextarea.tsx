@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Label } from '../../atoms/label/Label';
-import { Textarea } from '../../atoms/textarea/Textarea';
+import { Label, Textarea } from '../../../components';
 
 interface LabelTextareaProps {
   type?: string;

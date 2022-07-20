@@ -4,5 +4,19 @@ import ContextMenuOption from './contextMenuOption/ContextMenuOption';
 import { Input } from './input/Input';
 import Status from './status/Status';
 import Tags from './tags/Tags';
+import { Label } from './label/Label';
+import { Logo } from './logo/Logo';
+import { Textarea } from './textarea/Textarea';
+import { Title } from './title/Title';
 
-export { ContextMenuOption, Status, Button, Input, Tags };
+export {
+  ContextMenuOption,
+  Status,
+  Button,
+  Input,
+  Tags,
+  Label,
+  Logo,
+  Textarea,
+  Title,
+};

@@ -10,7 +10,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { MainLayout } from './components';
+import { MainLayout } from './components/templates';
 import {
   NotFound,
   Home,

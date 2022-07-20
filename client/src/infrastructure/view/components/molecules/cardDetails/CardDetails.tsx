@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useOutsideClick } from 'infrastructure/view/hooks';
-
-import MissionCardDetails from '../missionCardDetails/MissionCardDetails';
-import CooperatorCardDetails from '../cooperatorCardDetails/CooperatorCardDetails';
+import { MissionCardDetails, CooperatorCardDetails } from '../../molecules';
 
 export default function CardDetails({ ...props }) {
   const { cardType } = props;

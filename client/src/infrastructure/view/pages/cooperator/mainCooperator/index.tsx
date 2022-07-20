@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-
 import {
   ListingCooperatorCards,
   SearchBar,
+  Button,
 } from 'infrastructure/view/components';
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { Cooperator } from '../../../../../domain/cooperator/cooperator';
 import cooperatorServices from 'application/cooperator/cooperator.factory';
 import { cooperatorList } from 'infrastructure/view/store/Cooperator/cooperator.actions';
 import { Link } from 'react-router-dom';
-import { Button } from 'infrastructure/view/components/atoms/button/Button';
 
 export const Cooperators = ({ setDisplay, setProp }) => {
   const { state, dispatch } = useCooperator();

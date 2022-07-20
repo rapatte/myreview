@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { missionServices } from 'application';
 import { Mission } from 'domain/mission/mission';
-import { Title } from 'infrastructure/view/components/atoms/title/Title';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
 import sortingById from 'utils/sortingArrays';
-import { Card, MissionCard } from '../../../molecules';
+import { Card, MissionCard, Title } from '../../../../components';
 
 function ListingMissionCards({ ...props }) {
   const { state, dispatch } = useMission();

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { linksData } from 'infrastructure/view/constants/routes';
 import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { Logo } from '../../atoms/logo/Logo';
+import { Logo } from '../../../components';
 
 interface HeaderProps {
   className?: string;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { renderBasedOnLength } from 'utils/renderBasedOnLength';
 import { CardMenu } from '..';
-import { Status } from '../../atoms';
+import { Status } from '../../../components';
 
 function CooperatorCard({ ...props }) {
   const { data, cardType } = props;

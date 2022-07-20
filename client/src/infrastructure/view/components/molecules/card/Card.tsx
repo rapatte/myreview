@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CardDetails } from '..';
+import { CardDetails } from '../../../components';
 
 function Card({ ...props }) {
   const [isShown, setIsShown] = useState(false);

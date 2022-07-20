@@ -1,7 +1,6 @@
 import { Cooperator } from 'domain/cooperator/cooperator';
-import { Button } from 'infrastructure/view/components/atoms/button/Button';
 import React from 'react';
-import { LabelInput } from '../../../molecules/labelInput/LabelInput';
+import { Button, LabelInput } from '../../../../components';
 
 type Props = {
   title: string;

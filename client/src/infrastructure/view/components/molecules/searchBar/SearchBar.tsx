@@ -9,7 +9,7 @@ import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import { cooperatorFiltred } from 'infrastructure/view/store/Cooperator/cooperator.actions';
 import { missionFiltred } from 'infrastructure/view/store/Mission/mission.actions';
 
-import { Button, Input, Tags } from '../../atoms';
+import { Button, Input, Tags } from '../../../components';
 import { cooperatorServices, missionServices } from 'application';
 
 export const SearchBar = ({ placeholder }) => {

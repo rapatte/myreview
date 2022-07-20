@@ -1,9 +1,11 @@
 import { Mission } from 'domain/mission/mission';
-import { Button } from 'infrastructure/view/components/atoms/button/Button';
-import { Title } from 'infrastructure/view/components/atoms/title/Title';
-import { LabelTextarea } from 'infrastructure/view/components/molecules/labelTextarea/LabelTextarea';
 import React from 'react';
-import { LabelInput } from '../../../molecules/labelInput/LabelInput';
+import {
+  Button,
+  Title,
+  LabelTextarea,
+  LabelInput,
+} from '../../../../components';
 
 type Props = {
   title: string;
