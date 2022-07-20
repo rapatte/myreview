@@ -8,31 +8,31 @@ import sortingById from 'utils/sortingArrays';
 import { Card, MissionCard } from '../../../molecules';
 
 function ListingMissionCards({ ...props }) {
-  const { state, dispatch } = useMission();
-  const [catalog, setCatalog] = useState<Mission[]>([]);
+    const { state, dispatch } = useMission();
+    const [catalog, setCatalog] = useState<Mission[]>([]);
 
-  useEffect(() => {
-    missionServices.getMissions().then(data => dispatch(missionList(data)));
-  }, []);
+    useEffect(() => {
+        missionServices.getMissions().then(data => dispatch(missionList(data)));
+    }, []);
 
-  useEffect(() => {
-    setCatalog(state.catalog);
-  }, [state.catalog]);
+    useEffect(() => {
+        setCatalog(state.catalog);
+    }, [state.catalog]);
 
-  return (
-    <div className="container">
-      <Title label="Les Missions" format="h2" />
-      <ul className="container__cards">
-        {catalog && catalog.length > 0
-          ? catalog.sort(sortingById).map(prop => (
-              <Card key={prop.id} data={prop} {...props}>
-                <MissionCard cardType="mission" data={prop} {...props} />
-              </Card>
-            ))
-          : 'Chargement'}
-      </ul>
-    </div>
-  );
+    return (
+        <div className="container">
+            <Title label="Les Missions" format="h2" />
+            <ul className="container__cards">
+                {catalog && catalog.length > 0
+                    ? catalog.sort(sortingById).map(prop => (
+                        <Card key={prop.id} data={prop} {...props}>
+                            <MissionCard cardType="mission" data={prop} {...props} />
+                        </Card>
+                    ))
+                    : 'Chargement'}
+            </ul>
+        </div>
+    );
 }
 
 export default ListingMissionCards;
