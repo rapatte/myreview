@@ -4,6 +4,7 @@ import { linksData } from 'infrastructure/view/constants/routes';
 import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from 'infrastructure/view/components/atoms';
+import { usePathName } from 'infrastructure/view/hooks/UsePathName';
 
 interface HeaderProps {
   className?: string;
@@ -13,10 +14,12 @@ interface HeaderProps {
 }
 
 export const NavBar = ({ pathname, ...props }: HeaderProps) => {
+  const path = usePathName();
+
   return (
     <>
-      <nav>
-        <Link to={'/'}>
+      <div className="Menu">
+        <Link to="/">
           <Logo />
         </Link>
 
@@ -25,10 +28,9 @@ export const NavBar = ({ pathname, ...props }: HeaderProps) => {
             return (
               <Link
                 key={i}
-                className="MenuItem "
-                id={val.link ? 'menuLinkActive' : ''}
+                className="MenuItem"
                 to={val.link}
-                data-testid="link"
+                id={path === val.link ? 'menuLinkActive' : ''}
               >
                 <FontAwesomeIcon className="menuIcon" icon={val.icon} />
                 {val.title}
@@ -38,15 +40,15 @@ export const NavBar = ({ pathname, ...props }: HeaderProps) => {
         </div>
         <div className="MenuFooter">
           <Link
-            to={{ pathname: `/paramètres` }}
-            id={pathname === '/paramètres' ? 'menuLinkActive' : ''}
-            data-testid="parametre"
+            to="/paramètres"
+            id={path === '/paramètres' ? 'menuLinkActive' : ''}
+            className="MenuItem"
           >
             <FontAwesomeIcon className="menuIcon" icon={faScrewdriverWrench} />
-            <span>Paramètres</span>
+            &nbsp;Paramètres
           </Link>
         </div>
-      </nav>
+      </div>
     </>
   );
 };
