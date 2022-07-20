@@ -1,11 +1,10 @@
 import { Mission } from 'domain/mission/mission';
 import React from 'react';
+import { Button, Title } from '../../../../components/atoms';
 import {
-  Button,
-  Title,
   LabelTextarea,
   LabelInput,
-} from '../../../../components';
+} from 'infrastructure/view/components/molecules';
 
 type Props = {
   title: string;
@@ -14,12 +13,12 @@ type Props = {
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-export const MissionForm = ({
+export default function MissionForm({
   values,
   setValues,
   handleClick,
   title,
-}: Props) => {
+}: Props) {
   const handleChange = (id, value) => {
     setValues({ ...values, [id]: value });
   };
@@ -70,4 +69,4 @@ export const MissionForm = ({
       </form>
     </>
   );
-};
+}

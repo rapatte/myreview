@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Label } from '../../../components';
+import { Input, Label } from 'infrastructure/view/components/atoms';
 
 export type PropsLabelInput = {
   label: string;

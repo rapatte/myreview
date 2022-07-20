@@ -24,7 +24,7 @@ import {
 import {
   ListingMissionCards,
   ListingCooperatorCards,
-  Menu,
+  NavBar,
   MissionForm,
   CooperatorForm,
 } from './organisms';
@@ -52,7 +52,7 @@ export {
   SearchBar,
   ListingMissionCards,
   ListingCooperatorCards,
-  Menu,
+  NavBar,
   MissionForm,
   CooperatorForm,
   MainLayout,

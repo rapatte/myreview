@@ -1,16 +1,16 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import Menu from './NavBar';
+import { NavBar } from './NavBar';
 
 export default {
   title: 'Components/organisms',
-  component: Menu,
-} as unknown as ComponentMeta<typeof Menu>;
+  component: NavBar,
+} as unknown as ComponentMeta<typeof NavBar>;
 
-export const menu: ComponentStory<typeof Menu> = args => (
+export const menu: ComponentStory<typeof NavBar> = args => (
   <MemoryRouter>
     {' '}
-    <Menu {...args} />
+    <NavBar {...args} />
   </MemoryRouter>
 );

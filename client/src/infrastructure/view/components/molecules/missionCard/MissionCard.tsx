@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { renderBasedOnLength } from 'utils/renderBasedOnLength';
-import { CardMenu, Status } from '../../../components';
+import { CardMenu } from '..';
+import { Status } from '../../../components/atoms';
 
 function MissionCard({ ...props }) {
   const { data, cardType } = props;

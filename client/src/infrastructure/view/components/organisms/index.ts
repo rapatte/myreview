@@ -2,12 +2,12 @@
 import ListingCooperatorCards from './cardLists/cooperator/ListingCooperatorCards';
 import ListingMissionCards from './cardLists/mission/ListingMissionCards';
 import { CooperatorForm } from './forms/cooperatorForm/CooperatorForm';
-import { MissionForm } from './forms/missionForm/MissionForm';
-import Menu from './navbar/NavBar';
+import MissionForm from './forms/missionForm/MissionForm';
+import { NavBar } from './navbar/NavBar';
 export {
   ListingMissionCards,
   ListingCooperatorCards,
-  Menu,
+  NavBar,
   MissionForm,
   CooperatorForm,
 };

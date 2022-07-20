@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { notifyError, notifySuccess } from 'utils/toastify';
 import { missionServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
-import { MissionForm } from 'infrastructure/view/components';
+import { MissionForm } from 'infrastructure/view/components/organisms';
 import { Mission } from 'domain/mission/mission';
 import { Link, useHistory } from 'react-router-dom';
 import { missionPosted } from 'infrastructure/view/store/Mission/mission.actions';

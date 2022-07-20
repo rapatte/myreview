@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { linksData } from 'infrastructure/view/constants/routes';
 import React, { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { Logo } from '../../../components';
+import { Logo } from 'infrastructure/view/components/atoms';
 
 interface HeaderProps {
   className?: string;
@@ -12,7 +12,7 @@ interface HeaderProps {
   pathname?: string;
 }
 
-export const Menu = ({ pathname, ...props }: HeaderProps) => {
+export const NavBar = ({ pathname, ...props }: HeaderProps) => {
   return (
     <>
       <nav>
@@ -50,5 +50,3 @@ export const Menu = ({ pathname, ...props }: HeaderProps) => {
     </>
   );
 };
-
-export default Menu;

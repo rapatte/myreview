@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MissionForm } from './MissionForm';
+import MissionForm from './MissionForm';
 
 describe('Mission form testing', () => {
   test('should render mission form with his inputs ', () => {

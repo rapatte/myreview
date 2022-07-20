@@ -4,7 +4,7 @@ import { notifyError, notifySuccess } from 'utils/toastify';
 import { cooperatorServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
 import { Link, useHistory } from 'react-router-dom';
-import { CooperatorForm } from 'infrastructure/view/components';
+import { CooperatorForm } from 'infrastructure/view/components/organisms';
 import { Cooperator } from 'domain/cooperator/cooperator';
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { cooperatorPosted } from 'infrastructure/view/store/Cooperator/cooperator.actions';

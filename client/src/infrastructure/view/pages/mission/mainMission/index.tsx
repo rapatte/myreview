@@ -1,7 +1,10 @@
 import React from 'react';
-import { SearchBar, ListingMissionCards } from 'infrastructure/view/components';
+import {
+  SearchBar,
+  ListingMissionCards,
+  Button,
+} from 'infrastructure/view/components';
 import { Link } from 'react-router-dom';
-import { Button } from 'infrastructure/view/components/atoms/button/Button';
 
 const Missions = () => {
   return (

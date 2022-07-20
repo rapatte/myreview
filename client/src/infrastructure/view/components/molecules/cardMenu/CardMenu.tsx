@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
-import { ContextMenuOption } from '../../../components';
+import { ContextMenuOption } from '../../../components/atoms';
 import { notifySuccess } from 'utils/toastify';
 import { cooperatorServices, missionServices } from 'application';
 import { deleteCooperator } from 'infrastructure/view/store/Cooperator/cooperator.actions';

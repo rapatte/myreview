@@ -1,11 +1,11 @@
 import React from 'react';
-import { Menu } from '../../../components';
+import { NavBar } from '../../../components/organisms';
 
 export default function MainLayout({ children }) {
   return (
     <div id="app">
       <div id="content-wrap">
-        <Menu />
+        <NavBar />
         <main>
           <div id="content">{children}</div>
         </main>
