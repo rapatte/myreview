@@ -39,7 +39,7 @@ export const missionRepository = (client: Http): IMissionRepository => ({
   missionFiltred: async (keywords: string[]) => {
     const parameterizeArray = (key, arr) => {
       arr = arr.map(encodeURIComponent);
-      return '?' + 'criteria=' + arr.join('&' + key + '=');
+      return '?criteria=' + arr.join('&' + key + '=');
     };
     const url = '/missions/search/' + parameterizeArray('criteria', keywords);
 
