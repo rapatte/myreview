@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './searchBar.scss';
 
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

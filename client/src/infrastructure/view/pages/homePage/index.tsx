@@ -1,4 +1,3 @@
-import MainLayout from 'infrastructure/view/components/templates/MainLayout';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 

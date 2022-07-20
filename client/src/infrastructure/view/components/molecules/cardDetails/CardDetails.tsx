@@ -1,5 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
-
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useOutsideClick } from 'infrastructure/view/hooks';
@@ -16,20 +15,18 @@ export default function CardDetails({ ...props }) {
     if (showDetail) setShowDetail(false);
   });
   return (
- <>
-  {showDetail && (
-     <div ref={ref}         
-    className="details">
-    <FontAwesomeIcon
-    onClick={() => setShowDetail(true)}  
-   className="details__closeButton"
-    icon={faXmark}
-    />
-    {cardType === 'mission' && <MissionCardDetails {...props} />}
-    {cardType === 'cooperator' && <CooperatorCardDetails {...props} />}
-    </div>
-     )}
-</>
-);
+    <>
+      {showDetail && (
+        <div ref={ref} className="details">
+          <FontAwesomeIcon
+            onClick={() => setShowDetail(true)}
+            className="details__closeButton"
+            icon={faXmark}
+          />
+          {cardType === 'mission' && <MissionCardDetails {...props} />}
+          {cardType === 'cooperator' && <CooperatorCardDetails {...props} />}
+        </div>
+      )}
+    </>
+  );
 }
-

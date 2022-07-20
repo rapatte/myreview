@@ -1,28 +1,15 @@
-// // Config
+// Config
  @import "./vars/index";
 // @import "functions/*";
 @import "./mixins/index";
-// // Bower Components
-// @import "../bower_components/normalize-scss/_normalize";
  
 // // General DOM selector styles
  @import "./base/index";
  
-// // Fonts & General Type Styling
-// @import "typography/*";
- 
 
 // // Atomic Design
- @import "./atoms";
- @import "./molecules";
- @import "./organisms/";
- @import "./templates/";
- @import "./pages/";
-
-@import "../infrastructure/view/components/";
- 
-// // Variations thru Events
-// @import "states/*";
- 
-// // General UI Helpers
-// @import "utility/*";
+@import '../infrastructure/view/components/atoms/atoms.scss';
+@import '../infrastructure/view/components/molecules/molecules.scss';
+@import '../infrastructure/view/components/organisms/organisms.scss';
+@import '../infrastructure/view/components/templates/template.scss';
+@import '../infrastructure/view/pages/pages.scss';

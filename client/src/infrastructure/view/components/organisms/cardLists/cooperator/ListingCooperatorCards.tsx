@@ -1,6 +1,6 @@
-import Title from 'infrastructure/view/components/atoms/Title';
 import React from 'react';
 import sortingById from 'utils/sortingArrays';
+import { Title } from 'infrastructure/view/components/atoms/title/Title';
 import { Card, CooperatorCard } from '../../../molecules';
 
 function ListingCooperatorCards({ ...props }) {

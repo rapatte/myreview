@@ -1,4 +1,4 @@
 // import and export all templates here
-import MainLayout from './MainLayout';
+import MainLayout from './mainLayout/MainLayout';
 
 export { MainLayout };
