@@ -17,7 +17,6 @@ function CardMenu({ setStatus, status, ...props }) {
     const mission = useMission();
 
     const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
-    const [idMenuList, setIdMenuList] = useState<any>([]);
     const [showMenu, setShowMenu] = useState(false);
     const ref = React.useRef<HTMLDivElement>(null);
 
@@ -39,10 +38,10 @@ function CardMenu({ setStatus, status, ...props }) {
     };
     const handleClickDelete = async id => {
         if (window.confirm('Êtes-vous sur ?')) deleteData(id);
-        setIdMenuList([]);
     };
 
     const deleteData = async (id) => {
+        console.log("id", id);
 
         if (cardType === 'cooperator') {
             await cooperatorServices.deleteCooperator(id).then(() => {
