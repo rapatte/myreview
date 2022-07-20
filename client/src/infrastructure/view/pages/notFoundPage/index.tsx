@@ -2,11 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { P } from './P';
 import { Helmet } from 'react-helmet-async';
-import MainLayout from 'infrastructure/view/components/templates/MainLayout';
 
 export function NotFoundPage() {
   return (
-    <MainLayout>
+    <>
       <Helmet>
         <title>404 Page Not Found</title>
         <meta name="description" content="Page not found" />
@@ -21,7 +20,7 @@ export function NotFoundPage() {
         </Title>
         <P>Page not found.</P>
       </Wrapper>
-    </MainLayout>
+    </>
   );
 }
 
