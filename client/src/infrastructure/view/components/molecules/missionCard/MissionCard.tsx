@@ -19,7 +19,7 @@ function MissionCard({ ...props }) {
         <h3 className="card__header__title">{renderBasedOnLength(data)}</h3>
       </div>
       <p className="card__client">
-        {data.client.length > 20
+        {data.client && data.client.length > 20
           ? data.client.substr(0, 20) + '...'
           : data.client}
       </p>

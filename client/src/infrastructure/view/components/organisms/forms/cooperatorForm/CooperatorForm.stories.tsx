@@ -30,6 +30,7 @@ export const Cooperator_Form: ComponentStory<typeof CooperatorForm> = () => {
 
   return (
     <CooperatorForm
+      type="add"
       title="Ajouter un coopérateur"
       values={values}
       setValues={setValues}

@@ -11,6 +11,7 @@ type Props = {
   values: Mission;
   setValues: (value: React.SetStateAction<object>) => void;
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  type: string;
 };
 
 export default function MissionForm({
@@ -18,6 +19,7 @@ export default function MissionForm({
   setValues,
   handleClick,
   title,
+  type,
 }: Props) {
   const handleChange = (id, value) => {
     setValues({ ...values, [id]: value });
@@ -31,32 +33,32 @@ export default function MissionForm({
         <LabelInput
           label={'Titre'}
           type={'text'}
-          value={values.title || ''}
+          {...(type === 'add' ? { value: values.title || '' } : {})}
           onChange={event => handleChange('title', event.target.value)}
-          placeholder={''}
+          placeholder={values.title || ''}
         />
 
         <LabelInput
           label={'Client'}
           type={'text'}
-          value={values.client || ''}
+          {...(type === 'add' ? { value: values.client || '' } : {})}
           onChange={event => handleChange('client', event.target.value)}
-          placeholder={''}
+          placeholder={values.client || ''}
         />
 
         <LabelInput
           label={'Profile'}
           type={'text'}
-          value={values.profile || ''}
+          {...(type === 'add' ? { value: values.profile || '' } : {})}
           onChange={event => handleChange('profile', event.target.value)}
-          placeholder={''}
+          placeholder={values.profile || ''}
         />
 
         <LabelTextarea
           label={'Description'}
-          value={values.description || ''}
+          {...(type === 'add' ? { value: values.description || '' } : {})}
           onChange={event => handleChange('description', event.target.value)}
-          placeholder={''}
+          placeholder={values.description || ''}
         />
 
         <Button

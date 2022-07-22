@@ -11,6 +11,7 @@ describe('Cooperator form testing', () => {
 
     render(
       <CooperatorForm
+        type="add"
         title={'Ajouter un cooperateur'}
         values={values}
         setValues={setValues}
@@ -43,6 +44,7 @@ describe('Cooperator form testing', () => {
 
     render(
       <CooperatorForm
+        type="add"
         title={'Ajouter un cooperateur'}
         values={values}
         setValues={setValues}

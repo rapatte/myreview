@@ -55,6 +55,7 @@ const AddMissions: React.FC = () => {
         </div>
         <div>
           <MissionForm
+            type="add"
             title={'Ajouter une mission'}
             values={values}
             setValues={setValues}

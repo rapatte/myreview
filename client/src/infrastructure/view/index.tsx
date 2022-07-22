@@ -38,7 +38,11 @@ export function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/missions/" component={Missions} />
           <Route exact path="/missions/ajouter" component={AddMissions} />
-          <Route exact path="/missions/modifier" component={UpdateMissions} />
+          <Route
+            exact
+            path="/missions/modifier/:id"
+            component={UpdateMissions}
+          />
           <Route exact path="/cooperateurs/" component={Cooperators} />
           <Route
             exact
@@ -47,7 +51,7 @@ export function App() {
           />
           <Route
             exact
-            path="/cooperateurs/modifier"
+            path="/cooperateurs/modifier/:id"
             component={UpdateCooperators}
           />
           <Route component={NotFound} />
