@@ -6,7 +6,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { CooperatorForm } from 'infrastructure/view/components/organisms';
 import { Cooperator } from 'domain/cooperator/cooperator';
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
-import { cooperatorPosted } from 'infrastructure/view/store/Cooperator/cooperator.actions';
+import { updateCooperator } from 'infrastructure/view/store/Cooperator/cooperator.actions';
 
 const UpdateCooperators: React.FC = () => {
   const [values, setValues] = useState<Cooperator>({});
@@ -18,7 +18,7 @@ const UpdateCooperators: React.FC = () => {
     try {
       e.preventDefault();
       await cooperatorServices.updateCooperator(params.id, values);
-      cooperatorStore.dispatch(cooperatorPosted(values));
+      cooperatorStore.dispatch(updateCooperator(values));
       setValues({});
       history.push('/cooperateurs/');
       notifySuccess('Le coopérateur est mis à jour');
