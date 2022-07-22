@@ -8,7 +8,8 @@ export const cooperatorList = (data: Cooperator[]) => {
 };
 export const updateCooperator = (data: Cooperator) => {
   return {
-    type: 'update-status-cooperator',
+    type: 'update-cooperator',
+    payload: data,
   };
 };
 export const cooperatorPosted = (data: Cooperator) => {
@@ -24,9 +25,9 @@ export const cooperatorFiltred = (data: Cooperator[]) => {
   };
 };
 
-export const deleteCooperator = (id) => {
-    return {
-      type: 'delete-cooperator',
-      payload: id,
-    };
-}
+export const deleteCooperator = id => {
+  return {
+    type: 'delete-cooperator',
+    payload: id,
+  };
+};
