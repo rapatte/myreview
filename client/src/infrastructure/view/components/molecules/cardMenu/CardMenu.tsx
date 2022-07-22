@@ -38,8 +38,6 @@ function CardMenu({ setStatus, status, ...props }) {
   };
 
   const deleteData = async id => {
-    console.log('id', id);
-
     if (cardType === 'cooperator') {
       await cooperatorServices.deleteCooperator(id).then(() => {
         cooperator.dispatch(deleteCooperator(id));
