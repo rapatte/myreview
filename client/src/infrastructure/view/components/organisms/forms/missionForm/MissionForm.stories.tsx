@@ -31,6 +31,7 @@ export const Mission_Form: ComponentStory<typeof MissionForm> = () => {
 
   return (
     <MissionForm
+      type="add"
       title={'Ajouter une mission'}
       values={values}
       setValues={setValues}

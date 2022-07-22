@@ -8,6 +8,7 @@ type Props = {
   values: Cooperator;
   setValues: (value: React.SetStateAction<object>) => void;
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  type: string;
 };
 
 export const CooperatorForm = ({
@@ -15,6 +16,7 @@ export const CooperatorForm = ({
   setValues,
   handleClick,
   title,
+  type,
 }: Props) => {
   const handleChange = (id, value) => {
     setValues({ ...values, [id]: value });
@@ -29,7 +31,7 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Prénom'}
             type={'text'}
-            value={values.firstName || ''}
+            {...(type === 'add' ? { value: values.firstName || '' } : {})}
             onChange={event => handleChange('firstName', event.target.value)}
             placeholder={values.firstName || ''}
           />
@@ -37,7 +39,7 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Nom'}
             type={'text'}
-            value={values.lastName || ''}
+            {...(type === 'add' ? { value: values.lastName || '' } : {})}
             onChange={event => handleChange('lastName', event.target.value)}
             placeholder={values.lastName || ''}
           />
@@ -45,28 +47,28 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Téléphone'}
             type={'text'}
-            value={values.phoneNumber || ''}
+            {...(type === 'add' ? { value: values.phoneNumber || '' } : {})}
             onChange={event => handleChange('phoneNumber', event.target.value)}
             placeholder={values.phoneNumber || ''}
           />
           <LabelInput
             label={'Email'}
             type={'text'}
-            value={values.email || ''}
+            {...(type === 'add' ? { value: values.email || '' } : {})}
             onChange={event => handleChange('email', event.target.value)}
             placeholder={values.email || ''}
           />
           <LabelInput
             label={'Practice'}
             type={'text'}
-            value={values.practice || ''}
+            {...(type === 'add' ? { value: values.practice || '' } : {})}
             onChange={event => handleChange('practice', event.target.value)}
             placeholder={values.practice || ''}
           />
           <LabelInput
             label={'M3'}
             type={'text'}
-            value={values.m3 || ''}
+            {...(type === 'add' ? { value: values.m3 || '' } : {})}
             onChange={event => handleChange('m3', event.target.value)}
             placeholder={values.m3 || ''}
           />
@@ -74,7 +76,7 @@ export const CooperatorForm = ({
           <LabelInput
             label={'Mentor'}
             type={'text'}
-            value={values.mentor || ''}
+            {...(type === 'add' ? { value: values.mentor || '' } : {})}
             onChange={event => handleChange('mentor', event.target.value)}
             placeholder={values.mentor || ''}
           />

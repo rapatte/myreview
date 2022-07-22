@@ -19,15 +19,3 @@ export const useLocalStorage = (key, defaultValue) => {
 
   return [value, setValue, remove];
 };
-
-export const setDataInLocalStorage = (key: string, data: object) => {
-  localStorage.setItem(key, JSON.stringify(data));
-};
-
-export const getDataInLocalStorage = (key: string) => {
-  return localStorage.getItem(key);
-};
-
-export const removeDataInLocalStorage = (key: string) => {
-  localStorage.removeItem(key);
-};

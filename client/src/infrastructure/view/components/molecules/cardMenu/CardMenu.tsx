@@ -7,7 +7,7 @@ import { deleteCooperator } from 'infrastructure/view/store/Cooperator/cooperato
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { deleteMission } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function CardMenu({ setStatus, status, ...props }) {
   const { data, cardType } = props;

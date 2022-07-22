@@ -55,6 +55,7 @@ const UpdateCooperators: React.FC = () => {
         </div>
         <div>
           <CooperatorForm
+            type="update"
             title={'Modifier un coopérateur'}
             values={values}
             setValues={setValues}

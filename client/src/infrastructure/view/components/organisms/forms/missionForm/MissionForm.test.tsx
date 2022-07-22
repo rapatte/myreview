@@ -12,6 +12,7 @@ describe('Mission form testing', () => {
 
     render(
       <MissionForm
+        type="add"
         values={values}
         setValues={setValues}
         handleClick={handleClick}
@@ -37,6 +38,7 @@ describe('Mission form testing', () => {
 
     render(
       <MissionForm
+        type="add"
         title={'Ajouter une mission'}
         values={values}
         setValues={setValues}

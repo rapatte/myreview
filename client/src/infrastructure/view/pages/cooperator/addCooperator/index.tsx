@@ -14,7 +14,7 @@ const AddCooperators: React.FC = () => {
   const history = useHistory();
   const cooperatorStore = useCooperator();
   const [getDataInStorage, setDataInStorage, removeDataInStorage] =
-    useLocalStorage('coooperator-add-form', {});
+    useLocalStorage('cooperator-add-form', {});
 
   const handleSubmit = async e => {
     try {
@@ -55,6 +55,7 @@ const AddCooperators: React.FC = () => {
         </div>
         <div>
           <CooperatorForm
+            type="add"
             title={'Ajouter un coopérateur'}
             values={values}
             setValues={setValues}
