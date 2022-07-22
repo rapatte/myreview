@@ -5,7 +5,7 @@ import { missionServices } from 'application';
 import { MissionForm } from 'infrastructure/view/components';
 import { Mission } from 'domain/mission/mission';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { missionPosted } from 'infrastructure/view/store/Mission/mission.actions';
+import { missionUpdated } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
 const UpdateMissions: React.FC = () => {
@@ -18,7 +18,7 @@ const UpdateMissions: React.FC = () => {
     try {
       e.preventDefault();
       await missionServices.updateMission(params.id, values);
-      missionStore.dispatch(missionPosted(values));
+      missionStore.dispatch(missionUpdated(values));
       setValues({});
       history.push('/missions/');
       notifySuccess('La mission est mise à jour');
