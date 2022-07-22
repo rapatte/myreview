@@ -1,7 +1,7 @@
 import { Cooperator } from 'domain/cooperator/cooperator';
 import React from 'react';
 import { LabelInput } from 'infrastructure/view/components/molecules';
-import { Button } from '../../../../components/atoms';
+import { Button, Title } from '../../../../components/atoms';
 
 type Props = {
   title: string;
@@ -23,7 +23,7 @@ export const CooperatorForm = ({
   return (
     <>
       <form className={'cooperator-form'}>
-        <h2>{title}</h2>
+        <Title format="h2" label={title} />
 
         <div className={'cooperator-form-input-container'}>
           <LabelInput
@@ -31,7 +31,7 @@ export const CooperatorForm = ({
             type={'text'}
             value={values.firstName || ''}
             onChange={event => handleChange('firstName', event.target.value)}
-            placeholder={''}
+            placeholder={values.firstName || ''}
           />
 
           <LabelInput
@@ -39,7 +39,7 @@ export const CooperatorForm = ({
             type={'text'}
             value={values.lastName || ''}
             onChange={event => handleChange('lastName', event.target.value)}
-            placeholder={''}
+            placeholder={values.lastName || ''}
           />
 
           <LabelInput
@@ -47,28 +47,28 @@ export const CooperatorForm = ({
             type={'text'}
             value={values.phoneNumber || ''}
             onChange={event => handleChange('phoneNumber', event.target.value)}
-            placeholder={''}
+            placeholder={values.phoneNumber || ''}
           />
           <LabelInput
             label={'Email'}
             type={'text'}
             value={values.email || ''}
             onChange={event => handleChange('email', event.target.value)}
-            placeholder={''}
+            placeholder={values.email || ''}
           />
           <LabelInput
             label={'Practice'}
             type={'text'}
             value={values.practice || ''}
             onChange={event => handleChange('practice', event.target.value)}
-            placeholder={''}
+            placeholder={values.practice || ''}
           />
           <LabelInput
             label={'M3'}
             type={'text'}
             value={values.m3 || ''}
             onChange={event => handleChange('m3', event.target.value)}
-            placeholder={''}
+            placeholder={values.m3 || ''}
           />
 
           <LabelInput
@@ -76,7 +76,7 @@ export const CooperatorForm = ({
             type={'text'}
             value={values.mentor || ''}
             onChange={event => handleChange('mentor', event.target.value)}
-            placeholder={''}
+            placeholder={values.mentor || ''}
           />
         </div>
 

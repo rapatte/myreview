@@ -5,13 +5,14 @@ import { missionServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
 import { MissionForm } from 'infrastructure/view/components';
 import { Mission } from 'domain/mission/mission';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { missionPosted } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
 const UpdateMissions: React.FC = () => {
   const [values, setValues] = useState<Mission>({});
   const history = useHistory();
+  const params: { id: string } = useParams();
   const missionStore = useMission();
   const [getDataInStorage, setDataInStorage, removeDataInStorage] =
     useLocalStorage('mission-update-form', {});
@@ -19,7 +20,7 @@ const UpdateMissions: React.FC = () => {
   const handleSubmit = async e => {
     try {
       e.preventDefault();
-      await missionServices.updateMission('', values);
+      await missionServices.updateMission(params.id, values);
       missionStore.dispatch(missionPosted(values));
       setValues({});
       removeDataInStorage('mission-update-form');
@@ -47,7 +48,7 @@ const UpdateMissions: React.FC = () => {
           <Link to="/missions">
             <img
               id="goBack"
-              src="../goBack.png"
+              src="/goBack.png"
               alt="go back"
               className={'back-button-mission'}
             />

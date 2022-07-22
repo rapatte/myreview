@@ -7,13 +7,13 @@ import { deleteCooperator } from 'infrastructure/view/store/Cooperator/cooperato
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { deleteMission } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { Link, useHistory } from 'react-router-dom';
 
 function CardMenu({ setStatus, status, ...props }) {
   const { data, cardType } = props;
   const cooperator = useCooperator();
-
   const mission = useMission();
-
+  const history = useHistory();
   const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
   const [showMenu, setShowMenu] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -54,6 +54,17 @@ function CardMenu({ setStatus, status, ...props }) {
       setShowMenu(false);
     }
   };
+
+  const updateData = async id => {
+    if (cardType === 'cooperator') {
+      history.push(`/cooperateurs/modifier/${id}`);
+      // setShowMenu(false);
+    } else {
+      history.push(`/missions/modifier/${id}`);
+      // setShowMenu(false);
+    }
+  };
+
   useOutsideClick(ref, () => {
     if (showMenu) setShowMenu(false);
   });
@@ -94,16 +105,13 @@ function CardMenu({ setStatus, status, ...props }) {
                 : changeStatus(data.id);
             }}
           />
-
           <ContextMenuOption
             name="Modifier"
             onClick={e => {
               e.stopPropagation();
-              props.setProp(data);
-              props.setDisplay('update-form');
+              updateData(data.id);
             }}
           />
-
           <ContextMenuOption
             name="Supprimer"
             onClick={e => {
