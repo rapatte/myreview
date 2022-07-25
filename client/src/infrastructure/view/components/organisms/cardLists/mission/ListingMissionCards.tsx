@@ -4,7 +4,7 @@ import { Mission } from 'domain/mission/mission';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
 import sortingById from 'utils/sortingArrays';
-import { Title } from 'infrastructure/view/components/atoms';
+import { Checkbox, Title } from 'infrastructure/view/components/atoms';
 import { Card, MissionCard } from '../../../../components/molecules';
 
 function ListingMissionCards({ ...props }) {
@@ -23,6 +23,7 @@ function ListingMissionCards({ ...props }) {
   return (
     <div className="container">
       <Title label="Les Missions" format="h2" />
+      <Checkbox label="Actives uniquement" />
       <ul className="container__cards">
         {catalog && catalog.length > 0
           ? catalog.sort(sortingById).map(prop => (

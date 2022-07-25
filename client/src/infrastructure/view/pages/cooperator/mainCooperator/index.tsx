@@ -33,7 +33,6 @@ export const Cooperators = ({ setDisplay, setProp }) => {
       <Link to="/cooperateurs/ajouter">
         <Button className="addButton" label="Ajouter un coopérateur" />
       </Link>
-      <Checkbox label="Disponibles uniquement" />
       <ListingCooperatorCards
         cardType="cooperator"
         props={catalog}

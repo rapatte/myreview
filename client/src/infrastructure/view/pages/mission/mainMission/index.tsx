@@ -14,7 +14,6 @@ const Missions = () => {
       <Link to="/missions/ajouter">
         <Button className="addButton" label="Ajouter une mission" />
       </Link>
-      <Checkbox label="Actives uniquement" />
       <ListingMissionCards title="Les Missions" cardType="mission" />
     </>
   );
