@@ -72,4 +72,12 @@ export class CooperatorService implements ICooperatorService {
     }
     return cooperatorsList;
   }
+
+  async getAvailable(): Promise<CooperatorDomain[]> {
+    const cooperators = await this.cooperatorRepositoryAdapter.getAvailable();
+    if (cooperators.length === 0) {
+      throw new Error('Aucune correspondance.');
+    }
+    return cooperators;
+  }
 }

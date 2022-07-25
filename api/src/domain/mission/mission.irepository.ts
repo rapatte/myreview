@@ -10,4 +10,5 @@ export interface IMissionRepository {
   ): Promise<MissionDomain>;
   getOne(missionId: string): Promise<MissionDomain>;
   search(keywords: string[]): Promise<MissionDomain[]>;
+  getAvailable(): Promise<MissionDomain[]>;
 }

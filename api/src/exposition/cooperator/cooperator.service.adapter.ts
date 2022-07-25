@@ -32,4 +32,7 @@ export class CooperatorServiceAdapter {
   public async search(keywords: string[]): Promise<CooperatorDomain[]> {
     return this.cooperatorService.search(keywords);
   }
+  public async getAvailable(): Promise<CooperatorDomain[]> {
+    return this.cooperatorService.getAvailable();
+  }
 }

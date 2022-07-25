@@ -53,4 +53,11 @@ export class MissionService implements IMissionService {
     }
     return missions;
   }
+  async getAvailable() {
+    const missions = await this.missionRepositoryAdapter.getAvailable();
+    if (missions.length === 0) {
+      throw new Error('Aucune correspondance.');
+    }
+    return missions;
+  }
 }

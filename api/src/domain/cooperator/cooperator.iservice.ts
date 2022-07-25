@@ -7,4 +7,5 @@ export interface ICooperatorService {
   update(id: string, cooperator: CooperatorDomain): Promise<CooperatorDomain>;
   getOne(id: string): Promise<CooperatorDomain>;
   search(keywords: string[]): Promise<CooperatorDomain[]>;
+  getAvailable(): Promise<CooperatorDomain[]>;
 }

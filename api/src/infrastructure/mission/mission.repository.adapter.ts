@@ -79,7 +79,14 @@ export class MissionRepositoryAdapter implements IMissionRepository {
         request.forEach((req) => elements.push(req));
       }),
     );
-
     return elements;
+  }
+  async getAvailable() {
+    const missions = await this.missionEntityRepository.find({
+      where: {
+        isActive: true,
+      },
+    });
+    return missions.map((mission) => fromEntityToDomain(mission));
   }
 }

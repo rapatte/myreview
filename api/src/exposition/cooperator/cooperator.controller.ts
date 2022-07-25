@@ -69,6 +69,15 @@ export class CooperatorController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
+  @Get('available')
+  async getAvailable(@Res() response: Response): Promise<void> {
+    try {
+      const cooperators = await this.cooperatorServiceAdapter.getAvailable();
+      response.status(HttpStatus.OK).send(cooperators);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+    }
+  }
   @Get('search')
   async search(@Query('criteria') search: string[]) {
     try {

@@ -7,4 +7,5 @@ export interface IMissionService {
   update(missionId: string, mission: MissionDomain): Promise<MissionDomain>;
   getOne(missionId: string): Promise<MissionDomain>;
   search(keywords: string[]): Promise<MissionDomain[]>;
+  getAvailable(): Promise<MissionDomain[]>;
 }
