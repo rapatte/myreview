@@ -20,4 +20,7 @@ export const CooperatorService = (
   cooperatorFiltred: (keywords: string[]): Promise<Cooperator[]> => {
     return repository.cooperatorFiltred(keywords);
   },
+  getAvailableCooperators: (): Promise<Cooperator[]> => {
+    return repository.getAvailableCooperators();
+  },
 });

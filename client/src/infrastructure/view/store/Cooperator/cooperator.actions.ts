@@ -24,9 +24,16 @@ export const cooperatorFiltred = (data: Cooperator[]) => {
   };
 };
 
-export const deleteCooperator = (id) => {
-    return {
-      type: 'delete-cooperator',
-      payload: id,
-    };
-}
+export const deleteCooperator = id => {
+  return {
+    type: 'delete-cooperator',
+    payload: id,
+  };
+};
+
+export const getAvailableCooperators = (data: Cooperator[]) => {
+  return {
+    type: 'available-cooperators',
+    payload: data,
+  };
+};

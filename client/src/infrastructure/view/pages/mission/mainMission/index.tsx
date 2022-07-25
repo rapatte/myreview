@@ -3,6 +3,7 @@ import {
   SearchBar,
   ListingMissionCards,
   Button,
+  Checkbox,
 } from 'infrastructure/view/components';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ const Missions = () => {
       <Link to="/missions/ajouter">
         <Button className="addButton" label="Ajouter une mission" />
       </Link>
+      <Checkbox label="Actives uniquement" />
       <ListingMissionCards title="Les Missions" cardType="mission" />
     </>
   );

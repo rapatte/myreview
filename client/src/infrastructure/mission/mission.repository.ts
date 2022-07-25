@@ -55,4 +55,17 @@ export const missionRepository = (client: Http): IMissionRepository => ({
       }),
     );
   },
+  getAvailableMissions: async () => {
+    const missions = await client.get<MissionDTO[]>('missions/available');
+    return missions.map(
+      (missionDto): Mission => ({
+        id: missionDto.id,
+        title: missionDto.title,
+        profile: missionDto.profile,
+        client: missionDto.client,
+        description: missionDto.description,
+        isActive: missionDto.isActive,
+      }),
+    );
+  },
 });

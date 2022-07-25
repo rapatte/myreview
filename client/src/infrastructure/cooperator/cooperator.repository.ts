@@ -68,4 +68,22 @@ export const cooperatorRepository = (client: Http): ICooperatorRepository => ({
       }),
     );
   },
+  getAvailableCooperators: async () => {
+    const cooperators = await client.get<CooperatorDTO[]>(
+      'cooperators/available',
+    );
+    return cooperators.map(
+      (CooperatorDto): Cooperator => ({
+        id: CooperatorDto.id,
+        firstName: CooperatorDto.firstName,
+        lastName: CooperatorDto.lastName,
+        phoneNumber: CooperatorDto.phoneNumber,
+        email: CooperatorDto.email,
+        practice: CooperatorDto.practice,
+        m3: CooperatorDto.m3,
+        mentor: CooperatorDto.mentor,
+        disponible: CooperatorDto.disponible,
+      }),
+    );
+  },
 });

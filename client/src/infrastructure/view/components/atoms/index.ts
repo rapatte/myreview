@@ -4,6 +4,7 @@ import ContextMenuOption from './contextMenuOption/ContextMenuOption';
 import { Input } from './input/Input';
 import Status from './status/Status';
 import Tags from './tags/Tags';
+import Checkbox from './checkBox/CheckBox';
 import { Label } from './label/Label';
 import { Logo } from './logo/Logo';
 import { Textarea } from './textarea/Textarea';
@@ -19,4 +20,5 @@ export {
   Logo,
   Textarea,
   Title,
+  Checkbox,
 };

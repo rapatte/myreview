@@ -3,13 +3,13 @@ import {
   ListingCooperatorCards,
   SearchBar,
   Button,
+  Checkbox,
 } from 'infrastructure/view/components';
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { Cooperator } from '../../../../../domain/cooperator/cooperator';
 import cooperatorServices from 'application/cooperator/cooperator.factory';
 import { cooperatorList } from 'infrastructure/view/store/Cooperator/cooperator.actions';
 import { Link } from 'react-router-dom';
-import Checkbox from 'infrastructure/view/components/atoms/checkBox/CheckBox';
 
 export const Cooperators = ({ setDisplay, setProp }) => {
   const { state, dispatch } = useCooperator();
@@ -20,6 +20,7 @@ export const Cooperators = ({ setDisplay, setProp }) => {
       .getCooperators()
       .then(data => dispatch(cooperatorList(data)));
     setCatalog(cooperators);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export const Cooperators = ({ setDisplay, setProp }) => {
       <Link to="/cooperateurs/ajouter">
         <Button className="addButton" label="Ajouter un coopérateur" />
       </Link>
-      <Checkbox label="Enlever les indisponibles" />
+      <Checkbox label="Disponibles uniquement" />
       <ListingCooperatorCards
         cardType="cooperator"
         props={catalog}
