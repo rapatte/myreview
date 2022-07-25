@@ -76,7 +76,7 @@ export class CooperatorService implements ICooperatorService {
   async getAvailable(): Promise<CooperatorDomain[]> {
     const cooperators = await this.cooperatorRepositoryAdapter.getAvailable();
     if (cooperators.length === 0) {
-      throw new Error('Aucune correspondance.');
+      throw new Error('Aucun coopérateur disponible.');
     }
     return cooperators;
   }

@@ -56,7 +56,7 @@ export class MissionService implements IMissionService {
   async getAvailable() {
     const missions = await this.missionRepositoryAdapter.getAvailable();
     if (missions.length === 0) {
-      throw new Error('Aucune correspondance.');
+      throw new Error('Aucune mission disponible.');
     }
     return missions;
   }
