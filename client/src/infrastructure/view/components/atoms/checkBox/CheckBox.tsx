@@ -45,6 +45,7 @@ const Checkbox = ({ label }) => {
         (await missionServices
           .getMissions()
           .then(data => mission.dispatch(missionList(data))));
+      setError('');
     }
   };
 
@@ -54,13 +55,13 @@ const Checkbox = ({ label }) => {
   }, [checked]);
 
   return (
-    <>
+    <div className="checkbox__wrapper">
       <label>
         <input type="checkbox" checked={checked} onChange={handleChange} />
         {label}
       </label>
       <div className="error">{error}</div>
-    </>
+    </div>
   );
 };
 
