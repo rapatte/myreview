@@ -9,10 +9,10 @@ function CooperatorCard({ cooperator }) {
     <div className="card__content">
       <div className="card__header">
         <CardMenu
-          id={cooperator.id}
           setStatus={setStatus}
           status={status}
           cardType="cooperator"
+          id={cooperator.id}
         />
         <h3 className="card__header__title card-header-name">
           {renderBasedOnLength(cooperator)}
