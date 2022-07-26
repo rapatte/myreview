@@ -12,7 +12,6 @@ function MissionCard({ ...props }) {
         <CardMenu
           setStatus={setStatus}
           status={status}
-          key={data.id}
           cardType={cardType}
           {...props}
         />

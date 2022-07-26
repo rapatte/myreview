@@ -64,9 +64,14 @@ function ListingMissionCards({ ...props }) {
       />
       <ul className="container__cards">
         {catalog && catalog.length > 0
-          ? catalog.sort(sortingById).map((prop, key) => (
-              <Card key={key} data={prop} {...props}>
-                <MissionCard cardType="mission" data={prop} {...props} />
+          ? catalog.sort(sortingById).map((prop, index) => (
+              <Card key={index} data={prop} {...props}>
+                <MissionCard
+                  key={prop.id}
+                  cardType="mission"
+                  data={prop}
+                  {...props}
+                />
               </Card>
             ))
           : 'Chargement'}
