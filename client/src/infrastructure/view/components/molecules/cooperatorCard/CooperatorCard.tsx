@@ -10,7 +10,6 @@ function CooperatorCard({ ...props }) {
     <div className="card__content">
       <div className="card__header">
         <CardMenu
-          key={data.id}
           setStatus={setStatus}
           status={status}
           cardType={cardType}

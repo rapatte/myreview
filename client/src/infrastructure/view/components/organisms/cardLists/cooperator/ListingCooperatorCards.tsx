@@ -67,7 +67,12 @@ function ListingCooperatorCards({ ...props }) {
         {catalog && catalog.length > 0
           ? catalog.sort(sortingById).map((prop, key) => (
               <Card key={key} data={prop} {...props}>
-                <CooperatorCard cardType="cooperator" data={prop} {...props} />
+                <CooperatorCard
+                  key={prop.id}
+                  cardType="cooperator"
+                  data={prop}
+                  {...props}
+                />
               </Card>
             ))
           : 'Chargement'}
