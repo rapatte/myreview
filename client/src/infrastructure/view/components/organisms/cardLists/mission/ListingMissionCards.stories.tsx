@@ -100,7 +100,6 @@ export const Mission_List: ComponentStory<typeof ListingMissionCards> = () => {
   };
   return (
     <ListingMissionCards
-      cardType="mission"
       props={data}
       position={position}
       contextMenu={contextMenu}

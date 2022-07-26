@@ -73,24 +73,8 @@ export const CardComponent: ComponentStory<typeof Card> = args => {
   };
 
   return (
-    <Card
-      cardType="mission"
-      data={data}
-      position={position}
-      contextMenu={contextMenu}
-      details={details}
-      setProp={setProp}
-      setDisplay={setDisplay}
-    >
-      <MissionCard
-        cardType="mission"
-        data={data}
-        position={position}
-        contextMenu={contextMenu}
-        details={details}
-        setProp={setProp}
-        setDisplay={setDisplay}
-      />
+    <Card cardType="mission" id={data.id}>
+      <MissionCard mission={data} />
     </Card>
   );
 };

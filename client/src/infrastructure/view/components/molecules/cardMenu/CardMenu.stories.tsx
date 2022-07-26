@@ -59,13 +59,8 @@ export const CardMenuComponent: ComponentStory<typeof CardMenu> = args => {
 
   return (
     <CardMenu
-      className="card__header__menu"
       cardType="mission"
-      data={data}
-      position={position}
-      contextMenu={contextMenu}
-      setProp={setProp}
-      setDisplay={setDisplay}
+      id={data.id}
       setStatus={setStatus}
       status={status}
     />

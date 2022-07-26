@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { Mission } from 'domain/mission/mission';
 
-function MissionCardDetails({ ...props }) {
-  const { data } = props;
+function MissionCardDetails({ id }) {
+  const contextMission: any = useMission();
+  const [mission, setMission] = useState<Mission>({});
+
+  useEffect(() => {
+    const missionSelected = contextMission.state.catalog.filter(
+      (mission: Mission) => mission.id === id,
+    );
+    setMission(missionSelected[0]);
+  }, []);
 
   return (
     <div className="details__mission">
       <h3>Mission</h3>
-      <div className="details__mission__title">Titre : {data.title}</div>
+      <div className="details__mission__title">Titre : {mission.title}</div>
       <div className="details__mission__profil">
-        Profil recherché : {data.profile}
+        Profil recherché : {mission.profile}
       </div>
-      <div className="details__mission__client">Client : {data.client}</div>
+      <div className="details__mission__client">Client : {mission.client}</div>
       <div className="details__mission__description">
-        Description : {data.description}
+        Description : {mission.description}
       </div>
     </div>
   );

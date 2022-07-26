@@ -1,30 +1,27 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useOutsideClick } from 'infrastructure/view/hooks';
 import { MissionCardDetails, CooperatorCardDetails } from '../../molecules';
 
-export default function CardDetails({ ...props }) {
-  const { cardType } = props;
-  const [showDetail, setShowDetail] = useState(true);
+export default function CardDetails({ id, cardType, setIsShown, isShown }) {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  useOutsideClick(ref, () => {
-    if (showDetail) setShowDetail(false);
-  });
+  const handleIsShownInvisible = () => {
+    if (isShown) setIsShown(false);
+  };
+
+  useOutsideClick(ref, handleIsShownInvisible);
   return (
-    <>
-      {showDetail && (
-        <div ref={ref} className="details">
-          <FontAwesomeIcon
-            onClick={() => setShowDetail(true)}
-            className="details__closeButton"
-            icon={faXmark}
-          />
-          {cardType === 'mission' && <MissionCardDetails {...props} />}
-          {cardType === 'cooperator' && <CooperatorCardDetails {...props} />}
-        </div>
-      )}
-    </>
+    <div ref={ref} className="details">
+      <FontAwesomeIcon
+        onClick={() => setIsShown(false)}
+        className="details__closeButton"
+        icon={faXmark}
+      />
+      {cardType === 'mission' && <MissionCardDetails id={id} />}
+      {cardType === 'cooperator' && <CooperatorCardDetails id={id} />}
+    </div>
   );
 }

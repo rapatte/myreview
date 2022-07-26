@@ -8,8 +8,7 @@ import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { deleteMission } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
-function CardMenu({ setStatus, status, ...props }) {
-  const { data, cardType } = props;
+function CardMenu({ setStatus, status, cardType, id }) {
   const cooperator = useCooperator();
 
   const mission = useMission();
@@ -89,9 +88,7 @@ function CardMenu({ setStatus, status, ...props }) {
             }
             onClick={e => {
               e.stopPropagation();
-              cardType === 'mission'
-                ? changeStatus(data.id)
-                : changeStatus(data.id);
+              changeStatus(id);
             }}
           />
 
@@ -99,8 +96,6 @@ function CardMenu({ setStatus, status, ...props }) {
             name="Modifier"
             onClick={e => {
               e.stopPropagation();
-              props.setProp(data);
-              props.setDisplay('update-form');
             }}
           />
 
@@ -108,7 +103,7 @@ function CardMenu({ setStatus, status, ...props }) {
             name="Supprimer"
             onClick={e => {
               e.stopPropagation();
-              handleClickDelete(data.id);
+              handleClickDelete(id);
             }}
           />
         </div>
