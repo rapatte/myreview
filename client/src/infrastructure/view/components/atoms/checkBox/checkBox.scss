@@ -1,0 +1,24 @@
+.checkbox__wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 15vh;
+    left: 20vw;
+    label{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        border: solid 2px black;
+        cursor: pointer;
+        width: fit-content;
+        padding: 10px;
+        input{
+            cursor: pointer;
+            width: 15px;
+        }
+    }
+    .error{
+        color: red;
+    }
+}

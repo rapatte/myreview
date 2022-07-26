@@ -94,7 +94,15 @@ export class CooperatorRepositoryAdapter implements ICooperatorRepository {
         request.forEach((req) => elements.push(req));
       }),
     );
-
     return elements;
+  }
+
+  async getAvailable() {
+    const cooperators = await this.cooperatorEntityRepository.find({
+      where: {
+        disponible: true,
+      },
+    });
+    return cooperators.map((cooperator) => fromEntityToDomain(cooperator));
   }
 }

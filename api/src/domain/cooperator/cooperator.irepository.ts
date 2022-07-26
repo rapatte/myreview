@@ -10,4 +10,5 @@ export interface ICooperatorRepository {
   ): Promise<CooperatorDomain>;
   getOne(id: string): Promise<CooperatorDomain>;
   search(keywords: string[]): Promise<CooperatorDomain[]>;
+  getAvailable(): Promise<CooperatorDomain[]>;
 }

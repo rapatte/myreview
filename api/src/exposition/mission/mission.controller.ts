@@ -16,7 +16,7 @@ import {
   ApiNotFoundResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Response } from 'express';
+import { response, Response } from 'express';
 import { Mission } from '../../types/Mission';
 import { MissionDomain } from '../../domain/mission/mission.domain';
 import { MissionEntity } from '../../infrastructure/Mission/mission.entity';
@@ -59,6 +59,15 @@ export class MissionController {
   async getAll(@Res() response: Response): Promise<void> {
     try {
       const missions = await this.missionServiceAdapter.getAll();
+      response.status(HttpStatus.OK).send(missions);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+    }
+  }
+  @Get('available')
+  async getAvailable(@Res() response: Response): Promise<void> {
+    try {
+      const missions = await this.missionServiceAdapter.getAvailable();
       response.status(HttpStatus.OK).send(missions);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);

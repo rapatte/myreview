@@ -6,4 +6,5 @@ export interface ICooperatorRepository {
   deleteCooperator: (id: string) => Promise<string>;
   addCooperator: (cooperator: Cooperator) => Promise<Cooperator>;
   cooperatorFiltred: (keywords: string[]) => Promise<Cooperator[]>;
+  getAvailableCooperators: () => Promise<Cooperator[]>;
 }

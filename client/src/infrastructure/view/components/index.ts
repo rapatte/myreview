@@ -8,6 +8,7 @@ import {
   Logo,
   Textarea,
   Title,
+  Checkbox,
 } from './atoms';
 import {
   Card,
@@ -56,4 +57,5 @@ export {
   MissionForm,
   CooperatorForm,
   MainLayout,
+  Checkbox,
 };

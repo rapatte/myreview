@@ -32,4 +32,7 @@ export class MissionServiceAdapter {
   public async search(keywords: string[]): Promise<MissionDomain[]> {
     return this.missionService.search(keywords);
   }
+  public async getAvailable(): Promise<MissionDomain[]> {
+    return this.missionService.getAvailable();
+  }
 }

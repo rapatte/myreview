@@ -6,4 +6,5 @@ export interface IMissionRepository {
   deleteMission: (id: string) => Promise<string>;
   addMission: (mission: Mission) => Promise<Mission>;
   missionFiltred: (keywords: string[]) => Promise<Mission[]>;
+  getAvailableMissions: () => Promise<Mission[]>;
 }

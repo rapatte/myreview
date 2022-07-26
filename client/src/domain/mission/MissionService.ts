@@ -20,4 +20,7 @@ export const MissionService = (
   missionFiltred: (keywords: string[]): Promise<Mission[]> => {
     return repository.missionFiltred(keywords);
   },
+  getAvailableMissions: (): Promise<Mission[]> => {
+    return repository.getAvailableMissions();
+  },
 });
