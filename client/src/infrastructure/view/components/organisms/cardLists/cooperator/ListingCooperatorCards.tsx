@@ -11,21 +11,14 @@ import {
 } from 'infrastructure/view/store/Cooperator/cooperator.actions';
 
 function ListingCooperatorCards({ ...props }) {
+  const contextCooperator = useCooperator();
   const [checked, setChecked] = useState(false);
-  const cooperator = useCooperator();
   const [error, setError] = useState('');
-  const { state, dispatch } = useCooperator();
   const [catalog, setCatalog] = useState<Cooperator[]>([]);
 
   useEffect(() => {
-    cooperatorServices
-      .getCooperators()
-      .then(data => dispatch(cooperatorList(data)));
-  }, []);
-
-  useEffect(() => {
-    setCatalog(state.catalog);
-  }, [state.catalog]);
+    setCatalog(contextCooperator.state.catalog);
+  }, [contextCooperator.state.catalog]);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -36,7 +29,7 @@ function ListingCooperatorCards({ ...props }) {
       try {
         await cooperatorServices
           .getAvailableCooperators()
-          .then(data => cooperator.dispatch(cooperatorFiltred(data)));
+          .then(data => contextCooperator.dispatch(cooperatorFiltred(data)));
         setError('');
       } catch (error: any) {
         setError(error.response.data.message);
@@ -44,7 +37,7 @@ function ListingCooperatorCards({ ...props }) {
     } else {
       await cooperatorServices
         .getCooperators()
-        .then(data => cooperator.dispatch(cooperatorList(data)));
+        .then(data => contextCooperator.dispatch(cooperatorList(data)));
       setError('');
     }
   };
@@ -65,9 +58,9 @@ function ListingCooperatorCards({ ...props }) {
       />
       <ul className="container__cards">
         {catalog && catalog.length > 0
-          ? catalog.sort(sortingById).map((prop, key) => (
-              <Card key={key} data={prop} {...props}>
-                <CooperatorCard cardType="cooperator" data={prop} {...props} />
+          ? catalog.sort(sortingById).map((cooperator, index) => (
+              <Card key={index} id={cooperator.id} cardType="cooperator">
+                <CooperatorCard key={cooperator.id} cooperator={cooperator} />
               </Card>
             ))
           : 'Chargement'}

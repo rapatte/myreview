@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { missionServices } from 'application';
 import { Mission } from 'domain/mission/mission';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import {
@@ -9,12 +8,12 @@ import {
 import sortingById from 'utils/sortingArrays';
 import { Checkbox, Title } from 'infrastructure/view/components/atoms';
 import { Card, MissionCard } from '../../../../components/molecules';
+import { missionServices } from 'application';
 
-function ListingMissionCards({ ...props }) {
-  const { state, dispatch } = useMission();
+function ListingMissionCards() {
+  const contextMission = useMission();
   const [catalog, setCatalog] = useState<Mission[]>([]);
   const [checked, setChecked] = useState(false);
-  const cooperator = useMission();
   const [error, setError] = useState('');
 
   const handleChange = () => {
@@ -26,7 +25,7 @@ function ListingMissionCards({ ...props }) {
       try {
         await missionServices
           .getAvailableMissions()
-          .then(data => cooperator.dispatch(missionFiltred(data)));
+          .then(data => contextMission.dispatch(missionFiltred(data)));
         setError('');
       } catch (error: any) {
         setError(error.response.data.message);
@@ -34,7 +33,7 @@ function ListingMissionCards({ ...props }) {
     } else {
       await missionServices
         .getMissions()
-        .then(data => cooperator.dispatch(missionList(data)));
+        .then(data => contextMission.dispatch(missionList(data)));
       setError('');
     }
   };
@@ -45,13 +44,8 @@ function ListingMissionCards({ ...props }) {
   }, [checked]);
 
   useEffect(() => {
-    missionServices.getMissions().then(data => dispatch(missionList(data)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    setCatalog(state.catalog);
-  }, [state.catalog]);
+    setCatalog(contextMission.state.catalog);
+  }, [contextMission.state.catalog]);
 
   return (
     <div className="container">
@@ -64,9 +58,9 @@ function ListingMissionCards({ ...props }) {
       />
       <ul className="container__cards">
         {catalog && catalog.length > 0
-          ? catalog.sort(sortingById).map((prop, key) => (
-              <Card key={key} data={prop} {...props}>
-                <MissionCard cardType="mission" data={prop} {...props} />
+          ? catalog.sort(sortingById).map((mission, index) => (
+              <Card key={index} id={mission.id} cardType="mission">
+                <MissionCard key={mission.id} mission={mission} />
               </Card>
             ))
           : 'Chargement'}

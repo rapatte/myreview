@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { CardDetails } from '../../../components/molecules';
 
-function Card({ ...props }) {
+function Card({ children, id, cardType }) {
   const [isShown, setIsShown] = useState(false);
-  const { children } = props;
+
+  const handleIsShownVisible = () => {
+    if (!isShown) setIsShown(true);
+  };
 
   return (
     <li>
       <div className="container">
-        <div className="card" onClick={() => setIsShown(current => !current)}>
+        <div className="card" onClick={() => handleIsShownVisible()}>
           {isShown && (
-            <div>
-              <CardDetails {...props} />
-            </div>
+            <CardDetails
+              cardType={cardType}
+              id={id}
+              setIsShown={setIsShown}
+              isShown={isShown}
+            />
           )}
           {children}
         </div>

@@ -98,15 +98,5 @@ export const Mission_List: ComponentStory<typeof ListingMissionCards> = () => {
   const deleteMission = async () => {
     console.log('Mission deleted');
   };
-  return (
-    <ListingMissionCards
-      cardType="mission"
-      props={data}
-      position={position}
-      contextMenu={contextMenu}
-      details={details}
-      setDisplay={setDisplay}
-      setProp={setProp}
-    />
-  );
+  return <ListingMissionCards />;
 };

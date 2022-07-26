@@ -94,7 +94,6 @@ export const Cooperator_List: ComponentStory<
   };
   return (
     <ListingCooperatorCards
-      cardType="cooperator"
       props={data}
       position={position}
       contextMenu={contextMenu}

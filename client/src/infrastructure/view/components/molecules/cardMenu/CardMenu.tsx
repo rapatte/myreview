@@ -9,8 +9,7 @@ import { deleteMission } from 'infrastructure/view/store/Mission/mission.actions
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import { useHistory } from 'react-router-dom';
 
-function CardMenu({ setStatus, status, ...props }) {
-  const { data, cardType } = props;
+function CardMenu({ setStatus, status, cardType, id }) {
   const cooperator = useCooperator();
   const mission = useMission();
   const history = useHistory();
@@ -98,23 +97,21 @@ function CardMenu({ setStatus, status, ...props }) {
             }
             onClick={e => {
               e.stopPropagation();
-              cardType === 'mission'
-                ? changeStatus(data.id)
-                : changeStatus(data.id);
+              changeStatus(id);
             }}
           />
           <ContextMenuOption
             name="Modifier"
             onClick={e => {
               e.stopPropagation();
-              updateData(data.id);
+              updateData(id);
             }}
           />
           <ContextMenuOption
             name="Supprimer"
             onClick={e => {
               e.stopPropagation();
-              handleClickDelete(data.id);
+              handleClickDelete(id);
             }}
           />
         </div>
