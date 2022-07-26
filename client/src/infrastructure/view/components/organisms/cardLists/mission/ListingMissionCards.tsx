@@ -5,7 +5,7 @@ import sortingById from 'utils/sortingArrays';
 import { Title } from 'infrastructure/view/components/atoms';
 import { Card, MissionCard } from '../../../../components/molecules';
 
-function ListingMissionCards({ ...props }) {
+function ListingMissionCards() {
   const contextMission = useMission();
   const [catalog, setCatalog] = useState<Mission[]>([]);
 
