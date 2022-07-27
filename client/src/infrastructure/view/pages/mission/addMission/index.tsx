@@ -5,13 +5,14 @@ import { missionServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
 import { MissionForm } from 'infrastructure/view/components/organisms';
 import { Mission } from 'domain/mission/mission';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { missionPosted } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
 const AddMissions: React.FC = () => {
   const [values, setValues] = useState<Mission>({});
   const history = useHistory();
+  const params: { id: string } = useParams();
   const missionStore = useMission();
   const [getDataInStorage, setDataInStorage, removeDataInStorage] =
     useLocalStorage('mission-add-form', {});
@@ -30,8 +31,21 @@ const AddMissions: React.FC = () => {
     }
   };
 
+  const getMissionById = () => {
+    const catalog = missionStore.state.catalog;
+    const missionSelected = catalog.filter(mission => mission.id === params.id);
+    const [mission] = missionSelected;
+    delete mission.id;
+    return mission;
+  };
+
   useEffect(() => {
-    setValues(getDataInStorage);
+    if (params.id) {
+      const mission = getMissionById();
+      setValues(mission);
+    } else {
+      setValues(getDataInStorage);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,7 +61,7 @@ const AddMissions: React.FC = () => {
           <Link to="/missions">
             <img
               id="goBack"
-              src="../goBack.png"
+              src="/goBack.png"
               alt="go back"
               className={'back-button-mission'}
             />

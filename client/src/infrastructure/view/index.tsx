@@ -38,6 +38,7 @@ export function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/missions/" component={Missions} />
           <Route exact path="/missions/ajouter" component={AddMissions} />
+          <Route exact path="/missions/ajouter/:id" component={AddMissions} />
           <Route
             exact
             path="/missions/modifier/:id"

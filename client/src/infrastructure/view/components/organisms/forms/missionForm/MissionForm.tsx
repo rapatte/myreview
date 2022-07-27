@@ -35,7 +35,7 @@ export default function MissionForm({
           type={'text'}
           {...(type === 'add' ? { value: values.title || '' } : {})}
           onChange={event => handleChange('title', event.target.value)}
-          placeholder={values.title || ''}
+          value={values.title || ''}
         />
 
         <LabelInput
@@ -43,7 +43,7 @@ export default function MissionForm({
           type={'text'}
           {...(type === 'add' ? { value: values.client || '' } : {})}
           onChange={event => handleChange('client', event.target.value)}
-          placeholder={values.client || ''}
+          value={values.client || ''}
         />
 
         <LabelInput
@@ -51,14 +51,14 @@ export default function MissionForm({
           type={'text'}
           {...(type === 'add' ? { value: values.profile || '' } : {})}
           onChange={event => handleChange('profile', event.target.value)}
-          placeholder={values.profile || ''}
+          value={values.profile || ''}
         />
 
         <LabelTextarea
           label={'Description'}
           {...(type === 'add' ? { value: values.description || '' } : {})}
           onChange={event => handleChange('description', event.target.value)}
-          placeholder={values.description || ''}
+          value={values.description || ''}
         />
 
         <Button
