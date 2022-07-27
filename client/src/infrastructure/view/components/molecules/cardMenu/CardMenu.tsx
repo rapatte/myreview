@@ -62,6 +62,10 @@ function CardMenu({ setStatus, status, cardType, id }) {
     }
   };
 
+  const goToAddMissionWithId = id => {
+    history.push(`/missions/ajouter/${id}`);
+  };
+
   useOutsideClick(ref, () => {
     if (showMenu) setShowMenu(false);
   });
@@ -92,8 +96,8 @@ function CardMenu({ setStatus, status, cardType, id }) {
                   ? 'Désactiver'
                   : 'Activer'
                 : status
-                ? 'Rendre indisponible'
-                : 'Rendre disponible'
+                  ? 'Rendre indisponible'
+                  : 'Rendre disponible'
             }
             onClick={e => {
               e.stopPropagation();
@@ -107,6 +111,14 @@ function CardMenu({ setStatus, status, cardType, id }) {
               updateData(id);
             }}
           />
+          {cardType === 'mission' &&
+            <ContextMenuOption
+              name="Dupliquer"
+              onClick={e => {
+                e.stopPropagation();
+                goToAddMissionWithId(id);
+              }}
+            />}
           <ContextMenuOption
             name="Supprimer"
             onClick={e => {
