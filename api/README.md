@@ -39,16 +39,28 @@ $ npm run start:dev
 ```bash
 # unit tests
 $ npm run test
+$ npm run test:domain:mission
+$ npm run test:domain:cooperator
 
 # atdd with cucumber
-$ npm run test:bdd:api
-AND
-$ npm run test:bdd:domain
+
+$ npm run test:e2e:mission
+$ npm run test:e2e:cooperator
+$ npm run test:domain
 
 # test coverage
 $ npm run test:cov
 ```
+## Scrip database
+```bash
+# populate the database
+$ npm run db:populate:missions
+$ npm run db:populate:cooperators
 
+# clear the database
+$ npm run db:clear:missions
+$ npm run db:clear:cooperators
+```
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
