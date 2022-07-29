@@ -51,7 +51,7 @@ $ npm run test:domain
 # test coverage
 $ npm run test:cov
 ```
-## Scrip database
+## Script database
 ```bash
 # populate the database
 $ npm run db:populate:missions
