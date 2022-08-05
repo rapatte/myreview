@@ -5,7 +5,7 @@ import { EntityManager, getConnection, Like, Repository } from 'typeorm';
 import { IMissionRepository } from '../../../src/domain/mission/mission.irepository';
 import { MissionDomain } from '../../../src/domain/mission/mission.domain';
 import { MissionEntity } from '../../../src/infrastructure/Mission/mission.entity';
-import Utils from '../../../src/utils/Utils';
+import Utils from '../../../src/utils/funcs';
 
 @Injectable()
 class MissionRepositoryAdapter implements IMissionRepository {

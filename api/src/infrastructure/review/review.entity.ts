@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { ReviewDomain } from '../../domain/review/review.domain';
+import { ColumnNumericTransformer } from '../../utils/funcs';
 
 // The property "name" sets the table name. This is usually implied from the
 // class name, however this can be overridden if needed.
@@ -13,7 +14,11 @@ export class ReviewEntity {
   @Column({ name: 'title' })
   title!: string;
   @ApiProperty()
-  @Column({ name: 'score' })
+  @Column('numeric', {
+    precision: 7,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
+  })
   score!: number;
   @ApiProperty()
   @Column({ name: 'poster' })

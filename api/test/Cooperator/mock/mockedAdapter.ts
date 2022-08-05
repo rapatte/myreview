@@ -1,4 +1,4 @@
-import Utils from '../../../src/utils/Utils';
+import Utils from '../../../src/utils/funcs';
 import { IAdapter } from '../../utils/interfaces/IAdapter';
 import { Cooperator } from '../../utils/types/Cooperator';
 

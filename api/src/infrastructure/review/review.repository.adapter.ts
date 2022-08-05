@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ReviewDomain } from '../../domain/review/review.domain';
 import { IReviewRepository } from '../../domain/review/review.irepository';
-import Utils from '../../utils/Utils';
+import Utils from '../../utils/funcs';
 import {
   ReviewEntity,
   fromDomainToEntity,
