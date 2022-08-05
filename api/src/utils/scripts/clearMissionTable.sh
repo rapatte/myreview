@@ -1,1 +1,0 @@
-docker exec -it welab psql -U exampleUser goexample -c "TRUNCATE TABLE missions;"
