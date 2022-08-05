@@ -51,10 +51,10 @@ export class ReviewService implements IReviewService {
     }
     return reviews;
   }
-  async getAvailable() {
-    const reviews = await this.reviewRepositoryAdapter.getAvailable();
+  async getMovies() {
+    const reviews = await this.reviewRepositoryAdapter.getMovies();
     if (reviews.length === 0) {
-      throw new Error('Aucune review disponible.');
+      throw new Error('Aucun film.');
     }
     return reviews;
   }

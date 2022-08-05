@@ -22,7 +22,7 @@ export class ReviewDomain {
   }: {
     id?: string;
     title: string;
-    score: string;
+    score: number;
     poster: string;
     synopsis: string;
     trailer: string;
@@ -54,10 +54,10 @@ export class ReviewDomain {
   public set setPoster(value: string) {
     this.poster = value;
   }
-  public get getScore(): string {
+  public get getScore(): number {
     return this.score;
   }
-  public set setScore(value: string) {
+  public set setScore(value: number) {
     this.score = value;
   }
 

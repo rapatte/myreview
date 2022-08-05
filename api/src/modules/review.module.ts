@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReviewService } from '../domain/review/review.service';
-import { MissionController as ReviewController } from '../exposition/Mission/mission.controller';
-import { MissionServiceAdapter as ReviewServiceAdapter } from '../exposition/Mission/mission.service.adapter';
-import { MissionEntity as ReviewEntity } from '../infrastructure/Mission/mission.entity';
-import { MissionRepositoryAdapter as ReviewRepositoryAdapter } from '../infrastructure/Mission/mission.repository.adapter';
+import { ReviewController } from '../exposition/review/review.controller';
+import { ReviewServiceAdapter } from '../exposition/review/review.service.adapter';
+import { ReviewEntity } from '../infrastructure/review/review.entity';
+import { ReviewRepositoryAdapter } from '../infrastructure/review/review.repository.adapter';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ReviewEntity])],

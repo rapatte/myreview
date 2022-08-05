@@ -7,5 +7,5 @@ export interface IReviewService {
   update(reviewId: string, review: ReviewDomain): Promise<ReviewDomain>;
   getOne(reviewId: string): Promise<ReviewDomain>;
   search(keywords: string[]): Promise<ReviewDomain[]>;
-  getAvailable(): Promise<ReviewDomain[]>;
+  getMovies(): Promise<ReviewDomain[]>;
 }
