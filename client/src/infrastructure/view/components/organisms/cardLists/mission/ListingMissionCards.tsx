@@ -8,12 +8,13 @@ import {
 import sortingById from 'utils/sortingArrays';
 import { Checkbox, Title } from 'infrastructure/view/components/atoms';
 import { Card, MissionCard } from '../../../../components/molecules';
-import { missionServices } from 'application';
+import { missionServices, reviewServices } from 'application';
 
 function ListingMissionCards() {
   const contextMission = useMission();
   const [catalog, setCatalog] = useState<Mission[]>([]);
   const [checked, setChecked] = useState(false);
+  const [data, setData] = useState<any>();
   const [error, setError] = useState('');
 
   const handleChange = () => {
@@ -43,6 +44,17 @@ function ListingMissionCards() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
 
+  const test = async () => {
+    const data = await reviewServices.getByTitle('avengers:endgame');
+    setData(data);
+  };
+
+  useEffect(() => {
+    test();
+  }, []);
+
+  console.log(data);
+
   useEffect(() => {
     setCatalog(contextMission.state.catalog);
   }, [contextMission.state.catalog]);
@@ -56,6 +68,7 @@ function ListingMissionCards() {
         error={error}
         label="Actives uniquement"
       />
+      <img src={data && data.data.Poster} alt="poster" />
       <ul className="container__cards">
         {catalog && catalog.length > 0
           ? catalog.sort(sortingById).map((mission, index) => (

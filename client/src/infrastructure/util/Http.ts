@@ -15,4 +15,5 @@ export interface Http {
     config?: any,
   ) => Promise<T | any>;
   delete: <T>(path: string, params?: any, config?: any) => Promise<T | any>;
+  request: <T>(options) => Promise<T | any>;
 }

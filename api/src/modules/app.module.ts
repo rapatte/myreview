@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 
 import { MissionModule } from './mission.module';
+import { ReviewModule } from './review.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from '../config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -19,6 +20,7 @@ import { CooperatorModule } from './cooperator.module';
     }),
     MissionModule,
     CooperatorModule,
+    ReviewModule,
   ],
 })
 export class AppModule {}

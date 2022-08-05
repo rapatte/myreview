@@ -44,4 +44,5 @@ export const HttpAxios: Http = {
     });
     return response.data as T;
   },
+  request: async options => await axios.request(options),
 };
