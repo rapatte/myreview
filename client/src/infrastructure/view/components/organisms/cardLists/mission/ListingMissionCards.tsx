@@ -21,7 +21,7 @@ function ListingMissionCards() {
     setChecked(!checked);
   };
 
-  const getAvailableCooperators = async () => {
+  const getMoviesOnly = async () => {
     if (checked) {
       try {
         await missionServices
@@ -40,20 +40,9 @@ function ListingMissionCards() {
   };
 
   useEffect(() => {
-    getAvailableCooperators();
+    getMoviesOnly();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
-
-  const test = async () => {
-    const data = await reviewServices.getByTitle('avengers:endgame');
-    setData(data);
-  };
-
-  useEffect(() => {
-    test();
-  }, []);
-
-  console.log(data);
 
   useEffect(() => {
     setCatalog(contextMission.state.catalog);
@@ -61,14 +50,13 @@ function ListingMissionCards() {
 
   return (
     <div className="container">
-      <Title label="Les Missions" format="h2" />
+      <Title label="Les Reviews" format="h2" />
       <Checkbox
         checked={checked}
         onChange={handleChange}
         error={error}
-        label="Actives uniquement"
+        label="Only movies"
       />
-      <img src={data && data.data.Poster} alt="poster" />
       <ul className="container__cards">
         {catalog && catalog.length > 0
           ? catalog.sort(sortingById).map((mission, index) => (

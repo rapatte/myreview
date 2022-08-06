@@ -13,3 +13,8 @@
 @import '../infrastructure/view/components/organisms/organisms.scss';
 @import '../infrastructure/view/components/templates/template.scss';
 @import '../infrastructure/view/pages/pages.scss';
+
+html,
+body {
+  margin: 0;
+}

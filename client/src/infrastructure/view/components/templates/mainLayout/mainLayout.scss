@@ -1,15 +1,9 @@
 #content-wrap {
-    display: flex;
-    width: 100vw;
-    #content {
-      width: 85vw;
-      padding-top: 5vh;
-    }
-    .Menu {
-      width: 15vw;
-      @media screen and(max-width: 920px) {
-          width: 14vw;
-        }
+  display: flex;
+  flex-direction: column;
+      #content {
+        display: flex;
+        flex-direction: column;
     }
   }
   

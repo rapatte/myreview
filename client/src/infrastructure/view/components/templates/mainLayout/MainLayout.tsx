@@ -5,7 +5,7 @@ export default function MainLayout({ children }) {
   return (
     <div id="app">
       <div id="content-wrap">
-        <NavBar />
+        <NavBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
         <main>
           <div id="content">{children}</div>
         </main>

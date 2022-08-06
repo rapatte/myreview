@@ -1,18 +1,20 @@
 import {
   faPaperPlane,
-  faScrewdriverWrench,
+  faUserTie,
+  faClapperboard,
+  faBellConcierge,
 } from '@fortawesome/free-solid-svg-icons';
-import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 export const linksData: any = [
   {
-    title: 'Missions',
-    icon: faPaperPlane,
-    link: '/missions',
+    title: 'Accueil',
+    icon: faBellConcierge,
+    link: '/',
   },
+
   {
-    title: 'Coopérateurs',
-    icon: faUserTie,
-    link: '/cooperateurs',
+    title: 'Reviews',
+    icon: faClapperboard,
+    link: '/reviews',
   },
 ];
