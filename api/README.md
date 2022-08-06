@@ -28,8 +28,8 @@ create a .env file using the .env.example available on this bootstrap
 $ docker-compose up --build
 
 # docker dev env
-$ sudo docker run -p 5432:5432 --name welab -e POSTGRES_PASSWORD=bigpassword -e POSTGRES_DB=goexample -e POSTGRES_USER=exampleUser -d postgres:13-alpine
-$ docker start welab
+$ sudo docker run -p 5432:5432 --name myreview -e POSTGRES_PASSWORD=bigpassword -e POSTGRES_DB=myreview -e POSTGRES_USER=myreviewUser -d postgres:13-alpine
+$ docker start myreview
 $ npm run start:dev
 
 ```
