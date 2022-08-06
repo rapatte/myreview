@@ -15,6 +15,7 @@ export class ReviewEntity {
   title!: string;
   @ApiProperty()
   @Column('numeric', {
+    name: 'score',
     precision: 7,
     scale: 2,
     transformer: new ColumnNumericTransformer(),
