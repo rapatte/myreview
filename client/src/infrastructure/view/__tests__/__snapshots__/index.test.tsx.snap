@@ -3,7 +3,7 @@
 exports[`<App /> should render and match the snapshot 1`] = `
 <BrowserRouter>
   <Helmet
-    defaultTitle="WeLab"
+    defaultTitle="MyReview"
     defer={true}
     encodeSpecialCharacters={true}
     htmlAttributes={
@@ -12,7 +12,7 @@ exports[`<App /> should render and match the snapshot 1`] = `
       }
     }
     prioritizeSeoTags={false}
-    titleTemplate="%s - WeLab"
+    titleTemplate="%s - MyReview"
   >
     <meta
       content="application"

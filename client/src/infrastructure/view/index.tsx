@@ -28,8 +28,8 @@ export function App() {
     <BrowserRouter>
       <MainLayout>
         <Helmet
-          titleTemplate="%s - WeLab"
-          defaultTitle="WeLab"
+          titleTemplate="%s - MyReview"
+          defaultTitle="MyReview"
           htmlAttributes={{ lang: i18n.language }}
         >
           <meta name="description" content="application" />
