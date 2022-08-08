@@ -4,6 +4,7 @@ import { ReviewModule } from './review.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from '../config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       useFactory: configuration,
     }),
     ReviewModule,
+    UserModule,
   ],
 })
 export class AppModule {}

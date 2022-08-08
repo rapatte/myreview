@@ -1,0 +1,34 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { UserDomain } from '../../domain/user/user.domain';
+
+// The property "name" sets the table name. This is usually implied from the
+// class name, however this can be overridden if needed.
+
+@Entity({ name: 'users' })
+export class UserEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
+  @ApiProperty()
+  @Column({ name: 'username' })
+  username!: string;
+  @ApiProperty()
+  @Column({ name: 'password' })
+  password!: string;
+  @ApiProperty()
+  @Column({ name: 'role' })
+  role!: string;
+}
+
+export const fromDomainToEntity = (userDomain: UserDomain): UserEntity => {
+  const result = new UserEntity();
+  result.username = userDomain.getUsername;
+  result.password = userDomain.getPassword;
+  result.password = userDomain.getPassword;
+  result.role = userDomain.getRole;
+  return result;
+};
+
+export const fromEntityToDomain = (userEntity: UserEntity): UserDomain => {
+  return new UserDomain(userEntity);
+};
