@@ -7,4 +7,5 @@ export interface IUserRepository {
   update(userId: string, user: Partial<UserDomain>): Promise<UserDomain>;
   getOne(userId: string): Promise<UserDomain>;
   search(keywords: string[]): Promise<UserDomain[]>;
+  getUsername(username: string[]): Promise<UserDomain[]>;
 }

@@ -51,4 +51,8 @@ export class UserService implements IUserService {
     }
     return users;
   }
+  async getUsername(username: string[]) {
+    const users = await this.userRepositoryAdapter.getUsername(username);
+    return users;
+  }
 }

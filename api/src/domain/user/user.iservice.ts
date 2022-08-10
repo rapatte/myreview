@@ -7,4 +7,5 @@ export interface IUserService {
   update(userId: string, user: UserDomain): Promise<UserDomain>;
   getOne(userId: string): Promise<UserDomain>;
   search(keywords: string[]): Promise<UserDomain[]>;
+  getUsername(username: string[]): Promise<UserDomain[]>;
 }
