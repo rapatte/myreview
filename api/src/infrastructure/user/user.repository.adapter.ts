@@ -68,12 +68,11 @@ export class UserRepositoryAdapter implements IUserRepository {
     await Promise.all(
       array.map(async (element) => {
         const request: Array<string | number | object> =
-          await this.userEntityRepository
-            .createQueryBuilder('user')
-            .where('LOWER(username) LIKE :username', {
-              username: `%${element.toLowerCase()}%`,
-            })
-            .getMany();
+          await this.userEntityRepository.find({
+            where: {
+              username: element,
+            },
+          });
         request.forEach((req) => elements.push(req));
       }),
     );

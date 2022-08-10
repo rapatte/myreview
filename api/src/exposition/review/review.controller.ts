@@ -37,7 +37,7 @@ export class ReviewController {
       reviewProperties.map((propertie) => {
         if (propertie === '') {
           throw new HttpException(
-            'Tous les champs doivent être renseignés',
+            'All fields must be filled in.',
             HttpStatus.BAD_REQUEST,
           );
         }
@@ -93,11 +93,6 @@ export class ReviewController {
       const review = await this.reviewServiceAdapter.getOne(reviewId);
       return response.status(HttpStatus.OK).send(review);
     } catch (error) {
-      if (
-        error.message === `invalid input syntax for type uuid: \"${reviewId}\"`
-      ) {
-        error.message = 'Le format du numéro de review est incorrect.';
-      }
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
@@ -108,11 +103,6 @@ export class ReviewController {
       const res = await this.reviewServiceAdapter.remove(reviewId);
       response.status(HttpStatus.ACCEPTED).send(res);
     } catch (error) {
-      if (
-        error.message === `invalid input syntax for type uuid: \"${reviewId}\"`
-      ) {
-        error.message = 'Le format du numéro de review est incorrect.';
-      }
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }

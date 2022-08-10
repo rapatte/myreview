@@ -10,6 +10,8 @@ import {
   Patch,
   Query,
   HttpException,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiCreatedResponse,
@@ -21,6 +23,9 @@ import { User } from '../../types/User';
 import { UserDomain } from '../../domain/user/user.domain';
 import { UserEntity } from '../../infrastructure/user/user.entity';
 import { UserServiceAdapter } from './user.service.adapter';
+import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from '../auth/local-auth.guard';
+import { AuthenticatedGuard } from '../auth/authenticated.guard';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
@@ -33,19 +38,25 @@ export class UserController {
   ): Promise<User | void> {
     try {
       const userProperties = Object.values(user);
-
       userProperties.map((propertie) => {
         if (propertie === '') {
           throw new HttpException(
-            'Tous les champs doivent être renseignés',
+            'All fields must be filled in.',
             HttpStatus.BAD_REQUEST,
           );
         }
       });
-
-      const newUser = await this.userServiceAdapter.save(user);
-
-      response.status(HttpStatus.CREATED).send(newUser);
+      const userAlreadyExists = this.userServiceAdapter.search([user.username]);
+      if (userAlreadyExists) {
+        throw new HttpException(
+          'Username already exists.',
+          HttpStatus.BAD_REQUEST,
+        );
+      } else {
+        const newUser = await this.userServiceAdapter.save(user);
+        response.status(HttpStatus.CREATED).send(newUser);
+        return;
+      }
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
@@ -84,26 +95,15 @@ export class UserController {
       const user = await this.userServiceAdapter.getOne(userId);
       return response.status(HttpStatus.OK).send(user);
     } catch (error) {
-      if (
-        error.message === `invalid input syntax for type uuid: \"${userId}\"`
-      ) {
-        error.message = "Le format du numéro de l'utilisateur est incorrect.";
-      }
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
-
   @Delete(':id')
   async deleteUser(@Res() response: Response, @Param('id') userId: string) {
     try {
       const res = await this.userServiceAdapter.remove(userId);
       response.status(HttpStatus.ACCEPTED).send(res);
     } catch (error) {
-      if (
-        error.message === `invalid input syntax for type uuid: \"${userId}\"`
-      ) {
-        error.message = "Le format du numéro de l'utilisateur est incorrect.";
-      }
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
@@ -119,5 +119,16 @@ export class UserController {
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
+  }
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Request() req: any): Promise<any> {
+    return req.user;
+  }
+
+  @UseGuards(AuthenticatedGuard)
+  @Get('/test/protected')
+  async getHello(@Request() req: any): Promise<any> {
+    return req.user;
   }
 }

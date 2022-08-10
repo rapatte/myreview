@@ -30,7 +30,7 @@ export class UserService implements IUserService {
   async remove(userId: string) {
     const user = await this.userRepositoryAdapter.getOne(userId);
     if (!user) {
-      throw new Error('Utilisateur not found or already deleted.');
+      throw new Error('User not found or already deleted.');
     }
     return await this.userRepositoryAdapter.remove(userId);
   }
