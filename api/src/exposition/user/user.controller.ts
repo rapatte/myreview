@@ -23,9 +23,9 @@ import { User } from '../../types/User';
 import { UserDomain } from '../../domain/user/user.domain';
 import { UserEntity } from '../../infrastructure/user/user.entity';
 import { UserServiceAdapter } from './user.service.adapter';
-import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { AuthenticatedGuard } from '../auth/authenticated.guard';
+import { compare, encryptedPassword } from '../../utils/funcs';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
@@ -46,13 +46,17 @@ export class UserController {
           );
         }
       });
-      const userAlreadyExists = this.userServiceAdapter.search([user.username]);
-      if (userAlreadyExists) {
+      const userAlreadyExists = await this.userServiceAdapter.getUsername([
+        user.username,
+      ]);
+      if (userAlreadyExists.length > 0) {
         throw new HttpException(
           'Username already exists.',
           HttpStatus.BAD_REQUEST,
         );
       } else {
+        const pass = await encryptedPassword(user.password);
+        user.password = pass;
         const newUser = await this.userServiceAdapter.save(user);
         response.status(HttpStatus.CREATED).send(newUser);
         return;

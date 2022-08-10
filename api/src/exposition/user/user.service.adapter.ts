@@ -32,4 +32,7 @@ export class UserServiceAdapter {
   public async search(keywords: string[]): Promise<UserDomain[]> {
     return this.userService.search(keywords);
   }
+  public async getUsername(username: string[]): Promise<UserDomain[]> {
+    return this.userService.getUsername(username);
+  }
 }
