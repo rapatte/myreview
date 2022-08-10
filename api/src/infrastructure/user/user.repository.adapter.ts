@@ -78,4 +78,9 @@ export class UserRepositoryAdapter implements IUserRepository {
     );
     return elements;
   }
+  async getUsername(username: Array<any>) {
+    const request = await this.searchByElement(username);
+    const users: UserEntity[] = Utils.removeDuplicateObject(request);
+    return users.map((user) => new UserDomain(user));
+  }
 }
