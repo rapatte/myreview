@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Mission } from 'domain/mission/mission';
+import { Review } from 'domain/mission/mission';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import {
   missionFiltred,
@@ -12,7 +12,7 @@ import { missionServices, reviewServices } from 'application';
 
 function ListingMissionCards() {
   const contextMission = useMission();
-  const [catalog, setCatalog] = useState<Mission[]>([]);
+  const [catalog, setCatalog] = useState<Review[]>([]);
   const [checked, setChecked] = useState(false);
   const [data, setData] = useState<any>();
   const [error, setError] = useState('');

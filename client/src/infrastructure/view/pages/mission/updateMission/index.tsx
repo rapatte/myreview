@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { notifyError, notifySuccess } from 'utils/toastify';
 import { missionServices } from 'application';
 import { MissionForm } from 'infrastructure/view/components';
-import { Mission } from 'domain/mission/mission';
+import { Review } from 'domain/mission/mission';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { missionUpdated } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
 const UpdateMissions: React.FC = () => {
-  const [values, setValues] = useState<Mission>({});
+  const [values, setValues] = useState<Review>({});
   const history = useHistory();
   const params: { id: string } = useParams();
   const missionStore = useMission();

@@ -6,6 +6,6 @@ export interface IReviewRepository {
   deleteReview: (id: string) => Promise<string>;
   addReview: (mission: Review) => Promise<Review>;
   reviewFiltred: (keywords: string[]) => Promise<Review[]>;
-  getAvailableReviews: () => Promise<Review[]>;
+  getMovieReviews: () => Promise<Review[]>;
   getByTitle: (title) => Promise<any>;
 }

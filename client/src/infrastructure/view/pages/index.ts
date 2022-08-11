@@ -1,6 +1,6 @@
 import { NotFound } from './notFound/Loadable';
 import { AddMissions } from './mission/addMission/Loadable';
-import { Missions } from './mission/mainMission/Loadable';
+import { Reviews } from './mission/mainReviews/Loadable';
 import { AddCooperators } from './cooperator/addCooperator/Loadable';
 import { Cooperators } from './cooperator/mainCooperator/Loadable';
 import { UpdateCooperators } from './cooperator/updateCooperator/Loadable';
@@ -11,7 +11,7 @@ export {
   NotFound,
   Home,
   AddMissions,
-  Missions,
+  Reviews,
   AddCooperators,
   Cooperators,
   UpdateCooperators,

@@ -3,14 +3,13 @@ import {
   SearchBar,
   ListingMissionCards,
   Button,
-  Checkbox,
 } from 'infrastructure/view/components';
 import { Link } from 'react-router-dom';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 import { missionServices } from 'application';
 import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
 
-const Missions = () => {
+const Reviews = () => {
   const { dispatch } = useMission();
   useEffect(() => {
     missionServices.getMissions().then(data => dispatch(missionList(data)));
@@ -19,13 +18,13 @@ const Missions = () => {
 
   return (
     <>
-      <SearchBar placeholder="Chercher une mission" />
-      <Link to="/missions/ajouter">
-        <Button className="addButton" label="Ajouter une mission" />
+      <SearchBar placeholder="Chercher une review" />
+      <Link to="/reviews/ajouter">
+        <Button className="addButton" label="Ajouter une review" />
       </Link>
       <ListingMissionCards />
     </>
   );
 };
 
-export default Missions;
+export default Reviews;

@@ -1,4 +1,4 @@
-import { Mission } from 'domain/mission/mission';
+import { Review } from 'domain/mission/mission';
 import React from 'react';
 import { Button, Title } from '../../../../components/atoms';
 import {
@@ -8,7 +8,7 @@ import {
 
 type Props = {
   title: string;
-  values: Mission;
+  values: Review;
   setValues: (value: React.SetStateAction<object>) => void;
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type: string;
@@ -41,24 +41,24 @@ export default function MissionForm({
         <LabelInput
           label={'Client'}
           type={'text'}
-          {...(type === 'add' ? { value: values.client || '' } : {})}
+          {...(type === 'add' ? { value: values.poster || '' } : {})}
           onChange={event => handleChange('client', event.target.value)}
-          value={values.client || ''}
+          value={values.poster || ''}
         />
 
         <LabelInput
           label={'Profile'}
           type={'text'}
-          {...(type === 'add' ? { value: values.profile || '' } : {})}
+          {...(type === 'add' ? { value: values.score || '' } : {})}
           onChange={event => handleChange('profile', event.target.value)}
-          value={values.profile || ''}
+          value={values.score || ''}
         />
 
         <LabelTextarea
           label={'Description'}
-          {...(type === 'add' ? { value: values.description || '' } : {})}
+          {...(type === 'add' ? { value: values.synopsis || '' } : {})}
           onChange={event => handleChange('description', event.target.value)}
-          value={values.description || ''}
+          value={values.synopsis || ''}
         />
 
         <Button

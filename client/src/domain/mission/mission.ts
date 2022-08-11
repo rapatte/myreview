@@ -1,8 +1,11 @@
-export type Mission = {
+export type Review = {
   id?: string;
   title?: string;
-  profile?: string;
-  client?: string;
-  description?: string;
-  isActive?: boolean;
+  score?: number;
+  poster?: string;
+  synopsis?: string;
+  trailer?: string;
+  casting?: string;
+  genre?: string;
+  category?: string;
 };

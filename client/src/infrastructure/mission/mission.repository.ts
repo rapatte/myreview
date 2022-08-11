@@ -1,4 +1,4 @@
-import { Mission } from 'domain/mission/mission';
+import { Review } from 'domain/mission/mission';
 import { IMissionRepository } from 'domain/mission/mission.irepository';
 import { MissionDTO } from './mission.dto';
 import { Http } from 'infrastructure/util/Http';
@@ -8,13 +8,13 @@ export const missionRepository = (client: Http): IMissionRepository => ({
     const missions = await client.get<MissionDTO[]>('/missions');
 
     return missions.map(
-      (missionDto): Mission => ({
+      (missionDto): Review => ({
         id: missionDto.id,
         title: missionDto.title,
-        profile: missionDto.profile,
-        client: missionDto.client,
-        description: missionDto.description,
-        isActive: missionDto.isActive,
+        score: missionDto.profile,
+        poster: missionDto.client,
+        synopsis: missionDto.description,
+        trailer: missionDto.isActive,
       }),
     );
   },
@@ -30,7 +30,7 @@ export const missionRepository = (client: Http): IMissionRepository => ({
 
     return missionDeleted;
   },
-  addMission: async (mission: Mission) => {
+  addMission: async (mission: Review) => {
     const postMission = await client.post<MissionDTO>('/missions', mission);
 
     return postMission;
@@ -45,26 +45,26 @@ export const missionRepository = (client: Http): IMissionRepository => ({
 
     const missionFiltred = await client.get<MissionDTO[]>(url);
     return missionFiltred.map(
-      (missionDto): Mission => ({
+      (missionDto): Review => ({
         id: missionDto.id,
         title: missionDto.title,
-        profile: missionDto.profile,
-        client: missionDto.client,
-        description: missionDto.description,
-        isActive: missionDto.isActive,
+        score: missionDto.profile,
+        poster: missionDto.client,
+        synopsis: missionDto.description,
+        trailer: missionDto.isActive,
       }),
     );
   },
   getAvailableMissions: async () => {
     const missions = await client.get<MissionDTO[]>('missions/available');
     return missions.map(
-      (missionDto): Mission => ({
+      (missionDto): Review => ({
         id: missionDto.id,
         title: missionDto.title,
-        profile: missionDto.profile,
-        client: missionDto.client,
-        description: missionDto.description,
-        isActive: missionDto.isActive,
+        score: missionDto.profile,
+        poster: missionDto.client,
+        synopsis: missionDto.description,
+        trailer: missionDto.isActive,
       }),
     );
   },

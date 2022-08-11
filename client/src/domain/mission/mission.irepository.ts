@@ -1,10 +1,10 @@
-import { Mission } from './mission';
+import { Review } from './mission';
 
 export interface IMissionRepository {
-  getMissions: () => Promise<Mission[]>;
-  updateMission: (id: string, data: Mission) => Promise<Mission>;
+  getMissions: () => Promise<Review[]>;
+  updateMission: (id: string, data: Review) => Promise<Review>;
   deleteMission: (id: string) => Promise<string>;
-  addMission: (mission: Mission) => Promise<Mission>;
-  missionFiltred: (keywords: string[]) => Promise<Mission[]>;
-  getAvailableMissions: () => Promise<Mission[]>;
+  addMission: (mission: Review) => Promise<Review>;
+  missionFiltred: (keywords: string[]) => Promise<Review[]>;
+  getAvailableMissions: () => Promise<Review[]>;
 }

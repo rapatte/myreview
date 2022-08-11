@@ -4,13 +4,13 @@ import { notifyError, notifySuccess } from 'utils/toastify';
 import { missionServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
 import { MissionForm } from 'infrastructure/view/components/organisms';
-import { Mission } from 'domain/mission/mission';
+import { Review } from 'domain/mission/mission';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { missionPosted } from 'infrastructure/view/store/Mission/mission.actions';
 import { useMission } from 'infrastructure/view/hooks/UseMissions';
 
 const AddMissions: React.FC = () => {
-  const [values, setValues] = useState<Mission>({});
+  const [values, setValues] = useState<Review>({});
   const history = useHistory();
   const params: { id: string } = useParams();
   const missionStore = useMission();

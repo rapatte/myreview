@@ -1,8 +1,11 @@
 export interface ReviewDTO {
   id?: string;
-  title: string;
-  profile: string;
-  client: string;
-  description: string;
-  isActive?: boolean;
+  title?: string;
+  score?: number;
+  poster?: string;
+  synopsis?: string;
+  trailer?: string;
+  casting?: string;
+  genre?: string;
+  category?: string;
 }

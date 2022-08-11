@@ -20,8 +20,8 @@ export const ReviewService = (
   reviewFiltred: (keywords: string[]): Promise<Review[]> => {
     return repository.reviewFiltred(keywords);
   },
-  getAvailableReviews: (): Promise<Review[]> => {
-    return repository.getAvailableReviews();
+  getMovieReviews: (): Promise<Review[]> => {
+    return repository.getMovieReviews();
   },
   getByTitle: (title): Promise<any> => {
     return repository.getByTitle(title);

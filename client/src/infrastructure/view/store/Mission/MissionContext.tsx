@@ -1,14 +1,14 @@
-import { Mission } from 'domain/mission/mission';
+import { Review } from 'domain/mission/mission';
 import { useAsyncReducer } from 'infrastructure/view/hooks';
 import * as React from 'react';
 import { missionReducer } from './MissionReducer';
 import { Dispatch, ProviderProps, State } from '../types/storeTypes';
 
 export const MissionStateContext = React.createContext<
-  { state: State<Mission>; dispatch: Dispatch } | undefined
+  { state: State<Review>; dispatch: Dispatch } | undefined
 >(undefined);
 
-const initialState: State<Mission> = {
+const initialState: State<Review> = {
   catalog: [],
 };
 

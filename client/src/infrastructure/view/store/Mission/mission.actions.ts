@@ -1,25 +1,25 @@
-import { Mission } from 'domain/mission/mission';
+import { Review } from 'domain/mission/mission';
 
-export const missionList = (data: Mission[]) => {
+export const missionList = (data: Review[]) => {
   return {
     type: 'display-list-missions',
     payload: data,
   };
 };
 
-export const missionUpdated = (data: Mission) => {
+export const missionUpdated = (data: Review) => {
   return {
     type: 'update-status-mission',
     payload: data,
   };
 };
-export const missionPosted = (data: Mission) => {
+export const missionPosted = (data: Review) => {
   return {
     type: 'add-mission',
     payload: data,
   };
 };
-export const missionFiltred = (data: Mission[]) => {
+export const missionFiltred = (data: Review[]) => {
   return {
     type: 'filtre-mission',
     payload: data,

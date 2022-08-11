@@ -10,13 +10,16 @@ export const reviewRepository = (client: Http): IReviewRepository => ({
     const reviews = await client.get<ReviewDTO[]>('/reviews');
 
     return reviews.map(
-      (ReviewDTO): Review => ({
-        id: ReviewDTO.id,
-        title: ReviewDTO.title,
-        profile: ReviewDTO.profile,
-        client: ReviewDTO.client,
-        description: ReviewDTO.description,
-        isActive: ReviewDTO.isActive,
+      (reviewDTO): Review => ({
+        id: reviewDTO.id,
+        title: reviewDTO.title,
+        score: reviewDTO.score,
+        poster: reviewDTO.poster,
+        synopsis: reviewDTO.synopsis,
+        trailer: reviewDTO.trailer,
+        casting: reviewDTO.casting,
+        genre: reviewDTO.genre,
+        category: reviewDTO.category,
       }),
     );
   },
@@ -47,23 +50,29 @@ export const reviewRepository = (client: Http): IReviewRepository => ({
       (reviewDTO): Review => ({
         id: reviewDTO.id,
         title: reviewDTO.title,
-        profile: reviewDTO.profile,
-        client: reviewDTO.client,
-        description: reviewDTO.description,
-        isActive: reviewDTO.isActive,
+        score: reviewDTO.score,
+        poster: reviewDTO.poster,
+        synopsis: reviewDTO.synopsis,
+        trailer: reviewDTO.trailer,
+        casting: reviewDTO.casting,
+        genre: reviewDTO.genre,
+        category: reviewDTO.category,
       }),
     );
   },
-  getAvailableReviews: async () => {
-    const reviews = await client.get<ReviewDTO[]>('reviews/available');
+  getMovieReviews: async () => {
+    const reviews = await client.get<ReviewDTO[]>('reviews/movie');
     return reviews.map(
       (reviewDTO): Review => ({
         id: reviewDTO.id,
         title: reviewDTO.title,
-        profile: reviewDTO.profile,
-        client: reviewDTO.client,
-        description: reviewDTO.description,
-        isActive: reviewDTO.isActive,
+        score: reviewDTO.score,
+        poster: reviewDTO.poster,
+        synopsis: reviewDTO.synopsis,
+        trailer: reviewDTO.trailer,
+        casting: reviewDTO.casting,
+        genre: reviewDTO.genre,
+        category: reviewDTO.category,
       }),
     );
   },
