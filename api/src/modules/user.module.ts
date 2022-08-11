@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { jwtConfig } from '../config/jwtConfig';
 import { AuthService } from '../domain/auth/auth.service';
 import { UserService } from '../domain/user/user.service';
+import { JwtStrategy } from '../exposition/auth/jwt.strategy';
 import { LocalStrategy } from '../exposition/auth/local.strategy';
 import { UserController } from '../exposition/user/user.controller';
 import { UserServiceAdapter } from '../exposition/user/user.service.adapter';
@@ -24,6 +25,7 @@ import { UserRepositoryAdapter } from '../infrastructure/user/user.repository.ad
     UserServiceAdapter,
     AuthService,
     LocalStrategy,
+    JwtStrategy,
     { provide: 'IUserRepository', useClass: UserRepositoryAdapter },
     { provide: 'IUserService', useClass: UserService },
   ],

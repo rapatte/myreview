@@ -27,6 +27,7 @@ import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { AuthenticatedGuard } from '../auth/authenticated.guard';
 import { encryptedPassword } from '../../utils/funcs';
 import { AuthService } from '../../domain/auth/auth.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
@@ -134,7 +135,7 @@ export class UserController {
     return await this.authService.login(req.user);
   }
 
-  @UseGuards(AuthenticatedGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/test/protected')
   async getHello(@Request() req: any): Promise<any> {
     return req.user;
