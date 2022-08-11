@@ -25,11 +25,15 @@ import { UserEntity } from '../../infrastructure/user/user.entity';
 import { UserServiceAdapter } from './user.service.adapter';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { AuthenticatedGuard } from '../auth/authenticated.guard';
-import { compare, encryptedPassword } from '../../utils/funcs';
+import { encryptedPassword } from '../../utils/funcs';
+import { AuthService } from '../../domain/auth/auth.service';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userServiceAdapter: UserServiceAdapter) {}
+  constructor(
+    private readonly userServiceAdapter: UserServiceAdapter,
+    private authService: AuthService,
+  ) {}
   @ApiCreatedResponse({ type: UserEntity })
   @Post()
   async create(
@@ -127,7 +131,7 @@ export class UserController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req: any): Promise<any> {
-    return req.user;
+    return await this.authService.login(req.user);
   }
 
   @UseGuards(AuthenticatedGuard)

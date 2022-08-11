@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from '../domain/auth/auth.service';
@@ -10,7 +11,14 @@ import { UserEntity } from '../infrastructure/user/user.entity';
 import { UserRepositoryAdapter } from '../infrastructure/user/user.repository.adapter';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity]), PassportModule],
+  imports: [
+    TypeOrmModule.forFeature([UserEntity]),
+    PassportModule,
+    JwtModule.register({
+      secret: 'secret',
+      signOptions: { expiresIn: '120s' },
+    }),
+  ],
   exports: [TypeOrmModule],
   controllers: [UserController],
   providers: [
