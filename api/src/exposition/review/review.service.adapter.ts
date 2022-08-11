@@ -32,7 +32,10 @@ export class ReviewServiceAdapter {
   public async search(keywords: string[]): Promise<ReviewDomain[]> {
     return this.reviewService.search(keywords);
   }
-  public async getAvailable(): Promise<ReviewDomain[]> {
+  public async getMovie(): Promise<ReviewDomain[]> {
     return this.reviewService.getMovies();
+  }
+  public async getSerie(): Promise<ReviewDomain[]> {
+    return this.reviewService.getSeries();
   }
 }

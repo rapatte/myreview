@@ -64,10 +64,19 @@ export class ReviewController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
-  @Get('available')
-  async getAvailable(@Res() response: Response): Promise<void> {
+  @Get('movie')
+  async getMovie(@Res() response: Response): Promise<void> {
     try {
-      const reviews = await this.reviewServiceAdapter.getAvailable();
+      const reviews = await this.reviewServiceAdapter.getMovie();
+      response.status(HttpStatus.OK).send(reviews);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+    }
+  }
+  @Get('serie')
+  async getSerie(@Res() response: Response): Promise<void> {
+    try {
+      const reviews = await this.reviewServiceAdapter.getSerie();
       response.status(HttpStatus.OK).send(reviews);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);

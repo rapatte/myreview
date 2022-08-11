@@ -8,4 +8,5 @@ export interface IReviewService {
   getOne(reviewId: string): Promise<ReviewDomain>;
   search(keywords: string[]): Promise<ReviewDomain[]>;
   getMovies(): Promise<ReviewDomain[]>;
+  getSeries(): Promise<ReviewDomain[]>;
 }

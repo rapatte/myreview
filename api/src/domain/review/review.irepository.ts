@@ -11,4 +11,5 @@ export interface IReviewRepository {
   getOne(reviewId: string): Promise<ReviewDomain>;
   search(keywords: string[]): Promise<ReviewDomain[]>;
   getMovies(): Promise<ReviewDomain[]>;
+  getSeries(): Promise<ReviewDomain[]>;
 }

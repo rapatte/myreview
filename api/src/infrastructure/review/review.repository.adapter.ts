@@ -104,4 +104,12 @@ export class ReviewRepositoryAdapter implements IReviewRepository {
     });
     return reviews.map((review) => fromEntityToDomain(review));
   }
+  async getSeries() {
+    const reviews = await this.reviewEntityRepository.find({
+      where: {
+        category: 'serie',
+      },
+    });
+    return reviews.map((review) => fromEntityToDomain(review));
+  }
 }

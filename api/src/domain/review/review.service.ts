@@ -58,4 +58,11 @@ export class ReviewService implements IReviewService {
     }
     return reviews;
   }
+  async getSeries() {
+    const reviews = await this.reviewRepositoryAdapter.getSeries();
+    if (reviews.length === 0) {
+      throw new Error('No series.');
+    }
+    return reviews;
+  }
 }
