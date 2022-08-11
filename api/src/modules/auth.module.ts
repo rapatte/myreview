@@ -4,7 +4,6 @@ import { UserModule } from './user.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from '../exposition/auth/local.strategy';
 import { AuthController } from '../exposition/auth/auth.controller';
-import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [UserModule, PassportModule],

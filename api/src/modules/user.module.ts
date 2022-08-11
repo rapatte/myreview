@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { jwtConfig } from '../config/jwtConfig';
 import { AuthService } from '../domain/auth/auth.service';
 import { UserService } from '../domain/user/user.service';
 import { LocalStrategy } from '../exposition/auth/local.strategy';
@@ -14,10 +15,7 @@ import { UserRepositoryAdapter } from '../infrastructure/user/user.repository.ad
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     PassportModule,
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '120s' },
-    }),
+    JwtModule.registerAsync(jwtConfig),
   ],
   exports: [TypeOrmModule],
   controllers: [UserController],

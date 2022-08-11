@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
-
 import { ReviewModule } from './review.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from '../config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user.module';
-import { AuthModule } from './auth.module';
 
 @Module({
   imports: [

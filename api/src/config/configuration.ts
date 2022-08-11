@@ -9,4 +9,5 @@ export default (): ConfigModule => ({
   database: process.env.DB_NAME,
   entities: ['dist/**/*.entity{.ts,.js}'],
   synchronize: true,
+  secret: process.env.JWT_SECRET,
 });
