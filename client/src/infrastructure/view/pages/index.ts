@@ -1,10 +1,10 @@
 import { NotFound } from './notFound/Loadable';
-import { AddMissions } from './mission/addMission/Loadable';
-import { Reviews } from './mission/mainReviews/Loadable';
+import { AddMissions } from './review/addReview/Loadable';
+import { Reviews } from './review/mainReview/Loadable';
 import { AddCooperators } from './cooperator/addCooperator/Loadable';
 import { Cooperators } from './cooperator/mainCooperator/Loadable';
 import { UpdateCooperators } from './cooperator/updateCooperator/Loadable';
-import { UpdateMissions } from './mission/updateMission/Loadable';
+import { UpdateMissions } from './review/updateReview/Loadable';
 import { Home } from './home/Loadable';
 
 export {

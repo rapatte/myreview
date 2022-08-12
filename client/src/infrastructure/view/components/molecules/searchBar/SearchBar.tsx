@@ -4,19 +4,17 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
-import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { useReview } from 'infrastructure/view/hooks/UseReviews';
 
-import { cooperatorFiltred } from 'infrastructure/view/store/Cooperator/cooperator.actions';
-import { missionFiltred } from 'infrastructure/view/store/Mission/mission.actions';
+import { reviewFilter } from 'infrastructure/view/store/review/review.actions';
 
 import { Button, Input, Tags } from '../../../components/atoms';
-import { cooperatorServices, missionServices } from 'application';
+import { reviewServices } from 'application';
 
 export const SearchBar = ({ placeholder }) => {
   const [tags, setTags] = useState<string[]>([]);
   const [error, setError] = useState<string>();
-  const mission = useMission();
-  const cooperator = useCooperator();
+  const review = useReview();
 
   const addTag = async input => {
     input.length > 0 && setTags([...tags, input]);
@@ -27,14 +25,9 @@ export const SearchBar = ({ placeholder }) => {
 
   const getSearchedData = async () => {
     try {
-      window.location.pathname === '/missions' &&
-        (await missionServices
-          .missionFiltred(tags)
-          .then(data => mission.dispatch(missionFiltred(data))));
-      window.location.pathname === '/cooperateurs' &&
-        (await cooperatorServices
-          .cooperatorFiltred(tags)
-          .then(data => cooperator.dispatch(cooperatorFiltred(data))));
+      await reviewServices
+        .reviewFiltred(tags)
+        .then(data => review.dispatch(reviewFilter(data)));
       setError('');
     } catch (e: any) {
       setError(e.response.data.message);

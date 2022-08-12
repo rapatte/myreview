@@ -5,14 +5,14 @@ import {
   Button,
 } from 'infrastructure/view/components';
 import { Link } from 'react-router-dom';
-import { useMission } from 'infrastructure/view/hooks/UseMissions';
-import { missionServices } from 'application';
-import { missionList } from 'infrastructure/view/store/Mission/mission.actions';
+import { useReview } from 'infrastructure/view/hooks/UseReviews';
+import { reviewServices } from 'application';
+import { reviewList } from 'infrastructure/view/store/review/review.actions';
 
 const Reviews = () => {
-  const { dispatch } = useMission();
+  const { dispatch } = useReview();
   useEffect(() => {
-    missionServices.getMissions().then(data => dispatch(missionList(data)));
+    reviewServices.getReviews().then(data => dispatch(reviewList(data)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

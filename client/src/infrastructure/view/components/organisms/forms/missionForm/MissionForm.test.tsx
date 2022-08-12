@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import MissionForm from './MissionForm';
+import ReviewForm from './MissionForm';
 
 describe('Mission form testing', () => {
   test('should render mission form with his inputs ', () => {
@@ -11,7 +11,7 @@ describe('Mission form testing', () => {
     const setValues = jest.fn();
 
     render(
-      <MissionForm
+      <ReviewForm
         type="add"
         values={values}
         setValues={setValues}
@@ -37,7 +37,7 @@ describe('Mission form testing', () => {
     const setValues = jest.fn();
 
     render(
-      <MissionForm
+      <ReviewForm
         type="add"
         title={'Ajouter une mission'}
         values={values}

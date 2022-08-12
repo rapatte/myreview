@@ -1,4 +1,4 @@
-import { Review } from 'domain/mission/mission';
+import { Review } from 'domain/review/review';
 import React from 'react';
 import { Button, Title } from '../../../../components/atoms';
 import {
@@ -14,7 +14,7 @@ type Props = {
   type: string;
 };
 
-export default function MissionForm({
+export default function ReviewForm({
   values,
   setValues,
   handleClick,
@@ -27,7 +27,7 @@ export default function MissionForm({
 
   return (
     <>
-      <form className={'mission-form'}>
+      <form className={'review-form'}>
         <Title label={title} format="h2"></Title>
 
         <LabelInput

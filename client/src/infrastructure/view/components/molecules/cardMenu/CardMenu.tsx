@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
 import { ContextMenuOption } from '../../../components/atoms';
 import { notifySuccess } from 'utils/toastify';
-import { cooperatorServices, missionServices } from 'application';
-import { deleteCooperator } from 'infrastructure/view/store/Cooperator/cooperator.actions';
-import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
-import { deleteMission } from 'infrastructure/view/store/Mission/mission.actions';
-import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { reviewServices } from 'application';
+import { reviewDelete } from 'infrastructure/view/store/review/review.actions';
+import { useReview } from 'infrastructure/view/hooks/UseReviews';
 import { useHistory } from 'react-router-dom';
 
-function CardMenu({ setStatus, status, cardType, id }) {
-  const cooperator = useCooperator();
-  const mission = useMission();
+function CardMenu({ id }) {
+  const review = useReview();
   const history = useHistory();
   const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
   const [showMenu, setShowMenu] = useState(false);
@@ -21,49 +18,24 @@ function CardMenu({ setStatus, status, cardType, id }) {
     e.preventDefault();
     setPosition({ xPos: e.pageX - 130, yPos: e.pageY + 10 });
   };
-  const changeStatus = async id => {
-    if (cardType === 'cooperator') {
-      const newStatus = { disponible: !status };
-      await cooperatorServices.updateCooperator(id, newStatus);
-      setStatus(newStatus.disponible);
-    } else {
-      const newStatus = { isActive: !status };
-      await missionServices.updateMission(id, newStatus);
-      setStatus(newStatus.isActive);
-    }
-  };
   const handleClickDelete = async id => {
     if (window.confirm('Êtes-vous sur ?')) deleteData(id);
   };
 
   const deleteData = async id => {
-    if (cardType === 'cooperator') {
-      await cooperatorServices.deleteCooperator(id).then(() => {
-        cooperator.dispatch(deleteCooperator(id));
-        notifySuccess('Le (a) coopérateur (rice) est supprimé(e)');
-        setShowMenu(false);
-      });
-    } else {
-      await missionServices
-        .deleteMission(id)
-        .then(() => mission.dispatch(deleteMission(id)));
-      notifySuccess('La mission est supprimée');
-      setShowMenu(false);
-    }
+    await reviewServices
+      .deleteReview(id)
+      .then(() => review.dispatch(reviewDelete(id)));
+    notifySuccess('La review est supprimée');
+    setShowMenu(false);
   };
 
   const updateData = async id => {
-    if (cardType === 'cooperator') {
-      history.push(`/cooperateurs/modifier/${id}`);
-      // setShowMenu(false);
-    } else {
-      history.push(`/missions/modifier/${id}`);
-      // setShowMenu(false);
-    }
+    history.push(`/reviews/modifier/${id}`);
   };
 
-  const goToAddMissionWithId = id => {
-    history.push(`/missions/ajouter/${id}`);
+  const goToAddReviewWithId = id => {
+    history.push(`/reviews/ajouter/${id}`);
   };
 
   useOutsideClick(ref, () => {
@@ -90,35 +62,21 @@ function CardMenu({ setStatus, status, cardType, id }) {
           style={{ top: position.yPos, left: position.xPos }}
         >
           <ContextMenuOption
-            name={
-              cardType === 'mission'
-                ? status
-                  ? 'Désactiver'
-                  : 'Activer'
-                : status
-                  ? 'Rendre indisponible'
-                  : 'Rendre disponible'
-            }
-            onClick={e => {
-              e.stopPropagation();
-              changeStatus(id);
-            }}
-          />
-          <ContextMenuOption
             name="Modifier"
             onClick={e => {
               e.stopPropagation();
               updateData(id);
             }}
           />
-          {cardType === 'mission' &&
+          {
             <ContextMenuOption
               name="Dupliquer"
               onClick={e => {
                 e.stopPropagation();
-                goToAddMissionWithId(id);
+                goToAddReviewWithId(id);
               }}
-            />}
+            />
+          }
           <ContextMenuOption
             name="Supprimer"
             onClick={e => {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import MissionForm from './MissionForm';
+import ReviewForm from './MissionForm';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/organisms',
-  component: MissionForm,
-} as ComponentMeta<typeof MissionForm>;
+  component: ReviewForm,
+} as ComponentMeta<typeof ReviewForm>;
 
 export type FormProps = {
   title: string;
@@ -18,7 +18,7 @@ export type FormProps = {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const Mission_Form: ComponentStory<typeof MissionForm> = () => {
+export const Mission_Form: ComponentStory<typeof ReviewForm> = () => {
   const [values, setValues] = useState({});
 
   const handleClick = e => {
@@ -30,7 +30,7 @@ export const Mission_Form: ComponentStory<typeof MissionForm> = () => {
   };
 
   return (
-    <MissionForm
+    <ReviewForm
       type="add"
       title={'Ajouter une mission'}
       values={values}

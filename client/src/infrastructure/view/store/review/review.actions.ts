@@ -13,7 +13,7 @@ export const reviewUpdate = (data: Review) => {
     payload: data,
   };
 };
-export const reviewPosted = (data: Review) => {
+export const reviewPost = (data: Review) => {
   return {
     type: 'add-review',
     payload: data,

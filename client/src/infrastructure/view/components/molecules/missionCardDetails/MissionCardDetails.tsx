@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { useReview } from 'infrastructure/view/hooks/UseReviews';
 import { Review } from 'domain/mission/mission';
 
 function MissionCardDetails({ id }) {
-  const contextMission: any = useMission();
+  const contextMission: any = useReview();
   const [mission, setMission] = useState<Review>({});
 
   useEffect(() => {

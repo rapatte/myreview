@@ -1,48 +1,48 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { notifyError, notifySuccess } from 'utils/toastify';
-import { missionServices } from 'application';
+import { reviewServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
 import { MissionForm } from 'infrastructure/view/components/organisms';
-import { Review } from 'domain/mission/mission';
+import { Review } from 'domain/review/review';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { missionPosted } from 'infrastructure/view/store/Mission/mission.actions';
-import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { reviewPost } from 'infrastructure/view/store/review/review.actions';
+import { useReview } from 'infrastructure/view/hooks/UseReviews';
 
-const AddMissions: React.FC = () => {
+const AddReview: React.FC = () => {
   const [values, setValues] = useState<Review>({});
   const history = useHistory();
   const params: { id: string } = useParams();
-  const missionStore = useMission();
+  const reviewContext = useReview();
   const [getDataInStorage, setDataInStorage, removeDataInStorage] =
-    useLocalStorage('mission-add-form', {});
+    useLocalStorage('review-add-form', {});
 
   const handleSubmit = async e => {
     try {
       e.preventDefault();
-      await missionServices.addMission(values);
-      missionStore.dispatch(missionPosted(values));
+      await reviewServices.addReview(values);
+      reviewContext.dispatch(reviewPost(values));
       setValues({});
-      removeDataInStorage('mission-add-form');
-      history.push('/missions/');
-      notifySuccess('La mission est enregistrée');
+      removeDataInStorage('review-add-form');
+      history.push('/reviews/');
+      notifySuccess('La review est enregistrée');
     } catch (error: any) {
       notifyError(error.response.data.message);
     }
   };
 
-  const getMissionById = () => {
-    const catalog = missionStore.state.catalog;
-    const missionSelected = catalog.filter(mission => mission.id === params.id);
-    const [mission] = missionSelected;
-    delete mission.id;
-    return mission;
+  const getReviewById = () => {
+    const catalog = reviewContext.state.catalog;
+    const reviewSelected = catalog.filter(review => review.id === params.id);
+    const [review] = reviewSelected;
+    delete review.id;
+    return review;
   };
 
   useEffect(() => {
     if (params.id) {
-      const mission = getMissionById();
-      setValues(mission);
+      const review = getReviewById();
+      setValues(review);
     } else {
       setValues(getDataInStorage);
     }
@@ -56,21 +56,21 @@ const AddMissions: React.FC = () => {
 
   return (
     <>
-      <div className="add-mission-page">
+      <div className="add-review-page">
         <div className="buttonSwitch">
-          <Link to="/missions">
+          <Link to="/reviews">
             <img
               id="goBack"
               src="/goBack.png"
               alt="go back"
-              className={'back-button-mission'}
+              className={'back-button-review'}
             />
           </Link>
         </div>
         <div>
           <MissionForm
             type="add"
-            title={'Ajouter une mission'}
+            title={'Ajouter une review'}
             values={values}
             setValues={setValues}
             handleClick={handleSubmit}
@@ -81,4 +81,4 @@ const AddMissions: React.FC = () => {
   );
 };
 
-export default AddMissions;
+export default AddReview;

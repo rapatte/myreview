@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Review } from 'domain/mission/mission';
-import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { useReview } from 'infrastructure/view/hooks/UseReviews';
 import {
   missionFiltred,
   missionList,
@@ -11,7 +11,7 @@ import { Card, MissionCard } from '../../../../components/molecules';
 import { missionServices, reviewServices } from 'application';
 
 function ListingMissionCards() {
-  const contextMission = useMission();
+  const contextMission = useReview();
   const [catalog, setCatalog] = useState<Review[]>([]);
   const [checked, setChecked] = useState(false);
   const [data, setData] = useState<any>();

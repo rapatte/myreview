@@ -1,24 +1,24 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { notifyError, notifySuccess } from 'utils/toastify';
-import { missionServices } from 'application';
+import { reviewServices } from 'application';
 import { MissionForm } from 'infrastructure/view/components';
-import { Review } from 'domain/mission/mission';
+import { Review } from 'domain/review/review';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { missionUpdated } from 'infrastructure/view/store/Mission/mission.actions';
-import { useMission } from 'infrastructure/view/hooks/UseMissions';
+import { reviewUpdate } from 'infrastructure/view/store/review/review.actions';
+import { useReview } from 'infrastructure/view/hooks/UseReviews';
 
 const UpdateMissions: React.FC = () => {
   const [values, setValues] = useState<Review>({});
   const history = useHistory();
   const params: { id: string } = useParams();
-  const missionStore = useMission();
+  const reviewStore = useReview();
 
   const handleSubmit = async e => {
     try {
       e.preventDefault();
-      await missionServices.updateMission(params.id, values);
-      missionStore.dispatch(missionUpdated(values));
+      await reviewServices.updateReview(params.id, values);
+      reviewStore.dispatch(reviewUpdate(values));
       setValues({});
       history.push('/missions/');
       notifySuccess('La mission est mise à jour');
@@ -28,7 +28,7 @@ const UpdateMissions: React.FC = () => {
   };
 
   const getMissionById = () => {
-    const catalog = missionStore.state.catalog;
+    const catalog = reviewStore.state.catalog;
     const data = catalog.filter(data => data.id === params.id);
     const [mission] = data;
     return mission;
