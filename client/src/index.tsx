@@ -23,21 +23,18 @@ import reportWebVitals from 'reportWebVitals';
 
 // Initialize languages
 import './locales/i18n';
-import { MissionProvider } from 'infrastructure/view/store/Mission/MissionContext';
-import { CooperatorProvider } from 'infrastructure/view/store/Cooperator/CooperatorContext';
+import { ReviewProvider } from 'infrastructure/view/store/review/reviewContext';
 
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 ReactDOM.render(
-  <MissionProvider>
-    <CooperatorProvider>
-      <HelmetProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </HelmetProvider>
-    </CooperatorProvider>
-  </MissionProvider>,
+  <ReviewProvider>
+    <HelmetProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </HelmetProvider>
+  </ReviewProvider>,
   MOUNT_NODE,
 );
 
