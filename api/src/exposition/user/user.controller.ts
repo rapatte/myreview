@@ -24,9 +24,8 @@ import { UserDomain } from '../../domain/user/user.domain';
 import { UserEntity } from '../../infrastructure/user/user.entity';
 import { UserServiceAdapter } from './user.service.adapter';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
-import { AuthenticatedGuard } from '../auth/authenticated.guard';
 import { encryptedPassword } from '../../utils/funcs';
-import { AuthService } from '../../domain/auth/auth.service';
+import { AuthService } from '../../infrastructure/auth/auth.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 @ApiTags('Users')
 @Controller('users')

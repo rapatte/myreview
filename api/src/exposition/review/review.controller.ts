@@ -33,7 +33,6 @@ export class ReviewController {
   ): Promise<Review | void> {
     try {
       const reviewProperties = Object.values(review);
-
       reviewProperties.map((propertie) => {
         if (propertie === '') {
           throw new HttpException(
@@ -42,9 +41,7 @@ export class ReviewController {
           );
         }
       });
-
       const newReview = await this.reviewServiceAdapter.save(review);
-
       response.status(HttpStatus.CREATED).send(newReview);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);

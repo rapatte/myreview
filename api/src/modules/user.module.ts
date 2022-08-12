@@ -3,7 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { jwtConfig } from '../config/jwtConfig';
-import { AuthService } from '../domain/auth/auth.service';
+import { AuthService } from '../infrastructure/auth/auth.service';
 import { UserService } from '../domain/user/user.service';
 import { JwtStrategy } from '../exposition/auth/jwt.strategy';
 import { LocalStrategy } from '../exposition/auth/local.strategy';
