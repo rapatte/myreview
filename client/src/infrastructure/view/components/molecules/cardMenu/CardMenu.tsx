@@ -19,23 +19,23 @@ function CardMenu({ id }) {
     setPosition({ xPos: e.pageX - 130, yPos: e.pageY + 10 });
   };
   const handleClickDelete = async id => {
-    if (window.confirm('Êtes-vous sur ?')) deleteData(id);
+    if (window.confirm('Are you sure ?')) deleteData(id);
   };
 
   const deleteData = async id => {
     await reviewServices
       .deleteReview(id)
       .then(() => review.dispatch(reviewDelete(id)));
-    notifySuccess('La review est supprimée');
+    notifySuccess('Review deleted');
     setShowMenu(false);
   };
 
   const updateData = async id => {
-    history.push(`/reviews/modifier/${id}`);
+    history.push(`/reviews/update/${id}`);
   };
 
   const goToAddReviewWithId = id => {
-    history.push(`/reviews/ajouter/${id}`);
+    history.push(`/reviews/add/${id}`);
   };
 
   useOutsideClick(ref, () => {
@@ -62,7 +62,7 @@ function CardMenu({ id }) {
           style={{ top: position.yPos, left: position.xPos }}
         >
           <ContextMenuOption
-            name="Modifier"
+            name="Update"
             onClick={e => {
               e.stopPropagation();
               updateData(id);
@@ -70,7 +70,7 @@ function CardMenu({ id }) {
           />
           {
             <ContextMenuOption
-              name="Dupliquer"
+              name="Duplicate"
               onClick={e => {
                 e.stopPropagation();
                 goToAddReviewWithId(id);
@@ -78,7 +78,7 @@ function CardMenu({ id }) {
             />
           }
           <ContextMenuOption
-            name="Supprimer"
+            name="Delete"
             onClick={e => {
               e.stopPropagation();
               handleClickDelete(id);

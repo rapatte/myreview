@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { useCooperator } from 'infrastructure/view/hooks/UseCooperators';
 import { useReview } from 'infrastructure/view/hooks/UseReviews';
-
 import { reviewFilter } from 'infrastructure/view/store/review/review.actions';
-
 import { Button, Input, Tags } from '../../../components/atoms';
 import { reviewServices } from 'application';
 

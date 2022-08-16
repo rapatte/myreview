@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useOutsideClick } from 'infrastructure/view/hooks';
-import { MissionCardDetails, CooperatorCardDetails } from '../../molecules';
+import { ReviewCardDetails } from '../../molecules';
 
-export default function CardDetails({ id, cardType, setIsShown, isShown }) {
+export default function CardDetails({ id, setIsShown, isShown }) {
   const ref = React.useRef<HTMLDivElement>(null);
 
   const handleIsShownInvisible = () => {
@@ -20,8 +20,7 @@ export default function CardDetails({ id, cardType, setIsShown, isShown }) {
         className="details__closeButton"
         icon={faXmark}
       />
-      {cardType === 'mission' && <MissionCardDetails id={id} />}
-      {cardType === 'cooperator' && <CooperatorCardDetails id={id} />}
+      <ReviewCardDetails id={id} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ReviewForm from './MissionForm';
+import ReviewForm from './ReviewForm';
 
-describe('Mission form testing', () => {
-  test('should render mission form with his inputs ', () => {
+describe('Review form testing', () => {
+  test('should render review form with his inputs ', () => {
     const handleClick = jest.fn(e => e.preventDefault());
 
     const values = {};
@@ -16,21 +16,17 @@ describe('Mission form testing', () => {
         values={values}
         setValues={setValues}
         handleClick={handleClick}
-        title={'Ajouter une mission'}
+        title={'Add a review'}
       />,
     );
-    const titleValue = screen.getByLabelText('Titre:');
-    const clientValue = screen.getByLabelText('Client:');
-    const profilValue = screen.getByLabelText('Profile:');
-    const button = screen.getByText('Envoyer');
+    const titleValue = screen.getByLabelText('Title :');
+    const button = screen.getByText('Submit');
 
     expect(titleValue).toBeInTheDocument();
-    expect(clientValue).toBeInTheDocument();
-    expect(profilValue).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
 
-  test('should submit mission form when the button is clicked ', () => {
+  test('should submit review form when the button is clicked ', () => {
     const handleClick = jest.fn(e => e.preventDefault());
 
     const values = {};
@@ -39,20 +35,16 @@ describe('Mission form testing', () => {
     render(
       <ReviewForm
         type="add"
-        title={'Ajouter une mission'}
+        title={'Add a review'}
         values={values}
         setValues={setValues}
         handleClick={handleClick}
       />,
     );
     const titleValue = screen.getByLabelText(/Titre/i);
-    const clientValue = screen.getByLabelText(/Client/i);
-    const profilValue = screen.getByLabelText(/Profile/i);
-    const button = screen.getByRole('button', { name: /Envoyer/i });
+    const button = screen.getByRole('button', { name: /Submit/i });
 
     userEvent.type(titleValue, 'Développeur full stack js');
-    userEvent.type(clientValue, 'Décathlon');
-    userEvent.type(profilValue, 'Full stack js');
     userEvent.click(button);
 
     expect(handleClick).toHaveBeenCalledTimes(1);

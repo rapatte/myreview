@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Review } from 'domain/mission/mission';
+import { Review } from 'domain/review/review';
 import { useReview } from 'infrastructure/view/hooks/UseReviews';
 import {
-  missionFiltred,
-  missionList,
-} from 'infrastructure/view/store/Mission/mission.actions';
-import sortingById from 'utils/sortingArrays';
+  reviewFilter,
+  reviewList,
+} from 'infrastructure/view/store/review/review.actions';
 import { Checkbox, Title } from 'infrastructure/view/components/atoms';
-import { Card, MissionCard } from '../../../../components/molecules';
-import { missionServices, reviewServices } from 'application';
+import { Card, ReviewCard } from '../../../molecules';
+import { reviewServices } from 'application';
 
-function ListingMissionCards() {
-  const contextMission = useReview();
-  const [catalog, setCatalog] = useState<Review[]>([]);
+function ListingReviewCards() {
+  const reviewContext = useReview();
   const [checked, setChecked] = useState(false);
-  const [data, setData] = useState<any>();
   const [error, setError] = useState('');
+  const [catalog, setCatalog] = useState<Review[]>([]);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -24,17 +22,17 @@ function ListingMissionCards() {
   const getMoviesOnly = async () => {
     if (checked) {
       try {
-        await missionServices
-          .getAvailableMissions()
-          .then(data => contextMission.dispatch(missionFiltred(data)));
+        await reviewServices
+          .getMovieReviews()
+          .then(data => reviewContext.dispatch(reviewFilter(data)));
         setError('');
       } catch (error: any) {
         setError(error.response.data.message);
       }
     } else {
-      await missionServices
-        .getMissions()
-        .then(data => contextMission.dispatch(missionList(data)));
+      await reviewServices
+        .getReviews()
+        .then(data => reviewContext.dispatch(reviewList(data)));
       setError('');
     }
   };
@@ -45,8 +43,8 @@ function ListingMissionCards() {
   }, [checked]);
 
   useEffect(() => {
-    setCatalog(contextMission.state.catalog);
-  }, [contextMission.state.catalog]);
+    setCatalog(reviewContext.state.catalog);
+  }, [reviewContext.state.catalog]);
 
   return (
     <div className="container">
@@ -59,9 +57,9 @@ function ListingMissionCards() {
       />
       <ul className="container__cards">
         {catalog && catalog.length > 0
-          ? catalog.sort(sortingById).map((mission, index) => (
-              <Card key={index} id={mission.id} cardType="mission">
-                <MissionCard key={mission.id} mission={mission} />
+          ? catalog.map((review, index) => (
+              <Card key={index} id={review.id}>
+                <ReviewCard key={review.id} review={review} />
               </Card>
             ))
           : 'Chargement'}
@@ -70,4 +68,4 @@ function ListingMissionCards() {
   );
 }
 
-export default ListingMissionCards;
+export default ListingReviewCards;

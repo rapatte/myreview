@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { notifyError, notifySuccess } from 'utils/toastify';
 import { reviewServices } from 'application';
 import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
-import { MissionForm } from 'infrastructure/view/components/organisms';
+import { ReviewForm } from 'infrastructure/view/components/organisms';
 import { Review } from 'domain/review/review';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { reviewPost } from 'infrastructure/view/store/review/review.actions';
@@ -68,7 +68,7 @@ const AddReview: React.FC = () => {
           </Link>
         </div>
         <div>
-          <MissionForm
+          <ReviewForm
             type="add"
             title={'Ajouter une review'}
             values={values}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardDetails } from '../../../components/molecules';
 
-function Card({ children, id, cardType }) {
+function Card({ children, id }) {
   const [isShown, setIsShown] = useState(false);
 
   const handleIsShownVisible = () => {
@@ -13,12 +13,7 @@ function Card({ children, id, cardType }) {
       <div className="container">
         <div className="card" onClick={() => handleIsShownVisible()}>
           {isShown && (
-            <CardDetails
-              cardType={cardType}
-              id={id}
-              setIsShown={setIsShown}
-              isShown={isShown}
-            />
+            <CardDetails id={id} setIsShown={setIsShown} isShown={isShown} />
           )}
           {children}
         </div>

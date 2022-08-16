@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {
   SearchBar,
-  ListingMissionCards,
+  ListingReviewCards,
   Button,
 } from 'infrastructure/view/components';
 import { Link } from 'react-router-dom';
@@ -18,11 +18,11 @@ const Reviews = () => {
 
   return (
     <>
-      <SearchBar placeholder="Chercher une review" />
-      <Link to="/reviews/ajouter">
-        <Button className="addButton" label="Ajouter une review" />
+      <SearchBar placeholder="Search a review" />
+      <Link to="/reviews/add">
+        <Button className="addButton" label="Add a review" />
       </Link>
-      <ListingMissionCards />
+      <ListingReviewCards />
     </>
   );
 };

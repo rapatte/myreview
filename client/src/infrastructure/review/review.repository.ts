@@ -1,5 +1,4 @@
 import { Review } from 'domain/review/review';
-import axios from 'axios';
 
 import { IReviewRepository } from 'domain/review/review.irepository';
 import { ReviewDTO } from './review.dto';
