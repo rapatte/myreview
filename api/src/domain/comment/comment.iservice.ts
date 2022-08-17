@@ -7,4 +7,5 @@ export interface ICommentService {
   update(commentId: string, comment: CommentDomain): Promise<CommentDomain>;
   getOne(commentId: string): Promise<CommentDomain>;
   search(keywords: string[]): Promise<CommentDomain[]>;
+  getCommentsOfOneReview(reviewId: string): Promise<CommentDomain[]>;
 }

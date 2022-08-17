@@ -93,6 +93,21 @@ export class CommentController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
+
+  @Get('of/:id')
+  async getCommentsOfOneReview(
+    @Res() response: Response,
+    @Param('id') reviewId: string,
+  ) {
+    try {
+      const comment = await this.commentServiceAdapter.getCommentsOfOneReview(
+        reviewId,
+      );
+      return response.status(HttpStatus.OK).send(comment);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+    }
+  }
   @Delete(':id')
   async deleteUser(@Res() response: Response, @Param('id') commentId: string) {
     try {

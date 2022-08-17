@@ -22,6 +22,15 @@ export class CommentService implements ICommentService {
     }
     return comments;
   }
+  async getCommentsOfOneReview(reviewId: string) {
+    const comments = await this.commentRepositoryAdapter.getCommentsOfOneReview(
+      reviewId,
+    );
+    if (comments.length === 0) {
+      throw new Error('No comments yet.');
+    }
+    return comments;
+  }
   async getOne(commentId: string) {
     const comment = await this.commentRepositoryAdapter.getOne(commentId);
     if (!comment) {

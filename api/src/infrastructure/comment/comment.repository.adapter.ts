@@ -85,4 +85,13 @@ export class CommentRepositoryAdapter implements ICommentRepository {
     );
     return elements;
   }
+  async getCommentsOfOneReview(reviewId: string) {
+    const commentList = await this.commentEntityRepository.find({
+      where: { reviewId: reviewId },
+    });
+    const domainConvertedList = commentList.map(
+      (comment) => new CommentDomain(comment),
+    );
+    return domainConvertedList;
+  }
 }

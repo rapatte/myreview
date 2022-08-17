@@ -32,4 +32,9 @@ export class CommentServiceAdapter {
   public async search(keywords: string[]): Promise<CommentDomain[]> {
     return this.commentService.search(keywords);
   }
+  public async getCommentsOfOneReview(
+    reviewId: string,
+  ): Promise<CommentDomain[]> {
+    return this.commentService.getCommentsOfOneReview(reviewId);
+  }
 }

@@ -10,4 +10,5 @@ export interface ICommentRepository {
   ): Promise<CommentDomain>;
   getOne(commentId: string): Promise<CommentDomain>;
   search(keywords: string[]): Promise<CommentDomain[]>;
+  getCommentsOfOneReview(reviewId: string): Promise<CommentDomain[]>;
 }
