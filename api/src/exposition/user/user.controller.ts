@@ -10,8 +10,6 @@ import {
   Patch,
   Query,
   HttpException,
-  Request,
-  UseGuards,
 } from '@nestjs/common';
 import {
   ApiCreatedResponse,
@@ -23,17 +21,11 @@ import { User } from '../../types/User';
 import { UserDomain } from '../../domain/user/user.domain';
 import { UserEntity } from '../../infrastructure/user/user.entity';
 import { UserServiceAdapter } from './user.service.adapter';
-import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { encryptedPassword } from '../../utils/funcs';
-import { AuthService } from '../../infrastructure/auth/auth.service';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
-  constructor(
-    private readonly userServiceAdapter: UserServiceAdapter,
-    private authService: AuthService,
-  ) {}
+  constructor(private readonly userServiceAdapter: UserServiceAdapter) {}
   @ApiCreatedResponse({ type: UserEntity })
   @Post()
   async create(
@@ -128,15 +120,15 @@ export class UserController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
-  @UseGuards(LocalAuthGuard)
-  @Post('login')
-  async login(@Request() req: any): Promise<any> {
-    return await this.authService.login(req.user);
-  }
+  // @UseGuards(LocalAuthGuard)
+  // @Post('login')
+  // async login(@Request() req: any): Promise<any> {
+  //   return await this.authService.login(req.user);
+  // }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('/test/protected')
-  async getHello(@Request() req: any): Promise<any> {
-    return req.user;
-  }
+  // @UseGuards(JwtAuthGuard)
+  // @Get('/test/protected')
+  // async getHello(@Request() req: any): Promise<any> {
+  //   return req.user;
+  // }
 }
