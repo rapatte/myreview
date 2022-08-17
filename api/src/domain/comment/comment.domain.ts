@@ -15,7 +15,7 @@ export class CommentDomain {
     id?: string;
     content: string;
     author: string;
-    date: string;
+    date: any;
     reviewId: string;
   }) {
     this.id = id;

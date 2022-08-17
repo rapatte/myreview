@@ -23,6 +23,21 @@ export class ColumnNumericTransformer {
   }
 }
 
+// Date format
+export const date = () => {
+  const options: any = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+  };
+
+  return new Intl.DateTimeFormat('fr-FR', options).format(new Date());
+};
+
 export async function encryptedPassword(password: string) {
   const encryptedPassword = await bcrypt.hash(password, 10);
   return encryptedPassword;

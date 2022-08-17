@@ -118,10 +118,4 @@ export class CommentController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
-
-  @UseGuards(JwtAuthGuard)
-  @Get('/test/protected')
-  async getHello(@Request() req: any): Promise<any> {
-    return req.user;
-  }
 }

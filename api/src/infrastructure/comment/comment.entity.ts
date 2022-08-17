@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { CommentDomain } from '../../domain/comment/comment.domain';
+import { date } from '../../utils/funcs';
 
 // The property "name" sets the table name. This is usually implied from the
 // class name, however this can be overridden if needed.
@@ -16,7 +17,10 @@ export class CommentEntity {
   @Column({ name: 'author' })
   author!: string;
   @ApiProperty()
-  @Column({ name: 'date' })
+  @Column({
+    name: 'date',
+    default: date(),
+  })
   date!: string;
   @ApiProperty()
   @Column({ name: 'reviewId' })
