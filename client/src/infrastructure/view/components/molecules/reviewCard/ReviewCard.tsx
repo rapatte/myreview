@@ -13,7 +13,11 @@ function ReviewCard({ review }) {
         </h3>
       </div>
       <p className="card__client">{review.score}</p>
-      <img className="card__illustration" src="" alt="illustration" />
+      <img
+        className="card__illustration"
+        src={review.poster}
+        alt="illustration"
+      />
     </div>
   );
 }

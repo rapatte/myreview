@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Review } from 'domain/review/review';
 import { useReview } from 'infrastructure/view/hooks/UseReviews';
-import {
-  reviewFilter,
-  reviewList,
-} from 'infrastructure/view/store/review/review.actions';
+import { reviewList } from 'infrastructure/view/store/review/review.actions';
 import { Checkbox, Title } from 'infrastructure/view/components/atoms';
 import { Card, ReviewCard } from '../../../molecules';
 import { reviewServices } from 'application';
@@ -13,38 +10,37 @@ function ListingReviewCards() {
   const reviewContext = useReview();
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState('');
-  const [catalog, setCatalog] = useState<Review[]>([]);
+  const [catalog, setCatalog] = useState<Review[]>();
 
   const handleChange = () => {
     setChecked(!checked);
   };
-
   const getMoviesOnly = async () => {
     if (checked) {
       try {
-        await reviewServices
-          .getMovieReviews()
-          .then(data => reviewContext.dispatch(reviewFilter(data)));
+        await reviewServices.getMovieReviews().then(data => {
+          reviewContext.dispatch(reviewList(data));
+        });
         setError('');
       } catch (error: any) {
         setError(error.response.data.message);
       }
     } else {
-      await reviewServices
-        .getReviews()
-        .then(data => reviewContext.dispatch(reviewList(data)));
+      await reviewServices.getReviews().then(data => {
+        reviewContext.dispatch(reviewList(data));
+      });
       setError('');
     }
   };
 
   useEffect(() => {
+    setCatalog(reviewContext.state.catalog);
+  }, [reviewContext.state.catalog]);
+
+  useEffect(() => {
     getMoviesOnly();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
-
-  useEffect(() => {
-    setCatalog(reviewContext.state.catalog);
-  }, [reviewContext.state.catalog]);
 
   return (
     <div className="container">
