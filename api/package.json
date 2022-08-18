@@ -26,7 +26,8 @@
     "test:e2e:cooperator": "cucumber-js -p cooperatorE2E",
     "test:domain": "cucumber-js -p mission -p cooperator",
     "db:populate:reviews": "./src/utils/scripts/reviews.sh",
-    "db:clear:reviews": "./src/utils/scripts/clearReviewTable.sh"
+    "db:clear:reviews": "./src/utils/scripts/clearReviewTable.sh",
+    "db:clear:comments": "./src/utils/scripts/clearCommentsTable.sh"
   },
   "dependencies": {
     "@cucumber/pretty-formatter": "^1.0.0-alpha.1",
