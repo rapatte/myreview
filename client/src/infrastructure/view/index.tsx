@@ -11,7 +11,14 @@ import { Helmet } from 'react-helmet-async';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MainLayout } from './components/templates';
-import { NotFound, Home, AddReviews, Reviews, UpdateReviews } from './pages';
+import {
+  NotFound,
+  Home,
+  AddReview,
+  Reviews,
+  UpdateReviews,
+  ReviewDetails,
+} from './pages';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -28,8 +35,9 @@ export function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/reviews/" component={Reviews} />
-          <Route exact path="/reviews/add" component={AddReviews} />
-          <Route exact path="/reviews/add/:id" component={AddReviews} />
+          <Route exact path="/reviews/:id" component={ReviewDetails} />
+          <Route exact path="/reviews/add" component={AddReview} />
+          {/* <Route exact path="/reviews/add/:id" component={AddReview} /> */}
           <Route exact path="/reviews/update/:id" component={UpdateReviews} />
           <Route component={NotFound} />
         </Switch>

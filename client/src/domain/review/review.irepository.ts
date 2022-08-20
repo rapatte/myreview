@@ -8,4 +8,5 @@ export interface IReviewRepository {
   reviewFiltred: (keywords: string[]) => Promise<Review[]>;
   getMovieReviews: () => Promise<Review[]>;
   getByTitle: (title) => Promise<any>;
+  getOneReview: (id) => Promise<Review>;
 }

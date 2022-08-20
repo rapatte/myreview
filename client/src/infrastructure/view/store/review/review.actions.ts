@@ -13,6 +13,12 @@ export const reviewUpdate = (data: Review) => {
     payload: data,
   };
 };
+export const getOneReview = (data: Review) => {
+  return {
+    type: 'getOneReview',
+    payload: data,
+  };
+};
 export const reviewPost = (data: Review) => {
   return {
     type: 'add-review',

@@ -22,6 +22,7 @@ export const reviewRepository = (client: Http): IReviewRepository => ({
       }),
     );
   },
+  getOneReview: async id => await client.get<ReviewDTO>(`/reviews/${id}`),
   updateReview: async (id, data) => {
     const reviewUpdated = await client.patch<ReviewDTO>(`/reviews/${id}`, data);
     return reviewUpdated;

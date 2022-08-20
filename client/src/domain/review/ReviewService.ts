@@ -26,4 +26,7 @@ export const ReviewService = (
   getByTitle: (title): Promise<any> => {
     return repository.getByTitle(title);
   },
+  getOneReview: (id): Promise<Review> => {
+    return repository.getOneReview(id);
+  },
 });

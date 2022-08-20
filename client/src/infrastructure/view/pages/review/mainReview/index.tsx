@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  SearchBar,
-  ListingReviewCards,
-  Button,
-} from 'infrastructure/view/components';
-import { Link } from 'react-router-dom';
+import { SearchBar, ListingReviewCards } from 'infrastructure/view/components';
 import { useReview } from 'infrastructure/view/hooks/UseReviews';
 import { reviewServices } from 'application';
 import { reviewList } from 'infrastructure/view/store/review/review.actions';
@@ -19,9 +14,6 @@ const Reviews = () => {
   return (
     <>
       <SearchBar placeholder="Search a review" />
-      <Link to="/reviews/add">
-        <Button className="addButton" label="Add a review" />
-      </Link>
       <ListingReviewCards />
     </>
   );

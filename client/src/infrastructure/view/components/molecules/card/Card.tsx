@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { CardDetails } from '../../../components/molecules';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+// import { CardDetails } from '../../../components/molecules';
 
 function Card({ children, id }) {
-  const [isShown, setIsShown] = useState(false);
+  const history = useHistory();
+  // const [isShown, setIsShown] = useState(false);
 
-  const handleIsShownVisible = () => {
-    if (!isShown) setIsShown(true);
-  };
+  // const handleIsShownVisible = () => {
+  //   if (!isShown) setIsShown(true);
+  // };
 
   return (
     <li>
       <div className="container">
-        <div className="card" onClick={() => handleIsShownVisible()}>
-          {isShown && (
+        <div className="card" onClick={() => history.push(`reviews/${id}`)}>
+          {/* {isShown && (
             <CardDetails id={id} setIsShown={setIsShown} isShown={isShown} />
-          )}
+          )} */}
           {children}
         </div>
       </div>

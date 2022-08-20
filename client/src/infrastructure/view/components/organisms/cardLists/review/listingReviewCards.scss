@@ -1,10 +1,7 @@
 @import '../../../../../../styles/vars/';
-.container {
-    margin-left: 1rem;
-   
+.container {   
     h2 {
         color:$nightblue;
-
     }
     &__cards {
         display: flex;
@@ -13,7 +10,7 @@
         align-items: center;
         justify-items: center;
         margin-top: 5%;
-        gap: 1rem;
+        gap: 5rem;
     }
     li {
         list-style: none;

@@ -1,8 +1,7 @@
 import {
-  faPaperPlane,
-  faUserTie,
   faClapperboard,
   faBellConcierge,
+  faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const linksData: any = [
@@ -16,5 +15,11 @@ export const linksData: any = [
     title: 'Reviews',
     icon: faClapperboard,
     link: '/reviews',
+  },
+
+  {
+    title: 'Add a review',
+    icon: faPlusCircle,
+    link: '/reviews/add',
   },
 ];

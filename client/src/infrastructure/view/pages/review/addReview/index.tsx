@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { notifyError, notifySuccess } from 'utils/toastify';
 import { reviewServices } from 'application';
-import { useLocalStorage } from 'infrastructure/view/hooks/useLocalStorage';
 import { ReviewForm } from 'infrastructure/view/components/organisms';
 import { Review } from 'domain/review/review';
 import { Link, useHistory, useParams } from 'react-router-dom';
@@ -14,8 +13,6 @@ const AddReview: React.FC = () => {
   const history = useHistory();
   const params: { id: string } = useParams();
   const reviewContext = useReview();
-  const [getDataInStorage, setDataInStorage, removeDataInStorage] =
-    useLocalStorage('review-add-form', {});
 
   const handleSubmit = async e => {
     try {
@@ -23,36 +20,28 @@ const AddReview: React.FC = () => {
       await reviewServices.addReview(values);
       reviewContext.dispatch(reviewPost(values));
       setValues({});
-      removeDataInStorage('review-add-form');
-      history.push('/reviews/');
+      history.push(`reviews/${params.id}`);
       notifySuccess('La review est enregistrée');
     } catch (error: any) {
       notifyError(error.response.data.message);
     }
   };
 
-  const getReviewById = () => {
-    const catalog = reviewContext.state.catalog;
-    const reviewSelected = catalog.filter(review => review.id === params.id);
-    const [review] = reviewSelected;
-    delete review.id;
-    return review;
-  };
+  // const getReviewById = () => {
+  //   const catalog = reviewContext.state.catalog;
+  //   const reviewSelected = catalog.filter(review => review.id === params.id);
+  //   const [review] = reviewSelected;
+  //   delete review.id;
+  //   return review;
+  // };
 
-  useEffect(() => {
-    if (params.id) {
-      const review = getReviewById();
-      setValues(review);
-    } else {
-      setValues(getDataInStorage);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    setDataInStorage(values);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values]);
+  // useEffect(() => {
+  //   if (params.id) {
+  //     const review = getReviewById();
+  //     setValues(review);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <>
