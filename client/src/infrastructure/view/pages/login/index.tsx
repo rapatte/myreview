@@ -9,8 +9,8 @@ const Login = () => {
       e.preventDefault();
       const res = await userServices.login(user);
       console.log(res);
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      notifyError(e.response.data.error);
     }
   };
 
@@ -26,9 +26,6 @@ const Login = () => {
     e.preventDefault();
     alert('Goes to registration page');
   };
-
-  console.log(user);
-
   return (
     <div className="Login">
       <form className="form" onSubmit={handleSubmit}>
