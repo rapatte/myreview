@@ -10,7 +10,6 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [cPassword, setCPassword] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const [cPasswordClass, setCPasswordClass] = useState('form-control');
   const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
   const handleSubmit = async e => {
     if (password === cPassword) {
@@ -50,10 +49,8 @@ const Register = () => {
     if (isCPasswordDirty) {
       if (password === cPassword) {
         setShowErrorMessage(false);
-        setCPasswordClass('form-control is-valid');
       } else {
         setShowErrorMessage(true);
-        setCPasswordClass('form-control is-invalid');
       }
     }
   }, [cPassword]);
