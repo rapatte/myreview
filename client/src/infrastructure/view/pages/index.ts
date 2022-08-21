@@ -4,7 +4,8 @@ import { Reviews } from './review/mainReview/Loadable';
 import { UpdateReviews } from './review/updateReview/Loadable';
 import { Home } from './home/Loadable';
 import { ReviewDetails } from './review/reviewDetails/Loadable';
-import { Login } from './login/Loadable';
+import { Login } from './user/login/Loadable';
+import { Register } from './user/register/Loadable';
 
 export {
   NotFound,
@@ -14,4 +15,5 @@ export {
   UpdateReviews,
   ReviewDetails,
   Login,
+  Register,
 };

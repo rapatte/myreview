@@ -16,7 +16,7 @@ export class UserEntity {
   @Column({ name: 'password' })
   password!: string;
   @ApiProperty()
-  @Column({ name: 'role' })
+  @Column({ name: 'role', default: 'member' })
   role!: string;
 }
 

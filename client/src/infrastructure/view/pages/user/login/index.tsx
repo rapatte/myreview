@@ -1,16 +1,19 @@
 import { userServices } from 'application';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { notifyError } from 'utils/toastify';
 
 const Login = () => {
+  const history = useHistory();
   const [user, setUser] = useState<any>();
   const handleSubmit = async e => {
     try {
       e.preventDefault();
       const res = await userServices.login(user);
+      //Mettre le token dans un cookie
       console.log(res);
     } catch (e: any) {
-      notifyError(e.response.data.error);
+      notifyError(e.response.data.error || e.response.data.message);
     }
   };
 
@@ -22,9 +25,8 @@ const Login = () => {
     }));
   };
 
-  const handleClick = e => {
-    e.preventDefault();
-    alert('Goes to registration page');
+  const handleClick = () => {
+    history.push('/register');
   };
   return (
     <div className="Login">

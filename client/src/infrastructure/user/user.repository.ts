@@ -1,4 +1,4 @@
-import { Review } from 'domain/review/review';
+import { User } from 'domain/user/user';
 
 import { IUserRepository } from 'domain/user/user.irepository';
 import { UserDTO } from './user.dto';
@@ -13,9 +13,9 @@ export const userRepository = (client: Http): IUserRepository => ({
     const userDeleted = await client.delete<String>(`/users/${id}`);
     return userDeleted;
   },
-  addUser: async (review: Review) => {
-    const postReview = await client.post<UserDTO>('/users', review);
-    return postReview;
+  addUser: async (user: User) => {
+    const postUser = await client.post<UserDTO>('/users', user);
+    return postUser;
   },
   login: async (user: any) => {
     const res = await client.post<any>('/auth/login', user);

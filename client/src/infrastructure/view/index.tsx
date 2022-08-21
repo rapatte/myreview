@@ -19,6 +19,7 @@ import {
   UpdateReviews,
   ReviewDetails,
   Login,
+  Register,
 } from './pages';
 
 export function App() {
@@ -41,6 +42,7 @@ export function App() {
           <Route exact path="/reviews/add/:id" component={AddReview} />
           <Route exact path="/reviews/update/:id" component={UpdateReviews} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route component={NotFound} />
         </Switch>
       </MainLayout>
