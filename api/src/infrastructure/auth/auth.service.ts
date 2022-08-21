@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from '../../utils/funcs';
 import { UserService } from '../../domain/user/user.service';
@@ -17,12 +17,19 @@ export class AuthService {
     if (pass) {
       const { ...rest } = user;
       return rest;
+    } else {
+      throw new HttpException(
+        {
+          status: HttpStatus.UNAUTHORIZED,
+          error: 'Wrong username or password.',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
     }
-    return null;
   }
 
   async login(user: any): Promise<any> {
-    const payload = { username: user.username, sub: user.id };
+    const payload = { username: user.username, sub: user.id, role: user.role };
     return {
       access_token: this.jwtService.sign(payload),
     };

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { AuthService } from '../../infrastructure/auth/auth.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -8,7 +16,17 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req: any): Promise<any> {
-    return await this.authService.login(req.user);
+    try {
+      return await this.authService.login(req.user);
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.UNAUTHORIZED,
+          error: 'Wrong username or password.',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
   }
 
   @UseGuards(JwtAuthGuard)

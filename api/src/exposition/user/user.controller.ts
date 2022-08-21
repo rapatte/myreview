@@ -120,15 +120,4 @@ export class UserController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
-  // @UseGuards(LocalAuthGuard)
-  // @Post('login')
-  // async login(@Request() req: any): Promise<any> {
-  //   return await this.authService.login(req.user);
-  // }
-
-  // @UseGuards(JwtAuthGuard)
-  // @Get('/test/protected')
-  // async getHello(@Request() req: any): Promise<any> {
-  //   return req.user;
-  // }
 }
