@@ -29,4 +29,7 @@ export const ReviewService = (
   getOneReview: (id): Promise<Review> => {
     return repository.getOneReview(id);
   },
+  getIdTrailer: (title): Promise<any> => {
+    return repository.getIdTrailer(title);
+  },
 });

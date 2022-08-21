@@ -1,47 +1,31 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { notifyError, notifySuccess } from 'utils/toastify';
 import { reviewServices } from 'application';
 import { ReviewForm } from 'infrastructure/view/components/organisms';
 import { Review } from 'domain/review/review';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { reviewPost } from 'infrastructure/view/store/review/review.actions';
 import { useReview } from 'infrastructure/view/hooks/UseReviews';
 
 const AddReview: React.FC = () => {
   const [values, setValues] = useState<Review>({});
+
   const history = useHistory();
-  const params: { id: string } = useParams();
   const reviewContext = useReview();
 
   const handleSubmit = async e => {
     try {
       e.preventDefault();
-      await reviewServices.addReview(values);
+      const newReview = await reviewServices.addReview(values);
       reviewContext.dispatch(reviewPost(values));
       setValues({});
-      history.push(`reviews/${params.id}`);
-      notifySuccess('La review est enregistrée');
+      history.push(`details/${newReview.id}`);
+      notifySuccess('Review registered');
     } catch (error: any) {
-      notifyError(error.response.data.message);
+      notifyError('All fields must be filled');
     }
   };
-
-  // const getReviewById = () => {
-  //   const catalog = reviewContext.state.catalog;
-  //   const reviewSelected = catalog.filter(review => review.id === params.id);
-  //   const [review] = reviewSelected;
-  //   delete review.id;
-  //   return review;
-  // };
-
-  // useEffect(() => {
-  //   if (params.id) {
-  //     const review = getReviewById();
-  //     setValues(review);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   return (
     <>
@@ -59,7 +43,7 @@ const AddReview: React.FC = () => {
         <div>
           <ReviewForm
             type="add"
-            title={'Ajouter une review'}
+            title={'Add a review'}
             values={values}
             setValues={setValues}
             handleClick={handleSubmit}

@@ -35,9 +35,9 @@ export function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/reviews/" component={Reviews} />
-          <Route exact path="/reviews/:id" component={ReviewDetails} />
+          <Route exact path="/reviews/details/:id" component={ReviewDetails} />
           <Route exact path="/reviews/add" component={AddReview} />
-          {/* <Route exact path="/reviews/add/:id" component={AddReview} /> */}
+          <Route exact path="/reviews/add/:id" component={AddReview} />
           <Route exact path="/reviews/update/:id" component={UpdateReviews} />
           <Route component={NotFound} />
         </Switch>

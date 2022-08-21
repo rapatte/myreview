@@ -20,7 +20,7 @@ import {
   ReviewCardDetails,
   SearchBar,
 } from './molecules';
-import { ListingReviewCards, NavBar, ReviewForm } from './organisms';
+import { ListingReviewCards, ReviewForm } from './organisms';
 import { MainLayout } from './templates';
 
 export {
@@ -42,7 +42,6 @@ export {
   ReviewCardDetails,
   SearchBar,
   ListingReviewCards,
-  NavBar,
   ReviewForm,
   MainLayout,
   Checkbox,

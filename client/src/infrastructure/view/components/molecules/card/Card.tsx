@@ -13,10 +13,10 @@ function Card({ children, id }) {
   return (
     <li>
       <div className="container">
-        <div className="card" onClick={() => history.push(`reviews/${id}`)}>
-          {/* {isShown && (
-            <CardDetails id={id} setIsShown={setIsShown} isShown={isShown} />
-          )} */}
+        <div
+          className="card"
+          onClick={() => history.push(`reviews/details/${id}`)}
+        >
           {children}
         </div>
       </div>

@@ -9,4 +9,5 @@ export interface IReviewRepository {
   getMovieReviews: () => Promise<Review[]>;
   getByTitle: (title) => Promise<any>;
   getOneReview: (id) => Promise<Review>;
+  getIdTrailer: (title) => Promise<any>;
 }

@@ -88,4 +88,21 @@ export const reviewRepository = (client: Http): IReviewRepository => ({
     };
     return await client.request(options);
   },
+  getIdTrailer: async title => {
+    const options = {
+      method: 'GET',
+      url: 'https://youtube-v31.p.rapidapi.com/search',
+      params: {
+        q: title + 'trailer',
+        part: 'snippet,id',
+        regionCode: 'FR',
+        maxResults: '1',
+      },
+      headers: {
+        'X-RapidAPI-Key': 'e4eb1e4174msh6ebc6c62e36afa6p1393e9jsn3ba29e52aa6b',
+        'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
+      },
+    };
+    return await client.request(options);
+  },
 });

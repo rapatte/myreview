@@ -1,10 +1,12 @@
 import { Review } from 'domain/review/review';
-import React from 'react';
-import { Button, Title } from '../../../atoms';
+import React, { useEffect, useState } from 'react';
+import { Button, Input, Title } from '../../../atoms';
 import {
   LabelTextarea,
   LabelInput,
 } from 'infrastructure/view/components/molecules';
+import { reviewServices } from 'application';
+import { notifyError } from 'utils/toastify';
 
 type Props = {
   title: string;
@@ -25,10 +27,64 @@ export default function ReviewForm({
     setValues({ ...values, [id]: value });
   };
 
+  const [input, setInput] = useState('');
+  const [movie, setMovie] = useState<any>();
+  const [trailer, setTrailer] = useState<any>();
+  const [error, setError] = useState<any>('');
+
+  const prefillSubmit = async title => {
+    try {
+      const movie = await reviewServices.getByTitle(title);
+      setMovie(movie.data);
+    } catch (e: any) {
+      notifyError(e.reponse.data.Error);
+    }
+  };
+  const getTrailer = async () => {
+    const trailer = await reviewServices.getIdTrailer(movie?.Title);
+    const trailerId = trailer.data.items[0].id.videoId;
+    setTrailer(`https://www.youtube.com/watch?v=${trailerId}`);
+  };
+  useEffect(() => {
+    setValues({
+      title: movie?.Title,
+      casting: movie?.Actors,
+      poster: movie?.Poster,
+      genre: movie?.Genre,
+      category: movie?.Type,
+      synopsis: movie?.Plot,
+      trailer: trailer,
+    });
+    setError('');
+    if (movie?.Error) setError(movie?.Error);
+  }, [movie, trailer]);
+
+  useEffect(() => {
+    try {
+      getTrailer();
+    } catch (e) {
+      setError(e);
+    }
+  }, [movie, trailer]);
+
   return (
     <>
       <form className={'review-form'}>
         <Title label={title} format="h2"></Title>
+
+        <Input
+          placeholder="Pre-fill with exact title"
+          onChange={e => setInput(e.target.value)}
+        ></Input>
+        <Button
+          onClick={e => {
+            prefillSubmit(input);
+            e.preventDefault();
+          }}
+        >
+          Go
+        </Button>
+        {error}
 
         <LabelInput
           label={'Title'}
@@ -39,7 +95,7 @@ export default function ReviewForm({
         />
 
         <LabelInput
-          label={'Score'}
+          label={'Score (on 10)'}
           type={'text'}
           {...(type === 'add' ? { value: values.score || '' } : {})}
           onChange={event => handleChange('score', event.target.value)}
