@@ -46,3 +46,12 @@ export const HttpAxios: Http = {
   },
   request: async options => await axios.request(options),
 };
+
+export const setAuthToken = token => {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  } else {
+    delete axios.defaults.headers.common['Authorization'];
+    localStorage.removeItem('token');
+  }
+};

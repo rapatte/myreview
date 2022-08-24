@@ -1,17 +1,35 @@
 import { userServices } from 'application';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { notifyError } from 'utils/toastify';
+import { notifyError, notifySuccess } from 'utils/toastify';
+import { setAuthToken } from 'infrastructure/util/httpAxios';
+import { UseUser } from 'infrastructure/view/hooks/UseUsers';
+import { addUser } from 'infrastructure/view/store/user/user.actions';
 
 const Login = () => {
   const history = useHistory();
+  const userContext = UseUser();
   const [user, setUser] = useState<any>();
+
   const handleSubmit = async e => {
     try {
       e.preventDefault();
+      const tokenExists = localStorage.getItem('token');
+      if (tokenExists) {
+        history.push('reviews');
+        notifyError('You are already logged in');
+        return;
+      }
       const res = await userServices.login(user);
-      //Mettre le token dans un cookie
-      console.log(res);
+      userContext.dispatch(addUser(res.decoded_token));
+      //set JWT token to local
+      localStorage.setItem('token', res.access_token);
+      const token = localStorage.getItem('token');
+      if (token) {
+        setAuthToken(token);
+      }
+      history.push('reviews');
+      notifySuccess('You have been logged in');
     } catch (e: any) {
       notifyError(e.response.data.error || e.response.data.message);
     }

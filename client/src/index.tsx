@@ -24,16 +24,19 @@ import reportWebVitals from 'reportWebVitals';
 // Initialize languages
 import './locales/i18n';
 import { ReviewProvider } from 'infrastructure/view/store/review/reviewContext';
+import { UserProvider } from 'infrastructure/view/store/user/userContext';
 
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 ReactDOM.render(
   <ReviewProvider>
-    <HelmetProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </HelmetProvider>
+    <UserProvider>
+      <HelmetProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </HelmetProvider>
+    </UserProvider>
   </ReviewProvider>,
   MOUNT_NODE,
 );

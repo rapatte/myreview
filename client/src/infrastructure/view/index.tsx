@@ -21,6 +21,7 @@ import {
   Login,
   Register,
 } from './pages';
+import RouteGuard from 'infrastructure/auth/AuthGuard';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -38,9 +39,14 @@ export function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/reviews/" component={Reviews} />
           <Route exact path="/reviews/details/:id" component={ReviewDetails} />
-          <Route exact path="/reviews/add" component={AddReview} />
-          <Route exact path="/reviews/add/:id" component={AddReview} />
-          <Route exact path="/reviews/update/:id" component={UpdateReviews} />
+          <RouteGuard exact path="/reviews/add" component={AddReview} />
+          {/* <Route exact path="/reviews/add" component={AddReview} /> */}
+          <RouteGuard exact path="/reviews/add/:id" component={AddReview} />
+          <RouteGuard
+            exact
+            path="/reviews/update/:id"
+            component={UpdateReviews}
+          />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route component={NotFound} />
