@@ -10,6 +10,7 @@ import {
   Patch,
   Query,
   HttpException,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiCreatedResponse,
@@ -21,11 +22,14 @@ import { Review } from '../../types/Review';
 import { ReviewDomain } from '../../domain/review/review.domain';
 import { ReviewEntity } from '../../infrastructure/review/review.entity';
 import { ReviewServiceAdapter } from './review.service.adapter';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AuthenticatedGuard } from '../auth/authenticated.guard';
 @ApiTags('Reviews')
 @Controller('reviews')
 export class ReviewController {
   constructor(private readonly reviewServiceAdapter: ReviewServiceAdapter) {}
   @ApiCreatedResponse({ type: ReviewEntity })
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(
     @Body() review: Review,
@@ -102,7 +106,7 @@ export class ReviewController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
-
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async deleteReview(@Res() response: Response, @Param('id') reviewId: string) {
     try {

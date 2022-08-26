@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { UserDomain } from '../../domain/user/user.domain';
 import { UserService } from '../../domain/user/user.service';
 import { User } from '../../types/User';
+import * as bcrypt from 'bcrypt';
+import { fromDomainToEntity } from '../../infrastructure/user/user.entity';
 
 @Injectable()
 export class UserServiceAdapter {
@@ -34,5 +36,20 @@ export class UserServiceAdapter {
   }
   public async getUsername(username: string[]): Promise<UserDomain[]> {
     return this.userService.getUsername(username);
+  }
+  public async getUserIfRefreshTokenMatches(
+    refreshToken: string,
+    userId: string,
+  ) {
+    const userreq = await this.getOne(userId);
+    const user = fromDomainToEntity(userreq);
+    const isRefreshTokenMatching = await bcrypt.compare(
+      refreshToken,
+      user.currentHashedRefreshToken,
+    );
+
+    if (isRefreshTokenMatching) {
+      return user;
+    }
   }
 }

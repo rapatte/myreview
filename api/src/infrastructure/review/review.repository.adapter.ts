@@ -80,15 +80,6 @@ export class ReviewRepositoryAdapter implements IReviewRepository {
             .where('LOWER(title) LIKE :title', {
               title: `%${element.toLowerCase()}%`,
             })
-            .orWhere('LOWER(casting) LIKE :casting', {
-              casting: `%${element.toLowerCase()}%`,
-            })
-            .orWhere('LOWER(genre) LIKE :genre', {
-              genre: `%${element.toLowerCase()}%`,
-            })
-            .orWhere('LOWER(category) LIKE :category', {
-              category: `%${element.toLowerCase()}%`,
-            })
             .getMany();
         request.forEach((req) => elements.push(req));
       }),

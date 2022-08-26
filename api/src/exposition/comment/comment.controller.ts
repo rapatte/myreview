@@ -10,7 +10,6 @@ import {
   Patch,
   Query,
   HttpException,
-  Request,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -20,18 +19,14 @@ import {
 } from '@nestjs/swagger';
 import { Response } from 'express';
 import { Comment } from '../../types/Comment';
-import { UserDomain } from '../../domain/user/user.domain';
+import { CommentDomain } from '../../domain/comment/comment.domain';
 import { CommentEntity } from '../../infrastructure/comment/comment.entity';
 import { CommentServiceAdapter } from './comment.service.adapter';
-import { AuthService } from '../../infrastructure/auth/auth.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 @ApiTags('Comments')
 @Controller('comments')
 export class CommentController {
-  constructor(
-    private readonly commentServiceAdapter: CommentServiceAdapter,
-    private authService: AuthService,
-  ) {}
+  constructor(private readonly commentServiceAdapter: CommentServiceAdapter) {}
   @ApiCreatedResponse({ type: CommentEntity })
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -121,7 +116,7 @@ export class CommentController {
   async updateComment(
     @Res() response: Response,
     @Param('id') commentId: string,
-    @Body() comment: Partial<UserDomain>,
+    @Body() comment: Partial<CommentDomain>,
   ) {
     try {
       const commentUpdated = await this.commentServiceAdapter.update(

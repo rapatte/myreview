@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { UserDomain } from '../../domain/user/user.domain';
 import { IUserRepository } from '../../domain/user/user.irepository';
 import Utils from '../../utils/funcs';
+import * as bcrypt from 'bcrypt';
 import {
   UserEntity,
   fromDomainToEntity,
@@ -78,9 +79,22 @@ export class UserRepositoryAdapter implements IUserRepository {
     );
     return elements;
   }
-  async getUsername(username: Array<any>) {
+  async getUsername(username: Array<string>) {
     const request = await this.searchByElement(username);
     const users: UserEntity[] = Utils.removeDuplicateObject(request);
+
     return users.map((user) => new UserDomain(user));
+  }
+  async setCurrentRefreshToken(refreshToken: string, userId: string) {
+    const currentHashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+    const user = await this.userEntityRepository.update(userId, {
+      currentHashedRefreshToken: currentHashedRefreshToken,
+    });
+    await this.getOne(userId);
+  }
+  async removeRefreshToken(userId: number) {
+    return this.userEntityRepository.update(userId, {
+      currentHashedRefreshToken: null,
+    });
   }
 }

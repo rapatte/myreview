@@ -18,7 +18,6 @@ import {
 } from '@nestjs/swagger';
 import { Response } from 'express';
 import { User } from '../../types/User';
-import { UserDomain } from '../../domain/user/user.domain';
 import { UserEntity } from '../../infrastructure/user/user.entity';
 import { UserServiceAdapter } from './user.service.adapter';
 import { encryptedPassword } from '../../utils/funcs';
@@ -45,6 +44,7 @@ export class UserController {
       const userAlreadyExists = await this.userServiceAdapter.getUsername([
         user.username,
       ]);
+
       if (userAlreadyExists.length > 0) {
         throw new HttpException(
           'Username already exists.',
@@ -111,7 +111,7 @@ export class UserController {
   async updateUser(
     @Res() response: Response,
     @Param('id') userId: string,
-    @Body() user: Partial<UserDomain>,
+    @Body() user: Partial<any>,
   ) {
     try {
       const userUpdated = await this.userServiceAdapter.update(userId, user);

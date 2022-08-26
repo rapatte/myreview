@@ -8,7 +8,7 @@ import { UserRepositoryAdapter } from '../infrastructure/user/user.repository.ad
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
-  exports: [TypeOrmModule, UserService],
+  exports: [TypeOrmModule, UserService, UserServiceAdapter],
   controllers: [UserController],
   providers: [
     UserService,

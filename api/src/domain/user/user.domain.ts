@@ -3,22 +3,26 @@ export class UserDomain {
   private username;
   private password;
   private role;
+  private currentHashedRefreshToken;
 
   constructor({
     id,
     username,
     password,
     role,
+    currentHashedRefreshToken,
   }: {
     id?: string;
     username: string;
     password: string;
     role: string;
+    currentHashedRefreshToken?: string;
   }) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.role = role;
+    this.currentHashedRefreshToken = currentHashedRefreshToken;
   }
 
   public get getId(): string {
@@ -46,5 +50,12 @@ export class UserDomain {
   }
   public set setUsername(value: string) {
     this.username = value;
+  }
+
+  public get getCurrentHashedRefreshToken(): string {
+    return this.currentHashedRefreshToken;
+  }
+  public set setCurrentHashedRefreshToken(value: string) {
+    this.currentHashedRefreshToken = value;
   }
 }

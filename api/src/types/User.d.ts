@@ -3,4 +3,5 @@ export type User = {
   username: string;
   password: string;
   role: string;
+  refresh_token: string;
 };
