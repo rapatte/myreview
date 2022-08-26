@@ -22,9 +22,33 @@ import {
   Register,
 } from './pages';
 import RouteGuard from 'infrastructure/auth/AuthGuard';
+import { UseUser } from './hooks/UseUsers';
+import { userServices } from 'application';
+import { login } from './store/user/user.actions';
 
 export function App() {
+  const userContext = UseUser();
+  const refresh = async () => {
+    try {
+      const res = await userServices.refresh();
+      userContext.dispatch(login(res));
+      console.log('infini?');
+
+      return;
+    } catch (error) {
+      console.error('e', error);
+      console.log('infini?');
+
+      return;
+    }
+  };
   const { i18n } = useTranslation();
+  React.useEffect(() => {
+    (async () => {
+      await refresh();
+    })();
+  }, []);
+
   return (
     <BrowserRouter>
       <MainLayout>

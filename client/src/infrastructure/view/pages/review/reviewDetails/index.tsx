@@ -6,9 +6,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentForm from 'infrastructure/view/components/organisms/forms/commentForm/commentForm';
 import { notifyError, notifySuccess } from 'utils/toastify';
+import { UseUser } from 'infrastructure/view/hooks/UseUsers';
 
 const ReviewDetails = () => {
   const [values, setValues] = useState<Review>({});
+  const userContext = UseUser();
   const params = useParams<any>();
   const [review, setReview] = useState<Review>({});
   const [comments, setComments] = useState<Comment[]>();
@@ -39,11 +41,11 @@ const ReviewDetails = () => {
     try {
       e.preventDefault();
       await commentServices.addComment(values);
-      setValues({});
       notifySuccess('Comment posted');
     } catch (error: any) {
-      console.log(error.response);
-
+      if (!userContext.state.catalog) {
+        notifyError('You must be logged in.');
+      }
       notifyError(error.response.data.message);
     }
   };
@@ -63,8 +65,8 @@ const ReviewDetails = () => {
         values={values}
         setValues={setValues}
         handleClick={handleSubmit}
+        id={params.id}
         type="add"
-        title="Post a comment (must be logged in)"
       />
     </>
   );

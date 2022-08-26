@@ -7,7 +7,7 @@ import { userDelete } from 'infrastructure/view/store/user/user.actions';
 import React, { useState } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
-import { notifySuccess } from 'utils/toastify';
+import { notifyError, notifySuccess } from 'utils/toastify';
 
 function NavBar(props) {
   const userContext = UseUser();
@@ -18,6 +18,17 @@ function NavBar(props) {
   };
   const handleStateChange = state => {
     handleMenu(state.isOpen);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    handleCloseMenu();
+    if (!userContext.state.isLogged) {
+      notifyError('You are not logged in');
+      return;
+    }
+    userContext.dispatch(logout());
+    notifySuccess('You have been logged out');
   };
 
   return (
@@ -41,12 +52,7 @@ function NavBar(props) {
         to="/reviews"
         className="MenuItem"
         id="/reviews"
-        onClick={() => {
-          localStorage.removeItem('token');
-          handleCloseMenu();
-          userContext.dispatch(userDelete(userContext.state.catalog[0]?.sub));
-          notifySuccess('You have been logged out');
-        }}
+        onClick={() => logout()}
       >
         <FontAwesomeIcon className="menuIcon" icon={faUserAltSlash} />
         Logout

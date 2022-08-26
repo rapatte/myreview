@@ -16,7 +16,6 @@ const Register = () => {
       try {
         e.preventDefault();
         const res = await userServices.addUser(user);
-        console.log(res);
         notifySuccess('Account created');
       } catch (e: any) {
         notifyError(e.response.data.error || e.response.data.message);
@@ -38,8 +37,6 @@ const Register = () => {
   useEffect(() => {
     setUser({ username: username, password: password });
   }, [password, username]);
-
-  console.log(user);
 
   const handleCPassword = e => {
     setCPassword(e.target.value);

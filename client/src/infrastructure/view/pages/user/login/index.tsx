@@ -2,9 +2,9 @@ import { userServices } from 'application';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { notifyError, notifySuccess } from 'utils/toastify';
-import { setAuthToken } from 'infrastructure/util/httpAxios';
 import { UseUser } from 'infrastructure/view/hooks/UseUsers';
-import { addUser } from 'infrastructure/view/store/user/user.actions';
+import { login } from 'infrastructure/view/store/user/user.actions';
+import { setAuthToken } from 'infrastructure/util/httpAxios';
 
 const Login = () => {
   const history = useHistory();
@@ -14,24 +14,15 @@ const Login = () => {
   const handleSubmit = async e => {
     try {
       e.preventDefault();
-      const tokenExists = localStorage.getItem('token');
-      if (tokenExists) {
-        history.push('reviews');
-        notifyError('You are already logged in');
-        return;
-      }
+      history.push('reviews');
       const res = await userServices.login(user);
-      userContext.dispatch(addUser(res.decoded_token));
-      //set JWT token to local
-      localStorage.setItem('token', res.access_token);
-      const token = localStorage.getItem('token');
-      if (token) {
-        setAuthToken(token);
-      }
+      userContext.dispatch(login(res));
+      setAuthToken();
       history.push('reviews');
       notifySuccess('You have been logged in');
     } catch (e: any) {
-      notifyError(e.response.data.error || e.response.data.message);
+      if (e.response.data.error) notifyError(e.response.data.error);
+      if (e.response.data.message) notifyError(e.response.data.message);
     }
   };
 

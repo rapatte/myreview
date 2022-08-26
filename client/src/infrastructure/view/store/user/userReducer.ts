@@ -20,9 +20,11 @@ export async function userReducer(state: State<User>, action: Action) {
       const newCatalog = state.catalog.pop();
       return { catalog: newCatalog };
     }
-    case 'add-user': {
-      state.catalog.push(action.payload);
-      return { catalog: state.catalog };
+    case 'login': {
+      return { user: action.payload, isLogged: true };
+    }
+    case 'logout': {
+      return { user: null, isLogged: false };
     }
     case 'filtre-user': {
       return { catalog: action.payload };

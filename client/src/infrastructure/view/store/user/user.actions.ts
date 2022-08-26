@@ -1,12 +1,5 @@
 import { User } from 'domain/user/user';
 
-export const userList = (data: User[]) => {
-  return {
-    type: 'display-list-users',
-    payload: data,
-  };
-};
-
 export const userUpdate = (data: User) => {
   return {
     type: 'update-user',
@@ -19,10 +12,15 @@ export const getOneuser = (data: User) => {
     payload: data,
   };
 };
-export const addUser = (data: User) => {
+export const login = (data: any) => {
   return {
-    type: 'add-user',
+    type: 'login',
     payload: data,
+  };
+};
+export const logout = () => {
+  return {
+    type: 'logout',
   };
 };
 export const userFilter = (data: User[]) => {

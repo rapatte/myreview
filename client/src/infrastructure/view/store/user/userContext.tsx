@@ -9,6 +9,8 @@ export const UserStateContext = React.createContext<
 
 const initialState: State<any> = {
   catalog: [],
+  user: null,
+  isLogged: false,
 };
 
 function UserProvider({ children }: ProviderProps) {

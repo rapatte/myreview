@@ -5,4 +5,5 @@ export interface IUserRepository {
   updateUser: (id: string, data: User) => Promise<User>;
   addUser: (user: User) => Promise<User>;
   login: (user: any) => Promise<any>;
+  refresh: () => Promise<any>;
 }

@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Title } from '../../../atoms';
-import {
-  LabelTextarea,
-  LabelInput,
-} from 'infrastructure/view/components/molecules';
+import React, { useEffect } from 'react';
+import { Button } from '../../../atoms';
+import { LabelTextarea } from 'infrastructure/view/components/molecules';
 import { Comment } from 'domain/comment/comment';
+import { UseUser } from 'infrastructure/view/hooks/UseUsers';
+import axios from 'axios';
 
 type Props = {
-  title: string;
+  title?: string;
   values: Comment;
   setValues: (value: React.SetStateAction<object>) => void;
   handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type: string;
+  id: string;
 };
 
 export default function CommentForm({
   values,
   setValues,
   handleClick,
-  title,
   type,
+  id,
 }: Props) {
   const handleChange = (id, value) => {
     setValues({ ...values, [id]: value });
   };
+
+  useEffect(() => {
+    setValues({
+      author: localStorage.getItem('user')?.split(' ')[0],
+      reviewId: id,
+    });
+  }, []);
+
   return (
     <>
       <form className={'review-form'}>
-        <Title label={title} format="h2"></Title>
-
-        <LabelInput
-          label={'Author'}
-          type={'text'}
-          {...(type === 'add' ? { value: values.author || '' } : {})}
-          onChange={event => handleChange('author', event.target.value)}
-          value={(values && values.author) || ''}
-        />
-
         <LabelTextarea
-          label={'Comment'}
+          label={'Post a comment '}
           {...(type === 'add' ? { value: values.content || '' } : {})}
           onChange={event => handleChange('content', event.target.value)}
           value={(values && values.content) || ''}

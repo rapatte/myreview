@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
 import { ContextMenuOption } from '../../../components/atoms';
-import { notifySuccess } from 'utils/toastify';
+import { notifyError, notifySuccess } from 'utils/toastify';
 import { reviewServices } from 'application';
 import { reviewDelete } from 'infrastructure/view/store/review/review.actions';
 import { useReview } from 'infrastructure/view/hooks/UseReviews';
@@ -23,11 +23,15 @@ function CardMenu({ id }) {
   };
 
   const deleteData = async id => {
-    await reviewServices
-      .deleteReview(id)
-      .then(() => review.dispatch(reviewDelete(id)));
-    notifySuccess('Review deleted');
-    setShowMenu(false);
+    try {
+      await reviewServices
+        .deleteReview(id)
+        .then(() => review.dispatch(reviewDelete(id)));
+      notifySuccess('Review deleted');
+      setShowMenu(false);
+    } catch (error: any) {
+      notifyError(error.response.data.message);
+    }
   };
 
   const updateData = async id => {
