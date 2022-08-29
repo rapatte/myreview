@@ -20,7 +20,7 @@
     "test:ci": "jest --ci --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e:jest": "jest --config ./test/jest-e2e.json",
-    "test:domain:mission": "cucumber-js -p mission",
+    "test:domain:review": "cucumber-js -p review",
     "test:e2e:mission": "cucumber-js -p missionE2E",
     "test:domain:cooperator": "cucumber-js -p cooperator",
     "test:e2e:cooperator": "cucumber-js -p cooperatorE2E",

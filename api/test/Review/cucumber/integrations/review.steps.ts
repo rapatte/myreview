@@ -4,23 +4,33 @@ import { HttpStatus, INestApplication } from '@nestjs/common';
 import { expect } from 'chai';
 import * as request from 'supertest';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MissionModule } from '../../config/mission.module';
-import { MissionEntity } from '../../../src/infrastructure/Mission/mission.entity';
-import { Mission } from '../../utils/types/Mission';
+import { ConfigModule } from '@nestjs/config';
+import { ReviewModule } from '../../../../src/modules/review.module';
+import configuration from '../../../../src/config/configuration';
+import { Mission } from '../../../utils/types/Mission';
 import { getConnection } from 'typeorm';
 let app: INestApplication;
 
 Before(async () => {
   const moduleFixture: TestingModule = await Test.createTestingModule({
     imports: [
+      ConfigModule.forRoot({
+        isGlobal: true,
+        load: [configuration],
+      }),
       TypeOrmModule.forRoot({
-        type: 'better-sqlite3',
-        database: ':memory:',
-        entities: [MissionEntity],
+        type: 'postgres',
+        host: process.env.DB_HOST,
+        port: parseInt(process.env.DB_PORT, 10),
+        username: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        entities: ['src/**/*.entity{.ts,.js}'],
         synchronize: true,
         keepConnectionAlive: true,
+        logging: false,
       }),
-      MissionModule,
+      ReviewModule,
     ],
   }).compile();
 
@@ -194,9 +204,10 @@ Given(
 When(/^The employer search missions with keywords$/, async function (table) {
   this.table = table.hashes();
   this.keywords = this.table[0].keywords.split(/[\s,]+/);
+
   await request(app.getHttpServer())
     .get(
-      `/missions/search?criteria=${this.keywords[2]}&criteria=${this.keywords[0]}&criteria=${this.keywords[1]}`,
+      `/missions/search?criteria=${this.keywords[0]}&criteria=${this.keywords[1]}&criteria=${this.keywords[2]}`,
     )
     .expect(HttpStatus.OK)
     .then((res) => {
@@ -206,6 +217,7 @@ When(/^The employer search missions with keywords$/, async function (table) {
 
 Then(/^Missions list appear as followed:$/, async function (table) {
   this.table = table.hashes();
+
   for (let i = 0; i < this.table.length; i++) {
     this.result[i].id = this.table[i].id;
     delete this.result[i].isActive;

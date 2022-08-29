@@ -2,14 +2,14 @@
  * Cucumber Mission module tests
  */
 // unit testing
-const mission = [
-  'test/Mission/cucumber/features/*.feature', // feature filter
-  '--require test/Mission/cucumber/units/*.steps.ts',
+const review = [
+  'test/review/cucumber/features/*.feature', // feature filter
+  '--require test/review/cucumber/units/*.steps.ts',
   '--require-module ts-node/register',
   'cucumber-js -f @cucumber/pretty-formatter',
   '--tags "not @wip and not @api"',
 ];
-exports.mission = mission.join(' ');
+exports.review = review.join(' ');
 // e2e testing
 const missionE2E = [
   'test/Mission/cucumber/features/*', // feature filter
