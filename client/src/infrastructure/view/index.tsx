@@ -42,6 +42,7 @@ export function App() {
     (async () => {
       await refresh();
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

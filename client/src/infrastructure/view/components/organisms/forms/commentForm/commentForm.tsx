@@ -1,10 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { Button } from '../../../atoms';
 import { LabelTextarea } from 'infrastructure/view/components/molecules';
 import { Comment } from 'domain/comment/comment';
 import { UseUser } from 'infrastructure/view/hooks/UseUsers';
-import axios from 'axios';
-
 type Props = {
   title?: string;
   values: Comment;
