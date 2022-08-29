@@ -6,7 +6,7 @@ const headers = {
 };
 
 axios.defaults.baseURL = `http://localhost:8080`;
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 export const HttpAxios: Http = {
   get: async <T>(path: string, params?: Record<string, any>, config?: any) => {
@@ -14,6 +14,7 @@ export const HttpAxios: Http = {
       ...config,
       params: params,
       headers,
+      withCredentials: true,
     });
     return response.data as T;
   },
@@ -21,7 +22,7 @@ export const HttpAxios: Http = {
     const response = await axios.post(
       path,
       { ...params },
-      { ...config, headers },
+      { ...config, headers, withCredentials: true },
     );
     return response.data as T;
   },
@@ -53,8 +54,7 @@ export const setAuthToken = () => {
   //   return request;
   // };
   // if (token) {
-  console.log(axios.interceptors.response.use(response => response));
-
+  // console.log(axios.interceptors.response.use(response => response));
   // axios.interceptors.request.use(request => {
   //   console.log(request.headers);
   // });

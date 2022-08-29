@@ -21,13 +21,14 @@ export default function CommentForm({
   type,
   id,
 }: Props) {
+  const userContext = UseUser();
   const handleChange = (id, value) => {
     setValues({ ...values, [id]: value });
   };
 
   useEffect(() => {
     setValues({
-      author: localStorage.getItem('user')?.split(' ')[0],
+      author: userContext.state.user?.username,
       reviewId: id,
     });
   }, []);

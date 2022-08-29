@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { linksData } from 'infrastructure/view/constants/routes';
 import { usePathName } from 'infrastructure/view/hooks';
 import { UseUser } from 'infrastructure/view/hooks/UseUsers';
-import { userDelete } from 'infrastructure/view/store/user/user.actions';
+import {
+  logout,
+  userDelete,
+} from 'infrastructure/view/store/user/user.actions';
 import React, { useState } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
@@ -20,7 +23,7 @@ function NavBar(props) {
     handleMenu(state.isOpen);
   };
 
-  const logout = () => {
+  const logoutClick = () => {
     localStorage.removeItem('token');
     handleCloseMenu();
     if (!userContext.state.isLogged) {
@@ -52,7 +55,7 @@ function NavBar(props) {
         to="/reviews"
         className="MenuItem"
         id="/reviews"
-        onClick={() => logout()}
+        onClick={logoutClick}
       >
         <FontAwesomeIcon className="menuIcon" icon={faUserAltSlash} />
         Logout

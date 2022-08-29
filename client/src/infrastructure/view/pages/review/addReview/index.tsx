@@ -23,7 +23,7 @@ const AddReview: React.FC = () => {
       history.push(`details/${newReview.id}`);
       notifySuccess('Review registered');
     } catch (error: any) {
-      notifyError('All fields must be filled');
+      notifyError(error.response.data.message);
     }
   };
 

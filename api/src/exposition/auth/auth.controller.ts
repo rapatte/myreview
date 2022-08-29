@@ -14,6 +14,7 @@ import { AuthService } from '../../infrastructure/auth/auth.service';
 import { UserRepositoryAdapter } from '../../infrastructure/user/user.repository.adapter';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { JwtService } from '@nestjs/jwt';
+import JwtRefreshGuard from './jwt-refresh.guard';
 @Controller('auth')
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
@@ -57,7 +58,7 @@ export class AuthController {
     //   );
     // }
   }
-  // @UseGuards(JwtRefreshGuard)
+  @UseGuards(JwtRefreshGuard)
   @Get('refresh')
   async refresh(@Req() request: any, @Res() response: any) {
     try {

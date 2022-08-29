@@ -33,25 +33,33 @@ export class AuthService {
     username: string,
     role: string,
   ) {
-    const payload: any = { userId, username, role };
-    const token = this.jwtService.sign(payload, {
-      secret: jwtSecret().jwtSecret,
-      expiresIn: `5m`,
-    });
-    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=5m`;
+    try {
+      const payload: any = { userId, username, role };
+      const token = this.jwtService.sign(payload, {
+        secret: jwtSecret().jwtSecret,
+        expiresIn: `5m`,
+      });
+      return `Authentication=${token}; HttpOnly; Path=/; Max-Age=5m`;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   public getCookieWithJwtRefreshToken(userId: number) {
-    const payload: any = { userId };
-    const token = this.jwtService.sign(payload, {
-      secret: jwtSecret().jwtRefreshSecret,
-      expiresIn: `30m`,
-    });
-    const cookie = `Refresh=${token}; HttpOnly; Path=/; Max-Age=30m`;
-    return {
-      cookie,
-      token,
-    };
+    try {
+      const payload: any = { userId };
+      const token = this.jwtService.sign(payload, {
+        secret: jwtSecret().jwtRefreshSecret,
+        expiresIn: `30m`,
+      });
+      const cookie = `Refresh=${token}; HttpOnly; Path=/; Max-Age=30m`;
+      return {
+        cookie,
+        token,
+      };
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   public getCookiesForLogOut() {

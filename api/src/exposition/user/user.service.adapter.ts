@@ -41,15 +41,19 @@ export class UserServiceAdapter {
     refreshToken: string,
     userId: string,
   ) {
-    const userreq = await this.getOne(userId);
-    const user = fromDomainToEntity(userreq);
-    const isRefreshTokenMatching = await bcrypt.compare(
-      refreshToken,
-      user.currentHashedRefreshToken,
-    );
+    try {
+      const userreq = await this.getOne(userId);
+      const user = fromDomainToEntity(userreq);
+      const isRefreshTokenMatching = await bcrypt.compare(
+        refreshToken,
+        user.currentHashedRefreshToken,
+      );
 
-    if (isRefreshTokenMatching) {
-      return user;
+      if (isRefreshTokenMatching) {
+        return user;
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }

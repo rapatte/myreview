@@ -6,7 +6,7 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -30,20 +30,15 @@ export function App() {
   const userContext = UseUser();
   const refresh = async () => {
     try {
-      const res = await userServices.refresh();
-      userContext.dispatch(login(res));
-      console.log('infini?');
-
+      userContext.dispatch(login(await userServices.refresh()));
       return;
     } catch (error) {
-      console.error('e', error);
-      console.log('infini?');
-
+      console.log(error);
       return;
     }
   };
   const { i18n } = useTranslation();
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       await refresh();
     })();

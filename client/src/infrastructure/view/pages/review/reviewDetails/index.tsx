@@ -13,7 +13,7 @@ const ReviewDetails = () => {
   const userContext = UseUser();
   const params = useParams<any>();
   const [review, setReview] = useState<Review>({});
-  const [comments, setComments] = useState<Comment[]>();
+  const [comments, setComments] = useState<Comment[]>([]);
   const [error, setError] = useState<any>();
   const getReview = async () => {
     setReview(await reviewServices.getOneReview(params.id));
@@ -29,6 +29,8 @@ const ReviewDetails = () => {
     }
   };
 
+  console.log(userContext.state.user);
+
   useEffect(() => {
     getReview();
   }, []);
@@ -42,6 +44,7 @@ const ReviewDetails = () => {
       e.preventDefault();
       await commentServices.addComment(values);
       notifySuccess('Comment posted');
+      getComments();
     } catch (error: any) {
       if (!userContext.state.catalog) {
         notifyError('You must be logged in.');
