@@ -10,19 +10,16 @@ import 'react-app-polyfill/stable';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
 import './styles/styles.scss';
 // Import root app
 import { App } from './infrastructure/view';
-
 import { HelmetProvider } from 'react-helmet-async';
-
 import reportWebVitals from 'reportWebVitals';
-
 // Initialize languages
 import './locales/i18n';
+
 import { ReviewProvider } from 'infrastructure/view/store/review/reviewContext';
 import { UserProvider } from 'infrastructure/view/store/user/userContext';
 

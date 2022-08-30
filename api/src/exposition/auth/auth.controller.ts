@@ -27,36 +27,29 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Req() request: any): Promise<any> {
-    const { user } = request;
-    const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
-      user.id,
-      user.username,
-      user.role,
-    );
-    const refreshTokenCookie = this.authService.getCookieWithJwtRefreshToken(
-      user.id,
-    );
-    await this.userService.setCurrentRefreshToken(
-      refreshTokenCookie.token,
-      user.id,
-    );
-    request.res.setHeader('Set-Cookie', [
-      accessTokenCookie,
-      refreshTokenCookie.cookie,
-    ]);
+    try {
+      const { user } = request;
+      const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
+        user.id,
+        user.username,
+        user.role,
+      );
+      const refreshTokenCookie = this.authService.getCookieWithJwtRefreshToken(
+        user.id,
+      );
+      await this.userService.setCurrentRefreshToken(
+        refreshTokenCookie.token,
+        user.id,
+      );
+      request.res.setHeader('Set-Cookie', [
+        accessTokenCookie,
+        refreshTokenCookie.cookie,
+      ]);
 
-    return user;
-    // try {
-    //   return await this.authService.login(req.user);
-    // } catch (error) {
-    //   throw new HttpException(
-    //     {
-    //       status: HttpStatus.UNAUTHORIZED,
-    //       error: 'Wrong username or password.',
-    //     },
-    //     HttpStatus.UNAUTHORIZED,
-    //   );
-    // }
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
   }
   @UseGuards(JwtRefreshGuard)
   @Get('refresh')
@@ -78,16 +71,22 @@ export class AuthController {
         response.status(200).send(user);
       }
     } catch (error) {
-      console.log(error);
+      response.status(400).send(error.message);
     }
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post('logout')
   @HttpCode(200)
   async logOut(@Req() request: any, @Res() response: any) {
-    await this.userService.removeRefreshToken(request.user.id);
-    request.res.setHeader('Set-Cookie', this.authService.getCookiesForLogOut());
-    response.status(200).send('You have been logout.');
+    try {
+      await this.userService.removeRefreshToken(request?.user?.id);
+      request.res.setHeader(
+        'Set-Cookie',
+        this.authService.getCookiesForLogOut(),
+      );
+      response.status(200).send('You have been logout.');
+    } catch (error) {
+      response.status(400).send(error.message);
+    }
   }
 }

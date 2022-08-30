@@ -4,12 +4,6 @@ import { useHistory } from 'react-router-dom';
 
 function Card({ children, id }) {
   const history = useHistory();
-  // const [isShown, setIsShown] = useState(false);
-
-  // const handleIsShownVisible = () => {
-  //   if (!isShown) setIsShown(true);
-  // };
-
   return (
     <li>
       <div className="container">

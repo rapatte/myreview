@@ -17,4 +17,7 @@ export const UserService = (repository: IUserRepository): IUserRepository => ({
   refresh: (): Promise<any> => {
     return repository.refresh();
   },
+  logout: (): Promise<string> => {
+    return repository.logout();
+  },
 });

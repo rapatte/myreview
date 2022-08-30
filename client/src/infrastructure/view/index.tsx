@@ -30,7 +30,8 @@ export function App() {
   const userContext = UseUser();
   const refresh = async () => {
     try {
-      userContext.dispatch(login(await userServices.refresh()));
+      const user = await userServices.refresh();
+      userContext.dispatch(login(user));
       return;
     } catch (error) {
       console.log(error);
@@ -39,9 +40,7 @@ export function App() {
   };
   const { i18n } = useTranslation();
   useEffect(() => {
-    (async () => {
-      await refresh();
-    })();
+    refresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -60,7 +59,6 @@ export function App() {
           <Route exact path="/reviews/" component={Reviews} />
           <Route exact path="/reviews/details/:id" component={ReviewDetails} />
           <RouteGuard exact path="/reviews/add" component={AddReview} />
-          {/* <Route exact path="/reviews/add" component={AddReview} /> */}
           <RouteGuard exact path="/reviews/add/:id" component={AddReview} />
           <RouteGuard
             exact

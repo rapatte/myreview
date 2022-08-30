@@ -105,6 +105,7 @@ export class ReviewController {
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
+
   @Delete(':id')
   async deleteReview(@Res() response: Response, @Param('id') reviewId: string) {
     try {

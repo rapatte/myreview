@@ -2,4 +2,5 @@
 import ListingReviewCards from './cardLists/review/ListingReviewCards';
 import ReviewForm from './forms/reviewForm/ReviewForm';
 import Header from './header/Header';
-export { ListingReviewCards, ReviewForm, Header };
+import CommentForm from './forms/commentForm/commentForm';
+export { ListingReviewCards, ReviewForm, Header, CommentForm };

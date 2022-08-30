@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useOutsideClick } from 'infrastructure/view/hooks';
 import { ContextMenuOption } from '../../../components/atoms';
 import { notifyError, notifySuccess } from 'utils/toastify';
-import { reviewServices } from 'application';
+import { reviewServices, userServices } from 'application';
 import { reviewDelete } from 'infrastructure/view/store/review/review.actions';
 import { useReview } from 'infrastructure/view/hooks/UseReviews';
 import { useHistory } from 'react-router-dom';
 
 function CardMenu({ id }) {
-  const review = useReview();
+  const reviewContext = useReview();
   const history = useHistory();
   const [position, setPosition] = useState({ xPos: 0, yPos: 0 });
   const [showMenu, setShowMenu] = useState(false);
@@ -24,12 +24,14 @@ function CardMenu({ id }) {
 
   const deleteData = async id => {
     try {
-      await reviewServices
-        .deleteReview(id)
-        .then(() => review.dispatch(reviewDelete(id)));
-      notifySuccess('Review deleted');
+      await userServices.refresh();
+      const res = await reviewServices.deleteReview(id);
+      reviewContext.dispatch(reviewDelete(id));
+      notifySuccess(res);
       setShowMenu(false);
     } catch (error: any) {
+      console.log(error.response);
+
       notifyError(error.response.data.message);
     }
   };

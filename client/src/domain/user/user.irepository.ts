@@ -6,4 +6,5 @@ export interface IUserRepository {
   addUser: (user: User) => Promise<User>;
   login: (user: any) => Promise<any>;
   refresh: () => Promise<any>;
+  logout: () => Promise<string>;
 }

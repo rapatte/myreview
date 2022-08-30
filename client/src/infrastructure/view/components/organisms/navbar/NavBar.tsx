@@ -1,5 +1,6 @@
 import { faUserAltSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { userServices } from 'application';
 import { linksData } from 'infrastructure/view/constants/routes';
 import { usePathName } from 'infrastructure/view/hooks';
 import { UseUser } from 'infrastructure/view/hooks/UseUsers';
@@ -20,15 +21,20 @@ function NavBar(props) {
     handleMenu(state.isOpen);
   };
 
-  const logoutClick = () => {
-    localStorage.removeItem('token');
-    handleCloseMenu();
-    if (!userContext.state.isLogged) {
-      notifyError('You are not logged in');
-      return;
+  const logoutClick = async () => {
+    try {
+      handleCloseMenu();
+      if (!userContext.state.user) {
+        notifyError('You are not logged in');
+        return;
+      }
+      const response = await userServices.logout();
+      userContext.dispatch(logout());
+      notifySuccess(response);
+    } catch (error: any) {
+      handleCloseMenu();
+      notifyError(error.response.data);
     }
-    userContext.dispatch(logout());
-    notifySuccess('You have been logged out');
   };
 
   return (

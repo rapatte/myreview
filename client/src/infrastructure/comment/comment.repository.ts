@@ -26,7 +26,6 @@ export const commentRepository = (client: Http): ICommentRepository => ({
       return '?criteria=' + arr.join(`&${key}=`);
     };
     const url = '/comments/search/' + parameterizeArray('criteria', keywords);
-
     const commentFiltred = await client.get<CommentDTO[]>(url);
     return commentFiltred.map(
       (commentDTO): Comment => ({

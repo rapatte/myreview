@@ -5,18 +5,21 @@ import { notifyError } from 'utils/toastify';
 
 const RouteGuard = ({ component: Component, ...rest }) => {
   const userContext = UseUser();
-  function hasJWT() {
-    let flag = false;
-    const isLogged = userContext.state.isLogged;
-    isLogged ? (flag = true) : (flag = false);
-    if (flag === false) notifyError('You must be logged in');
-    return flag;
-  }
+  const isLogged = () => {
+    const user = userContext.state.user;
+    if (user) {
+      return true;
+    } else {
+      notifyError('You must be logged in.');
+      return false;
+    }
+  };
+
   return (
     <Route
       {...rest}
       render={props =>
-        hasJWT() ? (
+        isLogged() ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: '/login' }} />

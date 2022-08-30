@@ -93,8 +93,10 @@ export class UserRepositoryAdapter implements IUserRepository {
     await this.getOne(userId);
   }
   async removeRefreshToken(userId: number) {
-    return this.userEntityRepository.update(userId, {
-      currentHashedRefreshToken: null,
-    });
+    if (userId) {
+      return this.userEntityRepository.update(userId, {
+        currentHashedRefreshToken: null,
+      });
+    }
   }
 }

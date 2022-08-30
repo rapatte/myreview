@@ -24,4 +24,7 @@ export const userRepository = (client: Http): IUserRepository => ({
   refresh: async () => {
     return await client.get<any>('/auth/refresh');
   },
+  logout: async () => {
+    return await client.post<any>('auth/logout');
+  },
 });

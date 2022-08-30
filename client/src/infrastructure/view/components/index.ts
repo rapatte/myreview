@@ -22,8 +22,10 @@ import {
 } from './molecules';
 import { ListingReviewCards, ReviewForm } from './organisms';
 import { MainLayout } from './templates';
+import { CommentForm } from './organisms';
 
 export {
+  CommentForm,
   ContextMenuOption,
   Status,
   Button,

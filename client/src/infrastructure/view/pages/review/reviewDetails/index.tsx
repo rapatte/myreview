@@ -4,7 +4,7 @@ import { Review } from 'domain/review/review';
 import { Comment } from 'domain/comment/comment';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CommentForm from 'infrastructure/view/components/organisms/forms/commentForm/commentForm';
+import { CommentForm } from 'infrastructure/view/components';
 import { notifyError, notifySuccess } from 'utils/toastify';
 import { UseUser } from 'infrastructure/view/hooks/UseUsers';
 
@@ -28,8 +28,6 @@ const ReviewDetails = () => {
       setError(e.response.data.message);
     }
   };
-
-  console.log(userContext.state.user);
 
   useEffect(() => {
     getReview();
@@ -60,9 +58,9 @@ const ReviewDetails = () => {
         src={review.trailer?.replace('watch?v=', 'embed/')}
       />
       {review.title}
-      {comments?.map(comment => {
-        return comment.content;
-      })}
+      {/* {comments?.map(comment => {
+        <CommentCard props={comment} />;
+      })} */}
       {error}
       <CommentForm
         values={values}

@@ -48,19 +48,12 @@ export const HttpAxios: Http = {
   },
   request: async options => await axios.request(options),
 };
-export const setAuthToken = () => {
-  // const requestHandler = (request: any) => {
-  //   request.headers.Authorization = `Bearer ${cookies.jwtToken}`;
-  //   return request;
-  // };
-  // if (token) {
-  // console.log(axios.interceptors.response.use(response => response));
-  // axios.interceptors.request.use(request => {
-  //   console.log(request.headers);
-  // });
-  //   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  // } else {
-  //   delete axios.defaults.headers.common['Authorization'];
-  //   localStorage.removeItem('token');
-  // }
+export const setAuthToken = token => {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${
+      token.split('=')[1]
+    }`;
+  } else {
+    delete axios.defaults.headers.common['Authorization'];
+  }
 };

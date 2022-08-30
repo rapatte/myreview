@@ -13,8 +13,6 @@ export const getOneuser = (data: User) => {
   };
 };
 export const login = (data: any) => {
-  console.log(data);
-
   return {
     type: 'login',
     payload: data,

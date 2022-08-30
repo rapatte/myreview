@@ -5,19 +5,22 @@ import { notifyError, notifySuccess } from 'utils/toastify';
 import { UseUser } from 'infrastructure/view/hooks/UseUsers';
 import { login } from 'infrastructure/view/store/user/user.actions';
 import { setAuthToken } from 'infrastructure/util/httpAxios';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const Login = () => {
   const history = useHistory();
   const userContext = UseUser();
   const [user, setUser] = useState<any>();
-
   const handleSubmit = async e => {
     try {
       e.preventDefault();
-      history.push('reviews');
+      if (userContext.state.user) {
+        notifyError('You are already logged in.');
+        return;
+      }
       const res = await userServices.login(user);
       userContext.dispatch(login(res));
-      setAuthToken();
       history.push('reviews');
       notifySuccess('You have been logged in');
     } catch (e: any) {
@@ -25,6 +28,8 @@ const Login = () => {
       if (e.response.data.message) notifyError(e.response.data.message);
     }
   };
+
+  setAuthToken(document.cookie);
 
   const handleChange = e => {
     const { name, value } = e.target;

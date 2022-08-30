@@ -35,11 +35,9 @@ export class AuthService {
   ) {
     try {
       const payload: any = { userId, username, role };
-      const token = this.jwtService.sign(payload, {
-        secret: jwtSecret().jwtSecret,
-        expiresIn: `5m`,
-      });
-      return `Authentication=${token}; HttpOnly; Path=/; Max-Age=5m`;
+      const secret = jwtSecret().jwtSecret;
+      const token = this.jwtService.sign(payload, { secret, expiresIn: '5m' });
+      return `Authentication=${token}; Path=/; Max-Age=5m`;
     } catch (error) {
       console.log(error);
     }
@@ -50,9 +48,8 @@ export class AuthService {
       const payload: any = { userId };
       const token = this.jwtService.sign(payload, {
         secret: jwtSecret().jwtRefreshSecret,
-        expiresIn: `30m`,
       });
-      const cookie = `Refresh=${token}; HttpOnly; Path=/; Max-Age=30m`;
+      const cookie = `Refresh=${token}; HttpOnly; Path=/;`;
       return {
         cookie,
         token,
