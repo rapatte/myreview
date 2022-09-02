@@ -15,6 +15,7 @@ const ReviewDetails = () => {
   const [review, setReview] = useState<Review>({});
   const [comments, setComments] = useState<Comment[]>([]);
   const [error, setError] = useState<any>();
+
   const getReview = async () => {
     setReview(await reviewServices.getOneReview(params.id));
   };
@@ -42,10 +43,12 @@ const ReviewDetails = () => {
       e.preventDefault();
       await commentServices.addComment(values);
       notifySuccess('Comment posted');
+      setError('');
       getComments();
     } catch (error: any) {
-      if (!userContext.state.catalog) {
+      if (!userContext.state.user) {
         notifyError('You must be logged in.');
+        return;
       }
       notifyError(error.response.data.message);
     }
@@ -58,9 +61,12 @@ const ReviewDetails = () => {
         src={review.trailer?.replace('watch?v=', 'embed/')}
       />
       {review.title}
-      {/* {comments?.map(comment => {
-        <CommentCard props={comment} />;
-      })} */}
+      {comments?.map(comment => (
+        // <CommentCard props={comment} />;
+        <>
+          {comment.author} : {comment.content}
+        </>
+      ))}
       {error}
       <CommentForm
         values={values}
