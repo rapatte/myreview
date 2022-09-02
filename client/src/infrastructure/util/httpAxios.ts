@@ -48,7 +48,7 @@ export const HttpAxios: Http = {
   },
   request: async options => await axios.request(options),
 };
-export const setAuthToken = token => {
+export const setAuthToken = (token: string) => {
   if (token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${
       token.split('=')[1]
