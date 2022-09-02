@@ -22,13 +22,13 @@ import { Comment } from '../../types/Comment';
 import { CommentDomain } from '../../domain/comment/comment.domain';
 import { CommentEntity } from '../../infrastructure/comment/comment.entity';
 import { CommentServiceAdapter } from './comment.service.adapter';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import JwtRefreshGuard from '../auth/jwt-refresh.guard';
 @ApiTags('Comments')
 @Controller('comments')
 export class CommentController {
   constructor(private readonly commentServiceAdapter: CommentServiceAdapter) {}
   @ApiCreatedResponse({ type: CommentEntity })
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtRefreshGuard)
   @Post()
   async create(
     @Body() comment: Comment,

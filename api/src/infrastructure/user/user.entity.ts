@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { UserDomain } from '../../domain/user/user.domain';
-import { Exclude } from 'class-transformer';
 
 // The property "name" sets the table name. This is usually implied from the
 // class name, however this can be overridden if needed.
