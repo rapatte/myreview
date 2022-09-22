@@ -1,0 +1,14 @@
+.Comment-Section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 2rem 0;
+  background-color: hsl(228, 33%, 97%);
+  
+  @media (min-width: 47em) {
+    gap: 20px;
+    padding: 4rem 0;
+  }
+}

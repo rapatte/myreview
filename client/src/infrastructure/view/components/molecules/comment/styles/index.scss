@@ -1,0 +1,12 @@
+.display--none {
+    display: none !important;
+}
+  
+.overflow--hidden {
+  overflow-y: hidden;
+}
+  
+::selection {
+  color: $white;
+  background: $grayish-blue;
+}

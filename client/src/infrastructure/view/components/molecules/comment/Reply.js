@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 
 import './styles/Comment.scss';
 
 import AddComment from './AddComment';
-import ReplyContainer from './ReplyContainer';
 import DeleteModal from './DeleteModal';
 import CommentVotes from './CommentVotes';
 import CommentHeader from './CommentHeader';
 import CommentFooter from './CommentFooter';
 
-import { commentPostedTime } from './time';
-
-const Comment = ({
+const Reply = ({
   commentData,
+  commentPostedTime,
   updateScore,
-  updateReplies,
+  addNewReply,
   editComment,
-  commentDelete,
+  deleteComment,
   setDeleteModalState,
 }) => {
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState('');
-  const [vote, setVoted] = useState<any>(false);
+  const [vote, setVoted] = useState(false);
   const [score, setScore] = useState(commentData.score);
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
@@ -30,35 +29,54 @@ const Comment = ({
   // get time from comment posted
   const createdAt = new Date(commentData.createdAt);
   const today = new Date();
-  const differenceInTime = today.getTime() - createdAt.getTime();
+  var differenceInTime = today.getTime() - createdAt.getTime();
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
     localStorage.setItem('voteState', vote);
-  }, [differenceInTime, vote]);
+  }, [differenceInTime, commentPostedTime, vote]);
 
+  // adding reply
   const addReply = newReply => {
-    const replies = [...commentData.replies, newReply];
-    updateReplies(replies, commentData.id);
+    addNewReply(newReply);
     setReplying(false);
   };
 
+  const commentContent = () => {
+    const text = commentData.content.trim().split(' ');
+    const firstWord = text.shift().split(',');
+
+    return !editing ? (
+      <div className="comment-content">
+        <span className="replyingTo">{firstWord}</span>
+        {text.join(' ')}
+      </div>
+    ) : (
+      <textarea
+        className="content-edit-box"
+        value={content}
+        onChange={e => {
+          setContent(e.target.value);
+        }}
+      />
+    );
+  };
+
   const updateComment = () => {
-    editComment(content, commentData.id, 'comment');
+    editComment(content, commentData.id, 'reply');
     setEditing(false);
   };
 
-  const deleteComment = (id, type) => {
-    const finalType = type !== undefined ? type : 'comment';
-    const finalId = id !== undefined ? id : commentData.id;
-    commentDelete(finalId, finalType, commentData.id);
+  // delete comment
+  const deleteReply = () => {
+    deleteComment(commentData.id, 'reply');
     setDeleting(false);
   };
 
   return (
     <div
       className={`comment-container ${
-        commentData.replies[0] !== undefined ? 'reply-container-gap' : ''
+        commentData.replies[0] !== undefined ? 'gap' : ''
       }`}
     >
       <div className="comment">
@@ -79,17 +97,8 @@ const Comment = ({
             setEditing={setEditing}
             time={time}
           />
-          {!editing ? (
-            <div className="comment-content">{commentData.content}</div>
-          ) : (
-            <textarea
-              className="content-edit-box"
-              value={content}
-              onChange={e => {
-                setContent(e.target.value);
-              }}
-            />
-          )}
+
+          {commentContent()}
           {editing && (
             <button className="update-btn" onClick={updateComment}>
               update
@@ -107,7 +116,7 @@ const Comment = ({
           setDeleting={setDeleting}
           setDeleteModalState={setDeleteModalState}
           setEditing={setEditing}
-        />{' '}
+        />
       </div>
 
       {replying && (
@@ -117,23 +126,19 @@ const Comment = ({
           replyingTo={commentData.username}
         />
       )}
-      {commentData.replies !== [] && (
-        <ReplyContainer
-          key={commentData.replies.id}
-          commentData={commentData.replies}
-          updateScore={updateScore}
+      {commentData.replies.map(reply => (
+        <Reply
+          key={reply.id}
+          commentData={reply}
           commentPostedTime={commentPostedTime}
           addReply={addReply}
-          editComment={editComment}
-          deleteComment={deleteComment}
-          setDeleteModalState={setDeleteModalState}
         />
-      )}
+      ))}
 
       {deleting && (
         <DeleteModal
           setDeleting={setDeleting}
-          deleteComment={deleteComment}
+          deleteComment={deleteReply}
           setDeleteModalState={setDeleteModalState}
         />
       )}
@@ -141,4 +146,4 @@ const Comment = ({
   );
 };
 
-export default Comment;
+export default Reply;

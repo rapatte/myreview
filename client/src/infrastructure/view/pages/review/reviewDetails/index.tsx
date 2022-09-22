@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { CommentForm } from 'infrastructure/view/components';
 import { notifyError, notifySuccess } from 'utils/toastify';
 import { UseUser } from 'infrastructure/view/hooks/UseUsers';
+import ListingComment from 'infrastructure/view/components/organisms/cardLists/comment/ListingComment';
+import './index.scss';
 
 const ReviewDetails = () => {
   const [values, setValues] = useState<Review>({});
@@ -15,6 +17,7 @@ const ReviewDetails = () => {
   const [review, setReview] = useState<Review>({});
   const [comments, setComments] = useState<Comment[]>([]);
   const [error, setError] = useState<any>();
+  const reviewId = params.id;
 
   const getReview = async () => {
     setReview(await reviewServices.getOneReview(params.id));
@@ -60,21 +63,16 @@ const ReviewDetails = () => {
         title="Trailer"
         src={review.trailer?.replace('watch?v=', 'embed/')}
       />
-      {review.title}
-      {comments?.map(comment => (
-        // <CommentCard props={comment} />;
-        <>
-          {comment.author} : {comment.content}
-        </>
-      ))}
+      {review.title} SCORE : {review.score}
       {error}
-      <CommentForm
+      <ListingComment reviewId={reviewId} />
+      {/* <CommentForm
         values={values}
         setValues={setValues}
         handleClick={handleSubmit}
         id={params.id}
         type="add"
-      />
+      /> */}
     </>
   );
 };

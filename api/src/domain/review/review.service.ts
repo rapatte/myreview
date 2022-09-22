@@ -11,6 +11,9 @@ export class ReviewService implements IReviewService {
   }
 
   async save(review: ReviewDomain) {
+    if (!review) {
+      throw new Error('There is no review to add.');
+    }
     return await this.reviewRepositoryAdapter.save(review);
   }
   async getAll() {
