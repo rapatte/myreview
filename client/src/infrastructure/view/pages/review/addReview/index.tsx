@@ -10,7 +10,6 @@ import { useReview } from 'infrastructure/view/hooks/UseReviews';
 
 const AddReview: React.FC = () => {
   const [values, setValues] = useState<Review>({});
-
   const history = useHistory();
   const reviewContext = useReview();
 
