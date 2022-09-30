@@ -7,7 +7,7 @@ export interface IReviewRepository {
   addReview: (mission: Review) => Promise<Review>;
   reviewFiltred: (keywords: string[]) => Promise<Review[]>;
   getMovieReviews: () => Promise<Review[]>;
-  getByTitle: (title) => Promise<any>;
-  getOneReview: (id) => Promise<Review>;
-  getIdTrailer: (title) => Promise<any>;
+  getByTitle: (title: string) => Promise<any>;
+  getOneReview: (id: string) => Promise<Review>;
+  getIdTrailer: (title: string) => Promise<any>;
 }
